@@ -1,0 +1,21 @@
+name: zh2vi
+version: 0.1.0
+
+authors:
+  - Your Name <your@email.com>
+
+description: |
+  Chinese to Vietnamese translation library using HanLP MTL analysis results.
+  Transforms Chinese syntax trees to Vietnamese with dictionary-based translation.
+
+crystal: ">= 1.0.0"
+
+license: MIT
+
+dependencies:
+  # No external dependencies for now
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+    version: ~> 1.6
