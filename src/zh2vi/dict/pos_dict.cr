@@ -51,15 +51,14 @@ module Zh2Vi::Dict
         return val
       end
 
-      # 2. Try fallback UTT
-      if fallback_utt = UTT.fallback(utt)
+      # 2. Try fallback chain: NR/PN/M → N, A ↔ V, then X
+      UTT.fallbacks(utt).each do |fallback_utt|
         if val = variants[fallback_utt]?
           return val
         end
       end
 
-      # 3. Try X (default) tag
-      variants["X"]?
+      nil
     end
 
     # Look up translation by tok only (fallback, returns first match)
