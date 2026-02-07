@@ -11,12 +11,14 @@ describe Zh2Vi::Dict::PosDict do
   describe "#lookup" do
     it "returns translation when both tok and pos match" do
       dict = Zh2Vi::Dict::PosDict.new
-      dict.add("上", "LC", "trên")
-      dict.add("上", "VV", "lên")
+      # UTT tags: F (function word for LC), V (verb for VV), N (noun for NN)
+      dict.add("上", "F", "trên") # LC -> F
+      dict.add("上", "V", "lên")  # VV -> V
 
-      dict.lookup("上", "LC").should eq("trên")
-      dict.lookup("上", "VV").should eq("lên")
-      dict.lookup("上", "NN").should be_nil
+      # lookup converts POS -> UTT internally
+      dict.lookup("上", "LC").should eq("trên") # LC -> F
+      dict.lookup("上", "VV").should eq("lên")  # VV -> V
+      dict.lookup("上", "NN").should be_nil     # NN -> N, no entry
     end
   end
 

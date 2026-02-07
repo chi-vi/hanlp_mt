@@ -85,8 +85,8 @@ module Zh2Vi
         return dep_match if dep_match
       end
 
-      # 2. Try POS-based lookup
-      if result = @pos_dict.lookup(text, pos)
+      # 2. Try POS-based lookup (with NER for UTT conversion)
+      if result = @pos_dict.lookup(text, pos, token.ner)
         return result
       end
 
