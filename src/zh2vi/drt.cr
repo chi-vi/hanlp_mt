@@ -8,38 +8,66 @@
 
 module Zh2Vi
   module DRT
-    # 8 DRT tags - chỉ dùng cho dictionary lookup
-    TAGS = %w[OBJ RES NMOD CLF ADV PREP BEI OTH]
+    # 9 DRT tags - chỉ dùng cho dictionary lookup
+    # Sắp xếp theo bias (ưu tiên tra cứu từ thấp → cao)
+    TAGS = %w[RES OBJ AGT PREP ADV NMOD CLF BEI OTH]
+
+    # Bias values - số nhỏ = ưu tiên cao hơn
+    # Dùng để sắp xếp thứ tự tra cứu khi một từ có nhiều quan hệ
+    BIAS = {
+      "RES"  => 1, # Bổ ngữ KQ - thay đổi nghĩa động từ hoàn toàn
+      "OBJ"  => 2, # Tân ngữ - phân biệt nghĩa theo tân ngữ
+      "AGT"  => 3, # Chủ ngữ - đôi khi thay đổi nghĩa
+      "PREP" => 4, # Giới từ - ngữ cảnh công cụ/địa điểm
+      "ADV"  => 5, # Trạng ngữ - bổ sung mức độ/cách thức
+      "NMOD" => 6, # Định ngữ - ít ảnh hưởng nghĩa gốc
+      "CLF"  => 7, # Lượng từ - nghĩa tương đối cố định
+      "BEI"  => 8, # Bị động - chỉ thêm bị/được
+      "OTH"  => 9, # Fallback
+    }
 
     # Mapping từ deprel (HanLP SD) sang DRT
     # Chỉ map những quan hệ có thể thay đổi nghĩa từ
     def self.from_deprel(deprel : String) : String
       case deprel
-      # Tân ngữ: V → N
-      when "dobj", "range", "attr"
+      # Chủ ngữ / Tác thể (bias=3)
+      when "nsubj", "top", "xsubj", "csubj"
+        "AGT"
+        # Tân ngữ / Thụ thể (bias=2)
+      when "dobj", "range", "attr", "ba", "nsubjpass"
         "OBJ"
-        # Bổ ngữ kết quả: V → V/A
-      when "rcomp"
+        # Bổ ngữ kết quả (bias=1)
+      when "rcomp", "ccomp", "xcomp"
         "RES"
-        # Định ngữ: M → N
+        # Định ngữ danh từ (bias=6)
       when "nn", "amod", "assmod", "rcmod"
         "NMOD"
-        # Lượng từ: CLF → N
-      when "clf", "nummod", "ordmod"
+        # Lượng từ (bias=7)
+      when "clf", "nummod", "ordmod", "det"
         "CLF"
-        # Trạng ngữ: ADV → V
-      when "advmod", "tmod", "dvpmod", "dvpm", "mmod"
+        # Trạng ngữ (bias=5)
+      when "advmod", "tmod", "dvpmod", "dvpm", "mmod", "neg"
         "ADV"
-        # Giới từ: P → N/V
-      when "prep", "pobj", "lobj", "pccomp", "loc"
+        # Giới từ (bias=4)
+      when "prep", "pobj", "lobj", "pccomp", "loc", "lccomp", "plmod"
         "PREP"
-        # Thể bị động
-      when "pass", "nsubjpass"
+        # Bị động marker (bias=8)
+      when "pass"
         "BEI"
       else
-        # Fallback cho tất cả trường hợp khác
+        # Fallback (bias=9)
         "OTH"
       end
+    end
+
+    # Lấy bias của một DRT tag
+    def self.bias(drt : String) : Int32
+      BIAS[drt]? || 9
+    end
+
+    # So sánh ưu tiên: true nếu a có ưu tiên cao hơn b
+    def self.higher_priority?(a : String, b : String) : Bool
+      bias(a) < bias(b)
     end
   end
 end

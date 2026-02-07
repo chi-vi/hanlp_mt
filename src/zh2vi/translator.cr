@@ -106,14 +106,10 @@ module Zh2Vi
     end
 
     # Look up using dependency relations with DRT-based priority
-    # See: doc/relation-tagset.md for full documentation
+    # See: doc/deprel-tagset.md for full documentation
     #
-    # DEP dictionary format: ["head_word", "dep_word", "deprel|drt", "head_val", "dep_val"]
-    # Priority:
-    #   1. SEP (ly hợp) - merge tokens
-    #   2. CLF (lượng từ) - lookup by noun
-    #   3. RES/DIR (bổ ngữ) - verb + complement
-    #   4. OBJ (tân ngữ) - verb + object for WSD
+    # DEP dictionary format: ["child", "parent", "DRT", "child_val", "parent_val"]
+    # Priority is determined by DRT.BIAS - lower bias = higher priority
     private def lookup_by_dep(text : String, idx : Int32, cws : Array(String), dep : Array(DepRel)) : String?
       dep_idx = idx + 1 # DEP is 1-indexed
 
@@ -121,24 +117,12 @@ module Zh2Vi
       as_head = dep.select { |r| r.head == dep_idx }
       as_dependent = dep.select { |r| r.dependent == dep_idx }
 
-      # HIGH PRIORITY: Check for special DRT patterns first
+      # Collect all potential matches with their DRT bias
+      candidates = [] of {Int32, String} # {bias, translation}
 
-      # 1. SEP - Động từ ly hợp (this word is verb, check if object forms liheci)
-      as_head.each do |rel|
-        next unless rel.relation == "dobj"
-        obj_idx = rel.dependent - 1
-        next unless obj_idx >= 0 && obj_idx < cws.size
-        obj = cws[obj_idx]
+      # === Process relations where this word is HEAD ===
 
-        if DRT.liheci?(text, obj)
-          # Look up with SEP context
-          if match = @dep_dict.lookup(text, obj, "SEP")
-            return match.child_val
-          end
-        end
-      end
-
-      # 2. CLF - Lượng từ (tra ngược theo danh từ)
+      # Check CLF - Lượng từ (special: tra ngược theo danh từ)
       as_head.each do |rel|
         next unless rel.relation == "clf"
         clf_idx = rel.dependent - 1
@@ -146,79 +130,90 @@ module Zh2Vi
         clf = cws[clf_idx]
 
         if match = @dep_dict.lookup(text, clf, "CLF")
-          return match.child_val
+          candidates << {DRT.bias("CLF"), match.child_val}
         end
       end
 
-      # 3. RES/DIR - Bổ ngữ (this word is complement, check head verb)
-      as_dependent.each do |rel|
-        next unless rel.relation == "rcomp" || rel.relation == "compound:dir"
-        head_idx = rel.head - 1
-        next unless head_idx >= 0 && head_idx < cws.size
-        head = cws[head_idx]
-
-        drt = DRT.direction?(text) ? "DIR" : "RES"
-        if match = @dep_dict.lookup(head, text, drt)
-          return match.parent_val if match.parent_val
-        end
-        # Also try the original deprel
-        if match = @dep_dict.lookup(head, text, rel.relation)
-          return match.parent_val if match.parent_val
-        end
-      end
-
-      # 4. OBJ - Tân ngữ (this is head verb, lookup by object)
+      # Check OBJ relations (dobj, ba)
       as_head.each do |rel|
-        next unless rel.relation == "dobj"
+        drt = DRT.from_deprel(rel.relation)
+        next unless drt == "OBJ"
+
         obj_idx = rel.dependent - 1
         next unless obj_idx >= 0 && obj_idx < cws.size
         obj = cws[obj_idx]
 
-        # Try original deprel first (backward compatible with existing dict)
+        # Try original deprel first for backward compatibility
         if match = @dep_dict.lookup(text, obj, rel.relation)
-          return match.child_val
-        end
-        # Then try DRT tag
-        if match = @dep_dict.lookup(text, obj, "OBJ")
-          return match.child_val
+          candidates << {DRT.bias("OBJ"), match.child_val}
+        elsif match = @dep_dict.lookup(text, obj, "OBJ")
+          # Then try DRT tag
+          candidates << {DRT.bias("OBJ"), match.child_val}
         end
       end
 
-      # 5. When this word is an object, return its translation
+      # Check AGT relations (nsubj, top, xsubj, csubj)
+      as_head.each do |rel|
+        drt = DRT.from_deprel(rel.relation)
+        next unless drt == "AGT"
+
+        subj_idx = rel.dependent - 1
+        next unless subj_idx >= 0 && subj_idx < cws.size
+        subj = cws[subj_idx]
+
+        # Try original deprel first
+        if match = @dep_dict.lookup(text, subj, rel.relation)
+          candidates << {DRT.bias("AGT"), match.child_val}
+        elsif match = @dep_dict.lookup(text, subj, "AGT")
+          candidates << {DRT.bias("AGT"), match.child_val}
+        end
+      end
+
+      # === Process relations where this word is DEPENDENT ===
+
+      # Check RES - Bổ ngữ kết quả (highest priority)
       as_dependent.each do |rel|
-        next unless rel.relation == "dobj"
+        drt = DRT.from_deprel(rel.relation)
+        next unless drt == "RES"
+
         head_idx = rel.head - 1
         next unless head_idx >= 0 && head_idx < cws.size
         head = cws[head_idx]
 
-        if match = @dep_dict.lookup(head, text, "OBJ")
-          return match.parent_val if match.parent_val
-        end
-        if match = @dep_dict.lookup(head, text, rel.relation)
-          return match.parent_val if match.parent_val
+        # Try original deprel first
+        if match = @dep_dict.lookup(text, head, rel.relation)
+          candidates << {DRT.bias("RES"), match.child_val}
+        elsif match = @dep_dict.lookup(text, head, "RES")
+          candidates << {DRT.bias("RES"), match.child_val}
         end
       end
 
-      # 6. Generic lookup for other relations
+      # Check other dependent relations
       as_dependent.each do |rel|
         head_idx = rel.head - 1
         next unless head_idx >= 0 && head_idx < cws.size
         head = cws[head_idx]
 
-        # Try to convert to DRT first
-        if drt = DRT.from_deprel(rel.relation)
-          if match = @dep_dict.lookup(head, text, drt)
-            return match.parent_val if match.parent_val
+        drt = DRT.from_deprel(rel.relation)
+        next if drt == "RES" || drt == "OTH" # Already handled or fallback
+
+        # Try original deprel first for backward compatibility
+        if match = @dep_dict.lookup(text, head, rel.relation)
+          if val = match.child_val
+            candidates << {DRT.bias(drt), val}
+          end
+        elsif match = @dep_dict.lookup(text, head, drt)
+          # Then try DRT tag
+          if val = match.child_val
+            candidates << {DRT.bias(drt), val}
           end
         end
-
-        # Fallback to original relation
-        if match = @dep_dict.lookup(head, text, rel.relation)
-          return match.parent_val if match.parent_val
-        end
       end
 
-      nil
+      # Return highest priority match (lowest bias)
+      return nil if candidates.empty?
+      candidates.sort_by! { |c| c[0] }
+      candidates.first[1]
     end
 
     # Get Vietnamese output as string
