@@ -1,5 +1,6 @@
 require "./node"
 require "./parser"
+require "./drt"
 require "./dict/*"
 require "./rules/*"
 
@@ -104,43 +105,116 @@ module Zh2Vi
       @hanviet.convert(text)
     end
 
-    # Look up using dependency relations
-    # DEP dictionary format: ["child_word", "parent_word", "deprel", "child_val", "parent_val"]
-    # For verb-object: verb is head, object is dependent with "dobj" relation
-    # The dictionary stores: ["verb", "object", "dobj", "verb_translation", "object_translation"]
+    # Look up using dependency relations with DRT-based priority
+    # See: doc/relation-tagset.md for full documentation
+    #
+    # DEP dictionary format: ["head_word", "dep_word", "deprel|drt", "head_val", "dep_val"]
+    # Priority:
+    #   1. SEP (ly hợp) - merge tokens
+    #   2. CLF (lượng từ) - lookup by noun
+    #   3. RES/DIR (bổ ngữ) - verb + complement
+    #   4. OBJ (tân ngữ) - verb + object for WSD
     private def lookup_by_dep(text : String, idx : Int32, cws : Array(String), dep : Array(DepRel)) : String?
-      # Find dependency relation for this word
       dep_idx = idx + 1 # DEP is 1-indexed
 
-      # Case 1: This word is the HEAD (e.g., verb with dobj dependent)
-      # Look up by finding what this word governs
-      dep.each do |rel|
-        if rel.head == dep_idx
-          # This word is the head, rel.dependent is the dependent
-          dep_word_idx = rel.dependent - 1
-          if dep_word_idx >= 0 && dep_word_idx < cws.size
-            dep_word = cws[dep_word_idx]
-            # Look up: text is the verb (child in dict), dep_word is the object (parent in dict)
-            if match = @dep_dict.lookup(text, dep_word, rel.relation)
-              return match.child_val
-            end
+      # Find all relations involving this word
+      as_head = dep.select { |r| r.head == dep_idx }
+      as_dependent = dep.select { |r| r.dependent == dep_idx }
+
+      # HIGH PRIORITY: Check for special DRT patterns first
+
+      # 1. SEP - Động từ ly hợp (this word is verb, check if object forms liheci)
+      as_head.each do |rel|
+        next unless rel.relation == "dobj"
+        obj_idx = rel.dependent - 1
+        next unless obj_idx >= 0 && obj_idx < cws.size
+        obj = cws[obj_idx]
+
+        if DRT.liheci?(text, obj)
+          # Look up with SEP context
+          if match = @dep_dict.lookup(text, obj, "SEP")
+            return match.child_val
           end
         end
       end
 
-      # Case 2: This word is a DEPENDENT
-      # Look up by finding what governs this word
-      dep.each do |rel|
-        if rel.dependent == dep_idx
-          head_word_idx = rel.head - 1
-          if head_word_idx >= 0 && head_word_idx < cws.size
-            head_word = cws[head_word_idx]
-            # Look up: head_word is the verb, text is the object
-            if match = @dep_dict.lookup(head_word, text, rel.relation)
-              # Return parent_val (translation of this word as object)
-              return match.parent_val if match.parent_val
-            end
+      # 2. CLF - Lượng từ (tra ngược theo danh từ)
+      as_head.each do |rel|
+        next unless rel.relation == "clf"
+        clf_idx = rel.dependent - 1
+        next unless clf_idx >= 0 && clf_idx < cws.size
+        clf = cws[clf_idx]
+
+        if match = @dep_dict.lookup(text, clf, "CLF")
+          return match.child_val
+        end
+      end
+
+      # 3. RES/DIR - Bổ ngữ (this word is complement, check head verb)
+      as_dependent.each do |rel|
+        next unless rel.relation == "rcomp" || rel.relation == "compound:dir"
+        head_idx = rel.head - 1
+        next unless head_idx >= 0 && head_idx < cws.size
+        head = cws[head_idx]
+
+        drt = DRT.direction?(text) ? "DIR" : "RES"
+        if match = @dep_dict.lookup(head, text, drt)
+          return match.parent_val if match.parent_val
+        end
+        # Also try the original deprel
+        if match = @dep_dict.lookup(head, text, rel.relation)
+          return match.parent_val if match.parent_val
+        end
+      end
+
+      # 4. OBJ - Tân ngữ (this is head verb, lookup by object)
+      as_head.each do |rel|
+        next unless rel.relation == "dobj"
+        obj_idx = rel.dependent - 1
+        next unless obj_idx >= 0 && obj_idx < cws.size
+        obj = cws[obj_idx]
+
+        # Try original deprel first (backward compatible with existing dict)
+        if match = @dep_dict.lookup(text, obj, rel.relation)
+          return match.child_val
+        end
+        # Then try DRT tag
+        if match = @dep_dict.lookup(text, obj, "OBJ")
+          return match.child_val
+        end
+      end
+
+      # 5. When this word is an object, return its translation
+      as_dependent.each do |rel|
+        next unless rel.relation == "dobj"
+        head_idx = rel.head - 1
+        next unless head_idx >= 0 && head_idx < cws.size
+        head = cws[head_idx]
+
+        if match = @dep_dict.lookup(head, text, "OBJ")
+          return match.parent_val if match.parent_val
+        end
+        if match = @dep_dict.lookup(head, text, rel.relation)
+          return match.parent_val if match.parent_val
+        end
+      end
+
+      # 6. Generic lookup for other relations
+      as_dependent.each do |rel|
+        head_idx = rel.head - 1
+        next unless head_idx >= 0 && head_idx < cws.size
+        head = cws[head_idx]
+
+        # Try to convert to DRT first
+        if drt = DRT.from_deprel(rel.relation)
+          if match = @dep_dict.lookup(head, text, drt)
+            return match.parent_val if match.parent_val
           end
+        end
+
+        # Fallback to original relation
+        if match = @dep_dict.lookup(head, text, rel.relation)
+          return match.parent_val if match.parent_val
         end
       end
 
