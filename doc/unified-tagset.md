@@ -8,12 +8,12 @@ Bộ nhãn tối giản dùng cho **pos-dict** để tra nghĩa từ.
 
 | UTT | Tên gọi | Mapping (Nguồn gốc) | Giải thích & Logic xử lý |
 |-----|---------|---------------------|--------------------------|
-| **N** | Danh từ | POS: `NN`, `NT` / CONST: `NP`, `FRAG` / NER: `ORG`, `PRODUCT`, `EVENT`, `WORK_OF_ART`, `LAW`, `FACILITY`, `NORP`, `GPE`, `LOCATION`, `DATE`, `TIME` | Sự vật, khái niệm, thời gian, địa điểm. `NP` dùng tra thuật ngữ cố định. |
+| **N** | Danh từ | POS: `NN`, `NT` / CONST: `NP`, `FRAG` / NER: `PRODUCT`, `EVENT`, `WORK_OF_ART`, `LAW`, `DATE`, `TIME` | Sự vật, khái niệm, thời gian. `NP` dùng tra thuật ngữ cố định. |
 | **V** | Động từ | POS: `VV`, `VC`, `VE`, `VCD`, `VCP`, `VNV`, `VPT`, `VRD`, `VSB` / CONST: `VP`, `IP`, `CP` | Động từ thường, "là" (`VC`), "có" (`VE`). `IP`/`CP` cho thành ngữ/câu cố định. |
 | **A** | Tính từ | POS: `JJ`, `VA` / CONST: `ADJP`, `DNP`, `UCP` | `VA` dịch là tính từ. `DNP` (cụm "的") thường là định ngữ mô tả. |
 | **D** | Trạng từ | POS: `AD` / CONST: `ADVP`, `DVP`, `PP` | `PP` map vào đây vì cụm giới từ đóng vai trò trạng ngữ. |
 | **M** | Lượng/Số | POS: `M`, `CD`, `OD` / CONST: `QP`, `CLP` / NER: `PERCENT`, `MONEY`, `QUANTITY`, `CARDINAL`, `ORDINAL` | Số và đơn vị đo lường. |
-| **NR** | Tên riêng | POS: `NR` / NER: `PERSON` | Tên người, thực thể cần xử lý danh xưng. |
+| **NR** | Tên riêng | POS: `NR` / NER: `PERSON`, `ORG`, `GPE`, `LOCATION`, `FACILITY`, `NORP` | Tên riêng: người, địa danh, tổ chức, cơ sở. Tra nghĩa cố định. |
 | **PN** | Đại từ | POS: `PN`, `DT` / CONST: `DP` | `DT` (này/kia/mỗi) có tính chất tương tự đại từ. |
 | **I** | Thán từ | POS: `IJ`, `ON`, `SP` / CONST: `INTJ` | Cảm thán, tượng thanh, trợ từ ngữ khí. |
 | **F** | Hư từ | POS: `P`, `BA`, `SB`, `LB`, `DEC`, `DEG`, `DER`, `DEV`, `AS`, `MSP`, `LC`, `ETC` / CONST: `LCP` | Giới từ, markers, phương vị từ. Nghĩa phụ thuộc cấu trúc ngữ pháp. |
@@ -86,13 +86,13 @@ end
 
 def ner_to_utt(ner : String) : String
   case ner
-  when "PERSON"                                      then "NR"
-  when "ORG", "PRODUCT", "EVENT", "WORK_OF_ART",
-       "LAW", "FACILITY", "NORP", "GPE", "LOCATION",
-       "DATE", "TIME"                                then "N"
+  when "PERSON", "ORG", "GPE", "LOCATION",
+       "FACILITY", "NORP"                             then "NR"
+  when "PRODUCT", "EVENT", "WORK_OF_ART",
+       "LAW", "DATE", "TIME"                          then "N"
   when "PERCENT", "MONEY", "QUANTITY",
-       "ORDINAL", "CARDINAL"                         then "M"
-  else                                               "X"
+       "ORDINAL", "CARDINAL"                          then "M"
+  else                                                "X"
   end
 end
 

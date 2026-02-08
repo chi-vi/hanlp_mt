@@ -23,10 +23,10 @@ module Zh2Vi
     # Map NER-OntoNotes tag to UTT tag
     def self.from_ner(ner : String) : String
       case ner
-      when "PERSON" then "NR"
-      when "ORG", "PRODUCT", "EVENT", "WORK_OF_ART",
-           "LAW", "FACILITY", "NORP", "GPE", "LOCATION",
-           "DATE", "TIME" then "N"
+      when "PERSON", "ORG", "GPE", "LOCATION",
+           "FACILITY", "NORP" then "NR"
+      when "PRODUCT", "EVENT", "WORK_OF_ART",
+           "LAW", "DATE", "TIME" then "N"
       when "PERCENT", "MONEY", "QUANTITY",
            "ORDINAL", "CARDINAL" then "M"
       else "X"
