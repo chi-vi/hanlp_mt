@@ -119,6 +119,16 @@ end
 
 ```
 1. Tra "word:UTT_TAG" → nghĩa theo tag
-2. Fallback: tra "word:X" → nghĩa mặc định
+2. Fallback theo chuỗi (dựa trên đặc tính ngữ pháp):
+   - NR → N → X
+   - PN → N → X
+   - M → N → X
+   - A → V → D → X   (tính từ ↔ động từ trạng thái)
+   - V → A → N → X   (động từ ↔ danh động từ)
+   - N → V → A → X   (danh từ ↔ danh động/danh tính từ)
+   - D → A → V → M → N → X  (ad/vd/số/thời gian làm trạng từ)
+   - F → V → N → X   (giới từ/phương vị gốc động/danh từ)
+   - I → V → N → X   (tượng thanh: động từ kêu/danh từ tiếng động)
+   - X → không fallback
 3. Không tìm thấy → Hán-Việt / OOV handler
 ```

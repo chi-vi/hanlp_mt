@@ -60,17 +60,51 @@ module Zh2Vi
     end
 
     # Fallback chain for dictionary lookup:
-    # NR/PN/M → N, A ↔ V, then X
+    # Mỗi tag có logic fallback riêng dựa trên đặc tính ngữ pháp
     FALLBACK_CHAIN = {
+      # 1. Tên riêng: Nếu không thấy, tra như danh từ chung
       "NR" => ["N", "X"],
+
+      # 2. Đại từ: Có tính chất danh từ
       "PN" => ["N", "X"],
-      "M"  => ["N", "X"],
-      "A"  => ["V", "X"],
-      "V"  => ["A", "X"],
-      "N"  => ["X"],
-      "D"  => ["X"],
-      "I"  => ["X"],
-      "F"  => ["X"],
+
+      # 3. Số/Lượng từ: Đôi khi là danh từ đơn vị
+      "M" => ["N", "X"],
+
+      # 4. Tính từ:
+      # - Tra V: Nhiều tính từ là động từ trạng thái (Stative Verbs)
+      # - Tra D: Đôi khi từ điển lưu nó là phó từ
+      "A" => ["V", "D", "X"],
+
+      # 5. Động từ:
+      # - Tra A: Động từ trạng thái/tâm lý
+      # - Tra N: Danh động từ (vn) nhưng từ điển chỉ lưu gốc V
+      "V" => ["A", "N", "X"],
+
+      # 6. Danh từ:
+      # - Tra V: Danh động từ (vn) nhưng từ điển chỉ có V
+      # - Tra A: Danh tính từ (an) nhưng từ điển chỉ có A
+      "N" => ["V", "A", "X"],
+
+      # 7. Trạng từ: (Quan trọng - nhiều từ loại khác làm trạng từ)
+      # - Tra A: Phó tính từ (ad) → tìm nghĩa gốc tính từ
+      # - Tra V: Phó động từ (vd) → tìm nghĩa gốc động từ
+      # - Tra M: Số/lượng từ làm trạng từ (一次, 再三)
+      # - Tra N: Thời gian làm trạng từ (今天, 明年)
+      "D" => ["A", "V", "M", "N", "X"],
+
+      # 8. Hư từ:
+      # - Tra V: Giới từ (p) thường có gốc là Động từ (在, 给, 对)
+      # - Tra N: Phương vị từ (f) thường có gốc là Danh từ (上, 下, 前)
+      "F" => ["V", "N", "X"],
+
+      # 9. Thán từ:
+      # - Tra V: Từ tượng thanh có thể là động từ kêu/hét
+      # - Tra N: Từ tượng thanh có thể là danh từ tiếng động
+      "I" => ["V", "N", "X"],
+
+      # 10. Khác: Không có fallback
+      "X" => [] of String,
     }
 
     # Get fallback tags for a UTT tag (returns array of fallbacks to try)
