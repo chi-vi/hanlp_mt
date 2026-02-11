@@ -28,6 +28,8 @@ module Zh2Vi::Rules
         process_vp(result, dict)
       when "QP"
         reorder_qp(result)
+      when "DP"
+        reorder_dp(result)
       else
         result
       end
@@ -43,7 +45,21 @@ module Zh2Vi::Rules
       # Find demonstrative (DT/DP) at the beginning
       first = node.children.first
       if first.label == "DP" || first.token.try(&.pos) == "DT"
-        # Move demonstrative to end
+        # If DP, check if we can split it (DT + CLP)
+        if first.label == "DP" && first.children.size >= 2
+          # Find DT and CLP inside DP
+          dt = first.children.find { |c| c.token.try(&.pos) == "DT" || c.label == "DT" }
+          clp = first.children.find { |c| c.label == "CLP" || c.label == "M" || c.token.try(&.pos) == "M" }
+
+          if dt && clp
+            # Structure: DP(DT, CLP) + NP -> CLP + NP + DT
+            rest = node.children[1..]
+            node.children = [clp] + rest + [dt]
+            return node
+          end
+        end
+
+        # Fallback: Move entire unit to end
         rest = node.children[1..]
         node.children = rest + [first]
         return node
@@ -57,21 +73,25 @@ module Zh2Vi::Rules
 
         # 1. Adjective + Noun -> Noun + Adjective
         # JJ/VA + NN/NP -> swap
-        if (left_pos == "JJ" || left_pos == "VA") && (right_pos == "NN" || right_pos == "NP")
+        # 1. Adjective + Noun -> Noun + Adjective
+        # JJ/VA/ADJP + NN/NP -> swap
+        if (left_pos == "JJ" || left_pos == "VA" || left_pos == "ADJP") && (right_pos == "NN" || right_pos == "NP")
           node.children = [right, left]
           return node
         end
 
         # 2. Noun + Noun -> Noun + Noun (swap head)
         # NN/NR + NN/NP -> swap
-        if (left_pos == "NN" || left_pos == "NR") && (right_pos == "NN" || right_pos == "NP")
+        if (left_pos == "NN" || left_pos == "NR" || left_pos == "NP") && (right_pos == "NN" || right_pos == "NP")
           node.children = [right, left]
           return node
         end
 
         # 3. DNP + NP -> NP + DNP
         # Possessive/Attribute phrase -> move to back
-        if left_pos == "DNP" && (right_pos == "NP" || right_pos == "NN")
+        # 3. DNP/CP + NP -> NP + DNP/CP
+        # Possessive/Attribute/Relative phrase -> move to back
+        if (left_pos == "DNP" || left_pos == "CP") && (right_pos == "NP" || right_pos == "NN")
           node.children = [right, left]
           return node
         end
@@ -93,8 +113,8 @@ module Zh2Vi::Rules
       possessor = node.children[0...deg_idx]
       deg = node.children[deg_idx]
 
-      # Set Vietnamese for DEG
-      deg.vietnamese = "của"
+      # Set Vietnamese for DEG if not already set (e.g. by AttrRules)
+      deg.vietnamese ||= "của"
 
       # Reorder: DEG + Possessor
       # Chinese: Possessor + DEG (我 + 的)
@@ -131,7 +151,7 @@ module Zh2Vi::Rules
 
       if dec_idx
         dec = node.children[dec_idx]
-        dec.vietnamese = "mà"
+        dec.vietnamese ||= "mà"
       end
 
       # The actual reordering (CP before NP -> NP before CP) happens at parent level
@@ -163,11 +183,15 @@ module Zh2Vi::Rules
       as_text = as_node.token.try(&.text)
       return node unless as_text
 
-      # 1. Check dictionary first if available
-      vn_adv = nil
-      placement = :front # :front (before V) or :back (after V/Obj)
-
-      if dict
+      # 1. Check if translation is already set (by CompRules)
+      if vn_adv = as_node.vietnamese
+        # Use existing translation
+        if vn_adv == "rồi"
+          placement = :back
+        else
+          placement = :front
+        end
+      elsif dict
         # Try lookup
         if vn_adv = dict.lookup(as_text, "AS")
           # Heuristic: 'rồi' -> back, 'đã'/'đang' -> front
@@ -276,6 +300,38 @@ module Zh2Vi::Rules
       if left.label == "QP" && right.label == "VP"
         node.children = [right, left]
         return node
+      end
+
+      node
+    end
+
+    # DP reordering: Demonstrative + Classifier -> Classifier + Demonstrative
+    # 这本 -> quyển này
+    def self.reorder_dp(node : Node) : Node
+      return node if node.children.size < 2
+
+      # Find DT and CLP
+      dt_idx = node.children.index { |c| c.token.try(&.pos) == "DT" || c.label == "DT" }
+      clp_idx = node.children.index { |c| c.label == "CLP" || c.label == "M" || c.token.try(&.pos) == "M" }
+
+      if dt_idx && clp_idx
+        dt = node.children[dt_idx]
+        clp = node.children[clp_idx]
+
+        # Swap: CLP + DT
+        # Note: We assume DP only has these two or similar structure
+
+        # Construct new children array, preserving others if any?
+        # Usually DP is just DT+CLP or DT+QP.
+        # Use simple swap if just 2
+        if node.children.size == 2
+          node.children = [clp, dt]
+        else
+          # If more complex, just ensure CLP is before DT?
+          # Or just swap these specific two?
+          # Let's trust simple swap for now based on fixtures
+          return node
+        end
       end
 
       node

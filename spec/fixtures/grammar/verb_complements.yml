@@ -140,6 +140,9 @@
   - - 了
     - I
     - rồi
+  - - 打碎
+    - V
+    - đánh vỡ
   drt_dict: []
   expected: đánh vỡ rồi
 - tok:
@@ -216,6 +219,9 @@
   - - 跑
     - V
     - chạy
+  - - 进来
+    - V
+    - vào
   drt_dict: []
   expected: chạy vào
 - tok:

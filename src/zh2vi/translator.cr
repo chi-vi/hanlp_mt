@@ -4,6 +4,9 @@ require "./drt"
 require "./dict/*"
 require "./rules/*"
 require "./rules/prep_rules"
+require "./rules/comp_rules"
+require "./rules/advb_rules"
+require "./rules/attr_rules"
 require "./data/raw_con"
 
 module Zh2Vi
@@ -75,6 +78,9 @@ module Zh2Vi
       # 1.5. Apply structural dependency rules (Ba, Bei, Localizers)
       tree = Rules::DeprelRules.process(tree)
       tree = Rules::PrepRules.process(tree)
+      tree = Rules::CompRules.process(tree)
+      tree = Rules::AdvbRules.process(tree)
+      tree = Rules::AttrRules.process(tree)
 
       # 2. Apply reordering rules
       tree = Rules::Reorder.process(tree, @pos_dict)
