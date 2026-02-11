@@ -92,7 +92,7 @@ module Zh2Vi::Rules
       # We look for specific patterns in children
       if node.children.any? { |c| c.deprel == "ba" }
         process_ba(node)
-      elsif node.children.any? { |c| c.deprel == "pass" }
+      elsif node.children.any? { |c| c.deprel == "pass" || c.token.try(&.pos) == "LB" }
         process_bei(node)
       elsif node.children.any? { |c| c.deprel == "loc" || c.deprel == "lobj" || c.deprel == "plmod" }
         process_localizer(node)
@@ -150,8 +150,8 @@ module Zh2Vi::Rules
 
     # Xử lý 被 passive: S + 被 + V → S + bị/được + V
     def self.process_bei(node : Node, sentiment : Symbol = :neutral) : Node
-      # Tìm child có deprel = "pass"
-      pass_child = node.children.find { |c| c.deprel == "pass" }
+      # Tìm child có deprel = "pass" hoặc là LB (từ loại 被)
+      pass_child = node.children.find { |c| c.deprel == "pass" || c.token.try(&.pos) == "LB" }
       return node unless pass_child
 
       # Chọn "bị" hoặc "được" dựa trên sentiment
@@ -165,43 +165,36 @@ module Zh2Vi::Rules
       # If we find 'Le' (了), we often want to move it before 'Bei' as 'đã'
       # S + 被 + Agent + V + 了 -> S + đã + bị + Agent + V
 
-      # Look for AS in the *verb phrase* part.
-      # Structure usually: VP -> [Bei, CP(Agent+Verb+AS)]
-      # or flattened.
-
-      # Let's search in the whole node's descendants for AS
-      # This is a bit risky but commonly AS attaches to V.
-
-      # A simple heuristic: check if any child is CP/IP containing AS
-      # Or just traverse.
-
       # Let's simplify: if we see '了' in the subtree, move it to front of 'Bei' as 'đã'
       le_node = nil
       node.traverse_preorder do |n|
-        next if le_node # Already found one
-
         if n.label == "AS" && (n.token.try(&.text) == "了" || n.token.try(&.pos) == "AS")
           le_node = n
+          break
         end
       end
 
-      if target_le = le_node
+      if le_node
         # Change translation to 'đã'
-        target_le.vietnamese = "đã"
+        le_node.vietnamese = "đã"
 
         # Remove from original position (by setting to empty or removing logic?)
         # Better to move it.
         # Removing from tree is hard with just reference.
         # Instead, we insert a new "đã" node before 'Bei' and clear the old one.
-        target_le.vietnamese = "" # Clear old execution
+        le_node.vietnamese = "" # Clear old execution
 
         # Insert "đã" before pass_child
         da_token = Token.new("đã", "AD", nil, 0, "advmod")
         da_node = Node.leaf("AD", da_token, -1)
         da_node.vietnamese = "đã"
 
-        pass_idx = node.children.index(pass_child).not_nil!
-        node.children.insert(pass_idx, da_node)
+        # Insert before pass_child
+        # Note: pass_child must be in node.children
+        pass_idx = node.children.index(pass_child)
+        if pass_idx
+          node.children.insert(pass_idx, da_node)
+        end
       end
 
       node

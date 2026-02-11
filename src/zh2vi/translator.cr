@@ -82,6 +82,9 @@ module Zh2Vi
       tree = Rules::AdvbRules.process(tree)
       tree = Rules::AttrRules.process(tree)
 
+      # 1.8. Apply optative verb rules (Modal verbs)
+      tree = Rules::Optative.process(tree)
+
       # 2. Apply reordering rules
       tree = Rules::Reorder.process(tree, @pos_dict)
 

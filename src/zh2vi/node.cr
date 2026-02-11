@@ -206,6 +206,29 @@ module Zh2Vi
       @children.each(&.traverse_preorder(&block))
     end
 
+    # Find first node matching the block
+    def find_node(&block : Node -> Bool) : Node?
+      return self if block.call(self)
+
+      @children.each do |child|
+        if found = child.find_node(&block)
+          return found
+        end
+      end
+      nil
+    end
+
+    # Remove a descendant node (recursive)
+    def remove_descendant(target : Node) : Bool
+      if @children.delete(target)
+        return true
+      end
+      @children.each do |child|
+        return true if child.remove_descendant(target)
+      end
+      false
+    end
+
     # Pretty print the tree
     def to_s(io : IO) : Nil
       to_s_indent(io, 0)
