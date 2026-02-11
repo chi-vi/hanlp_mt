@@ -41,7 +41,10 @@
   dep:
   - - 0
     - root
-  utt_dict: []
+  utt_dict:
+  - - 家里
+    - N
+    - trong nhà
   drt_dict: []
   expected: trong nhà
 - tok:
@@ -113,6 +116,9 @@
   - - 1
     - loc
   utt_dict:
+  - - 放在
+    - V
+    - để
   - - 桌子
     - N
     - bàn

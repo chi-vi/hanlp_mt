@@ -102,6 +102,9 @@
   - - 书
     - N
     - sách
+  - - 他也
+    - D
+    - anh ấy cũng
   drt_dict: []
   expected: cho anh ấy cũng 1 quyển sách
 - tok:
@@ -204,6 +207,9 @@
   - - 我
     - PN
     - tôi
+  - - 看过
+    - V
+    - đã từng đọc
   drt_dict: []
   expected: quyển sách này tôi đã từng đọc
 - tok:

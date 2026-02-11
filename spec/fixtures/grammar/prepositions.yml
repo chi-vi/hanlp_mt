@@ -49,6 +49,15 @@
   - - 在
     - F
     - ở
+  - - 家
+    - NN
+    - nhà
+  - - 里
+    - LC
+    - trong
+  - - 吃饭
+    - VV
+    - ăn cơm
   drt_dict: []
   expected: tôi ăn cơm ở trong nhà
 - tok:

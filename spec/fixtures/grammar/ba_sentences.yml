@@ -54,6 +54,9 @@
   - - 了
     - I
     - rồi
+  - - 看完
+    - V
+    - đọc xong
   drt_dict: []
   expected: tôi đọc sách xong rồi
 - tok:

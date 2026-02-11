@@ -628,11 +628,16 @@
     - hắn
   - - 会
     - V
-    - sẽ
+    - biết
   - - 来
     - V
     - đến
-  drt_dict: []
+  drt_dict:
+  - - 会
+    - 想
+    - ccomp
+    - sẽ
+    - tưởng
   expected: tôi tưởng hắn sẽ đến
 - tok:
   - 明天
@@ -673,7 +678,7 @@
     - ngày mai
   - - 会
     - V
-    - sẽ
+    - biết
   - - 下雨
     - V
     - mưa
@@ -722,10 +727,16 @@
   utt_dict:
   - - 会
     - V
-    - sẽ
+    - biết
   - - 放假
     - V
     - nghỉ
+  - - 下
+    - D
+    - sau
+  - - 周
+    - M
+    - tuần
   drt_dict: []
   expected: tuần sau sẽ nghỉ
 - tok:

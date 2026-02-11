@@ -3,6 +3,7 @@ require "./parser"
 require "./drt"
 require "./dict/*"
 require "./rules/*"
+require "./rules/prep_rules"
 require "./data/raw_con"
 
 module Zh2Vi
@@ -73,6 +74,7 @@ module Zh2Vi
     private def run_pipeline(tree : Node, cws : Array(String), dep : Array(DepRel)) : Node
       # 1.5. Apply structural dependency rules (Ba, Bei, Localizers)
       tree = Rules::DeprelRules.process(tree)
+      tree = Rules::PrepRules.process(tree)
 
       # 2. Apply reordering rules
       tree = Rules::Reorder.process(tree, @pos_dict)

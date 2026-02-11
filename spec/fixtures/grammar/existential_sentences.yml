@@ -356,5 +356,8 @@
   - - 病人
     - N
     - bệnh nhân
+  - - 一个
+    - M
+    - một
   drt_dict: []
-  expected: trên giường đang nằm một người bệnh nhân
+  expected: trên giường đang nằm một bệnh nhân

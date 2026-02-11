@@ -186,6 +186,12 @@
   - - 朋友
     - N
     - bạn
+  - - 我
+    - PN
+    - tôi
+  - - 的
+    - U
+    - của
   drt_dict: []
   expected: anh ấy là bạn ( của tôi )
 - tok:
