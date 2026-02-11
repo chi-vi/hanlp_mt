@@ -1,0 +1,199 @@
+---
+- tok:
+  - 他
+  - 五
+  - 尺
+  - 高
+  pos:
+  - PN
+  - CD
+  - M
+  - VA
+  ner:
+  - - 五
+    - QUANTITY
+    - 1
+    - 2
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - QP
+              - - - CD
+                  - - 五
+                - - CLP
+                  - - - M
+                      - - 尺
+            - - VP
+              - - - VA
+                  - - 高
+  dep:
+  - - 4
+    - nsubj
+  - - 3
+    - nummod
+  - - 4
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 五
+    - M
+    - "5"
+  - - 尺
+    - M
+    - thước
+  - - 高
+    - A
+    - cao
+  drt_dict: []
+  expected: anh ấy cao 5 thước
+- tok:
+  - 苹果
+  - 又
+  - 大
+  - 又
+  - 红
+  pos:
+  - NN
+  - AD
+  - VA
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 苹果
+        - - VP
+          - - - VP
+              - - - ADVP
+                  - - - AD
+                      - - 又
+                - - VP
+                  - - - VA
+                      - - 大
+            - - VP
+              - - - ADVP
+                  - - - AD
+                      - - 又
+                - - VP
+                  - - - VA
+                      - - 红
+  dep:
+  - - 3
+    - nsubj
+  - - 3
+    - advmod
+  - - 0
+    - root
+  - - 5
+    - advmod
+  - - 3
+    - dep
+  utt_dict:
+  - - 苹果
+    - N
+    - táo
+  - - 又
+    - D
+    - vừa
+  - - 大
+    - A
+    - to
+  - - 又
+    - D
+    - vừa
+  - - 红
+    - A
+    - đỏ
+  drt_dict: []
+  expected: táo vừa to vừa đỏ
+- tok:
+  - 很
+  - 好
+  pos:
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 很
+            - - VP
+              - - - VA
+                  - - 好
+  dep:
+  - - 2
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 很
+    - D
+    - rất
+  - - 好
+    - A
+    - tốt
+  drt_dict: []
+  expected: rất tốt
+- tok:
+  - 好
+  - 到
+  - 了
+  - 极点
+  pos:
+  - VA
+  - VV
+  - AS
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VA
+              - - 好
+            - - VP
+              - - - VV
+                  - - 到
+                - - AS
+                  - - 了
+                - - NP
+                  - - - NN
+                      - - 极点
+  dep:
+  - - 2
+    - dep
+  - - 0
+    - root
+  - - 2
+    - asp
+  - - 2
+    - dobj
+  utt_dict:
+  - - 好
+    - A
+    - tốt
+  - - 到
+    - V
+    - đến
+  - - 了
+    - F
+    - rồi
+  - - 极点
+    - N
+    - cực điểm
+  drt_dict: []
+  expected: tốt đến cực điểm rồi

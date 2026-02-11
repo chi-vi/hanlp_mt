@@ -1,0 +1,163 @@
+---
+- tok:
+  - 桌子
+  - 上
+  pos:
+  - NN
+  - LC
+  ner: []
+  con:
+  - TOP
+  - - - LCP
+      - - - NP
+          - - - NN
+              - - 桌子
+        - - LC
+          - - 上
+  dep:
+  - - 2
+    - lobj
+  - - 0
+    - root
+  utt_dict:
+  - - 桌子
+    - N
+    - bàn
+  - - 上
+    - F
+    - trên
+  drt_dict: []
+  expected: trên bàn
+- tok:
+  - 家里
+  pos:
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - FRAG
+      - - - NN
+          - - 家里
+  dep:
+  - - 0
+    - root
+  utt_dict: []
+  drt_dict: []
+  expected: trong nhà
+- tok:
+  - 在
+  - 桌子
+  - 上
+  pos:
+  - VV
+  - NN
+  - LC
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 在
+            - - LCP
+              - - - NP
+                  - - - NN
+                      - - 桌子
+                - - LC
+                  - - 上
+  dep:
+  - - 0
+    - root
+  - - 3
+    - lobj
+  - - 1
+    - loc
+  utt_dict:
+  - - 在
+    - V
+    - ở
+  - - 桌子
+    - N
+    - bàn
+  - - 上
+    - F
+    - trên
+  drt_dict: []
+  expected: ở trên bàn
+- tok:
+  - 放在
+  - 桌子
+  - 上
+  pos:
+  - VV
+  - NN
+  - LC
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 放在
+            - - LCP
+              - - - NP
+                  - - - NN
+                      - - 桌子
+                - - LC
+                  - - 上
+  dep:
+  - - 0
+    - root
+  - - 3
+    - lobj
+  - - 1
+    - loc
+  utt_dict:
+  - - 桌子
+    - N
+    - bàn
+  - - 上
+    - F
+    - trên
+  drt_dict: []
+  expected: để ở trên bàn
+- tok:
+  - 走
+  - 向
+  - 前
+  pos:
+  - VV
+  - P
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 走
+            - - PP
+              - - - P
+                  - - 向
+                - - NP
+                  - - - NN
+                      - - 前
+  dep:
+  - - 0
+    - root
+  - - 1
+    - prep
+  - - 2
+    - pobj
+  utt_dict:
+  - - 走
+    - V
+    - đi
+  - - 向
+    - F
+    - hướng
+  - - 前
+    - N
+    - trước
+  drt_dict: []
+  expected: đi hướng trước

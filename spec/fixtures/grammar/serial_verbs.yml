@@ -1,0 +1,269 @@
+---
+- tok:
+  - 我
+  - 去
+  - 商店
+  - 买
+  - 书
+  pos:
+  - PN
+  - VV
+  - NN
+  - VV
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VP
+              - - - VV
+                  - - 去
+                - - NP
+                  - - - NN
+                      - - 商店
+            - - VP
+              - - - VV
+                  - - 买
+                - - NP
+                  - - - NN
+                      - - 书
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dobj
+  - - 2
+    - conj
+  - - 4
+    - dobj
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 去
+    - V
+    - đi
+  - - 商店
+    - N
+    - cửa hàng
+  - - 买
+    - V
+    - mua
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: tôi đi cửa hàng mua sách
+- tok:
+  - 他
+  - 坐
+  - 飞机
+  - 去
+  - 北京
+  pos:
+  - PN
+  - VV
+  - NN
+  - VV
+  - NR
+  ner:
+  - - 北京
+    - GPE
+    - 4
+    - 5
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VP
+              - - - VV
+                  - - 坐
+                - - NP
+                  - - - NN
+                      - - 飞机
+            - - VP
+              - - - VV
+                  - - 去
+                - - NP
+                  - - - NR
+                      - - 北京
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dobj
+  - - 2
+    - conj
+  - - 4
+    - dobj
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 坐
+    - V
+    - ngồi
+  - - 飞机
+    - N
+    - máy bay
+  - - 去
+    - V
+    - đi
+  - - 北京
+    - NR
+    - Bắc Kinh
+  drt_dict: []
+  expected: anh ấy ngồi máy bay đi Bắc Kinh
+- tok:
+  - 我
+  - 用
+  - 筷子
+  - 吃饭
+  pos:
+  - PN
+  - P
+  - NN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 用
+                - - NP
+                  - - - NN
+                      - - 筷子
+            - - VP
+              - - - VV
+                  - - 吃饭
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 用
+    - F
+    - dùng
+  - - 筷子
+    - N
+    - đũa
+  - - 吃饭
+    - V
+    - ăn cơm
+  drt_dict: []
+  expected: tôi dùng đũa ăn cơm
+- tok:
+  - 大家
+  - 鼓掌
+  - 欢迎
+  pos:
+  - PN
+  - VV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 大家
+        - - VP
+          - - - VCD
+              - - - VV
+                  - - 鼓掌
+                - - VV
+                  - - 欢迎
+  dep:
+  - - 3
+    - nsubj
+  - - 3
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 大家
+    - PN
+    - mọi người
+  - - 鼓掌
+    - V
+    - vỗ tay
+  - - 欢迎
+    - V
+    - hoan nghênh
+  drt_dict: []
+  expected: mọi người vỗ tay hoan nghênh
+- tok:
+  - 我
+  - 买
+  - 书
+  - 回来
+  pos:
+  - PN
+  - VV
+  - NN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VP
+              - - - VV
+                  - - 买
+                - - NP
+                  - - - NN
+                      - - 书
+            - - VP
+              - - - VV
+                  - - 回来
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dobj
+  - - 2
+    - conj
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 买
+    - V
+    - mua
+  - - 书
+    - N
+    - sách
+  - - 回来
+    - V
+    - trở về
+  drt_dict: []
+  expected: tôi mua sách trở về

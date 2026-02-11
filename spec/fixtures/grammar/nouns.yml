@@ -1,0 +1,166 @@
+---
+- tok:
+  - 我
+  - 吃
+  - 苹果
+  pos:
+  - PN
+  - VV
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VV
+              - - 吃
+            - - NP
+              - - - NN
+                  - - 苹果
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dobj
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 吃
+    - V
+    - ăn
+  - - 苹果
+    - N
+    - táo
+  drt_dict: []
+  expected: tôi ăn táo
+- tok:
+  - 红
+  - 花
+  pos:
+  - JJ
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - JJ
+          - - 红
+        - - NN
+          - - 花
+  dep:
+  - - 2
+    - amod
+  - - 0
+    - root
+  utt_dict:
+  - - 红
+    - A
+    - đỏ
+  - - 花
+    - N
+    - hoa
+  drt_dict: []
+  expected: hoa đỏ
+- tok:
+  - 我
+  - 的
+  - 书
+  pos:
+  - PN
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - PN
+                  - - 我
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 的
+    - F
+    - của
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: sách của tôi
+- tok:
+  - 汉字
+  - 字典
+  pos:
+  - NN
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - NN
+          - - 汉字
+        - - NN
+          - - 字典
+  dep:
+  - - 2
+    - nn
+  - - 0
+    - root
+  utt_dict:
+  - - 汉字
+    - N
+    - Hán tự
+  - - 字典
+    - N
+    - từ điển
+  drt_dict: []
+  expected: từ điển Hán tự
+- tok:
+  - 椅子
+  - 上
+  pos:
+  - NN
+  - LC
+  ner: []
+  con:
+  - TOP
+  - - - LCP
+      - - - NP
+          - - - NN
+              - - 椅子
+        - - LC
+          - - 上
+  dep:
+  - - 2
+    - lobj
+  - - 0
+    - root
+  utt_dict:
+  - - 椅子
+    - N
+    - ghế
+  - - 上
+    - F
+    - trên
+  drt_dict: []
+  expected: trên ghế

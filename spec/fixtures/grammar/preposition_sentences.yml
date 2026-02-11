@@ -1,0 +1,407 @@
+---
+- tok:
+  - 我们
+  - 在
+  - 学校
+  - 学习
+  pos:
+  - PN
+  - P
+  - NN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我们
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - NP
+                  - - - NN
+                      - - 学校
+            - - VP
+              - - - VV
+                  - - 学习
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 我们
+    - PN
+    - chúng tôi
+  - - 在
+    - F
+    - ở
+  - - 学校
+    - N
+    - trường
+  - - 学习
+    - V
+    - học
+  drt_dict: []
+  expected: chúng tôi học ở trường
+- tok:
+  - 我
+  - 给
+  - 他
+  - 买
+  - 书
+  pos:
+  - PN
+  - P
+  - PN
+  - VV
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 给
+                - - NP
+                  - - - PN
+                      - - 他
+            - - VP
+              - - - VV
+                  - - 买
+                - - NP
+                  - - - NN
+                      - - 书
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  - - 4
+    - dobj
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 给
+    - F
+    - cho
+  - - 他
+    - PN
+    - anh ấy
+  - - 买
+    - V
+    - mua
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: tôi mua sách cho anh ấy
+- tok:
+  - 我
+  - 跟
+  - 他
+  - 去
+  pos:
+  - PN
+  - P
+  - PN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 跟
+                - - NP
+                  - - - PN
+                      - - 他
+            - - VP
+              - - - VV
+                  - - 去
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 跟
+    - F
+    - với
+  - - 他
+    - PN
+    - anh ấy
+  - - 去
+    - V
+    - đi
+  drt_dict: []
+  expected: tôi đi với anh ấy
+- tok:
+  - 往
+  - 前
+  - 走
+  pos:
+  - P
+  - NN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - PP
+              - - - P
+                  - - 往
+                - - NP
+                  - - - NN
+                      - - 前
+            - - VP
+              - - - VV
+                  - - 走
+  dep:
+  - - 3
+    - prep
+  - - 1
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 往
+    - F
+    - về
+  - - 前
+    - N
+    - phía trước
+  - - 走
+    - V
+    - đi
+  drt_dict: []
+  expected: đi về phía trước
+- tok:
+  - 他
+  - 在
+  - 桌子
+  - 上
+  - 放
+  - 书
+  pos:
+  - PN
+  - P
+  - NN
+  - LC
+  - VV
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - LCP
+                  - - - NP
+                      - - - NN
+                          - - 桌子
+                    - - LC
+                      - - 上
+            - - VP
+              - - - VV
+                  - - 放
+                - - NP
+                  - - - NN
+                      - - 书
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 4
+    - lobj
+  - - 2
+    - plmod
+  - - 0
+    - root
+  - - 5
+    - dobj
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 在
+    - F
+    - ở
+  - - 桌子
+    - N
+    - bàn
+  - - 上
+    - F
+    - trên
+  - - 放
+    - V
+    - để
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: anh ấy để sách ở trên bàn
+- tok:
+  - 我
+  - 家
+  - 离
+  - 这儿
+  - 很
+  - 近
+  pos:
+  - PN
+  - NN
+  - P
+  - PN
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+            - - NN
+              - - 家
+        - - VP
+          - - - PP
+              - - - P
+                  - - 离
+                - - NP
+                  - - - PN
+                      - - 这儿
+            - - ADVP
+              - - - AD
+                  - - 很
+            - - VP
+              - - - VA
+                  - - 近
+  dep:
+  - - 2
+    - dep
+  - - 6
+    - nsubj
+  - - 6
+    - prep
+  - - 3
+    - pobj
+  - - 6
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 家
+    - N
+    - nhà
+  - - 离
+    - F
+    - cách
+  - - 这儿
+    - PN
+    - đây
+  - - 很
+    - D
+    - rất
+  - - 近
+    - A
+    - gần
+  drt_dict: []
+  expected: nhà tôi cách đây rất gần
+- tok:
+  - 他
+  - 对
+  - 我
+  - 很
+  - 热情
+  pos:
+  - PN
+  - P
+  - PN
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - PP
+              - - - P
+                  - - 对
+                - - NP
+                  - - - PN
+                      - - 我
+            - - ADVP
+              - - - AD
+                  - - 很
+            - - VP
+              - - - VA
+                  - - 热情
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 2
+    - pobj
+  - - 5
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 对
+    - F
+    - đối với
+  - - 我
+    - PN
+    - tôi
+  - - 很
+    - D
+    - rất
+  - - 热情
+    - A
+    - nhiệt tình
+  drt_dict: []
+  expected: anh ấy đối với tôi rất nhiệt tình

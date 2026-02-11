@@ -1,0 +1,228 @@
+---
+- tok:
+  - 你
+  - 去
+  - 不
+  - 去
+  pos:
+  - PN
+  - VV
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 你
+        - - VP
+          - - - VNV
+              - - - VV
+                  - - 去
+                - - AD
+                  - - 不
+                - - VV
+                  - - 去
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dep
+  - - 2
+    - dep
+  utt_dict:
+  - - 你
+    - PN
+    - bạn
+  - - 去
+    - V
+    - đi
+  - - 不
+    - D
+    - không
+  - - 去
+    - V
+    - đi
+  drt_dict: []
+  expected: bạn có đi không
+- tok:
+  - 好
+  - 不
+  - 好
+  pos:
+  - VA
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VNV
+              - - - VA
+                  - - 好
+                - - AD
+                  - - 不
+                - - VA
+                  - - 好
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dep
+  - - 1
+    - dep
+  utt_dict:
+  - - 好
+    - A
+    - tốt
+  - - 不
+    - D
+    - không
+  - - 好
+    - A
+    - tốt
+  drt_dict: []
+  expected: có tốt không
+- tok:
+  - 吃
+  - 没
+  - 吃
+  pos:
+  - VV
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VP
+              - - - VV
+                  - - 吃
+            - - ADVP
+              - - - AD
+                  - - 没
+            - - VV
+              - - 吃
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dep
+  - - 1
+    - dep
+  utt_dict:
+  - - 吃
+    - V
+    - ăn
+  - - 没
+    - D
+    - chưa
+  - - 吃
+    - V
+    - ăn
+  drt_dict: []
+  expected: có ăn chưa
+- tok:
+  - 想
+  - 不
+  - 想
+  - 去
+  pos:
+  - VV
+  - AD
+  - VV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VNV
+              - - - VV
+                  - - 想
+                - - AD
+                  - - 不
+                - - VV
+                  - - 想
+            - - IP
+              - - - VP
+                  - - - VV
+                      - - 去
+  dep:
+  - - 4
+    - dep
+  - - 1
+    - dep
+  - - 1
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 想
+    - V
+    - muốn
+  - - 不
+    - D
+    - không
+  - - 想
+    - V
+    - muốn
+  - - 去
+    - V
+    - đi
+  drt_dict: []
+  expected: có muốn đi không
+- tok:
+  - 能
+  - 不
+  - 能
+  - 来
+  pos:
+  - VV
+  - AD
+  - VV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VNV
+              - - - VV
+                  - - 能
+                - - AD
+                  - - 不
+                - - VV
+                  - - 能
+            - - VP
+              - - - VV
+                  - - 来
+  dep:
+  - - 4
+    - dep
+  - - 1
+    - dep
+  - - 1
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 能
+    - V
+    - thể
+  - - 不
+    - D
+    - không
+  - - 能
+    - V
+    - thể
+  - - 来
+    - V
+    - đến
+  drt_dict: []
+  expected: có thể đến không

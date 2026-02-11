@@ -1,0 +1,278 @@
+---
+- tok:
+  - 我
+  - 比
+  - 他
+  - 也
+  - 大
+  pos:
+  - PN
+  - P
+  - PN
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - PN
+                      - - 他
+            - - ADVP
+              - - - AD
+                  - - 也
+            - - VP
+              - - - VA
+                  - - 大
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 2
+    - pobj
+  - - 5
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 比
+    - F
+    - so với
+  - - 他
+    - PN
+    - anh ấy
+  - - 也
+    - D
+    - cũng
+  - - 大
+    - A
+    - lớn
+  drt_dict: []
+  expected: tôi cũng lớn hơn anh ấy
+- tok:
+  - 我
+  - 没有
+  - 他
+  - 高
+  pos:
+  - PN
+  - VE
+  - PN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VE
+              - - 没有
+            - - IP
+              - - - NP
+                  - - - PN
+                      - - 他
+                - - VP
+                  - - - VA
+                      - - 高
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - dep
+  - - 4
+    - nsubj
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 没有
+    - V
+    - không có
+  - - 他
+    - PN
+    - anh ấy
+  - - 高
+    - A
+    - cao
+  drt_dict: []
+  expected: tôi không cao bằng anh ấy
+- tok:
+  - 我
+  - 跟
+  - 他
+  - 一样
+  - 高
+  pos:
+  - PN
+  - P
+  - PN
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 跟
+                - - NP
+                  - - - PN
+                      - - 他
+            - - ADVP
+              - - - AD
+                  - - 一样
+            - - VP
+              - - - VA
+                  - - 高
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 2
+    - pobj
+  - - 5
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 跟
+    - F
+    - với
+  - - 他
+    - PN
+    - anh ấy
+  - - 一样
+    - D
+    - như nhau
+  - - 高
+    - A
+    - cao
+  drt_dict: []
+  expected: tôi cao như anh ấy
+- tok:
+  - 像
+  - 花
+  - 一样
+  - 漂亮
+  pos:
+  - P
+  - NN
+  - VA
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - IP
+              - - - VP
+                  - - - PP
+                      - - - P
+                          - - 像
+                        - - NP
+                          - - - NN
+                              - - 花
+                    - - VP
+                      - - - VA
+                          - - 一样
+            - - VP
+              - - - VA
+                  - - 漂亮
+  dep:
+  - - 3
+    - prep
+  - - 1
+    - pobj
+  - - 4
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 像
+    - F
+    - giống
+  - - 花
+    - N
+    - hoa
+  - - 一样
+    - A
+    - như nhau
+  - - 漂亮
+    - A
+    - đẹp
+  drt_dict: []
+  expected: đẹp như hoa
+- tok:
+  - 脸
+  - 如
+  - 苹果
+  - 红
+  pos:
+  - NN
+  - VV
+  - NN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 脸
+        - - VP
+          - - - VV
+              - - 如
+            - - IP
+              - - - NP
+                  - - - NN
+                      - - 苹果
+                - - VP
+                  - - - VA
+                      - - 红
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dobj
+  - - 2
+    - ccomp
+  utt_dict:
+  - - 脸
+    - N
+    - mặt
+  - - 如
+    - V
+    - như
+  - - 苹果
+    - N
+    - táo
+  - - 红
+    - A
+    - đỏ
+  drt_dict: []
+  expected: mặt đỏ như táo

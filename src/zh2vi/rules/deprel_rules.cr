@@ -80,23 +80,71 @@ module Zh2Vi::Rules
       DIRECTION_COMPLEMENTS.includes?(text)
     end
 
+    # Process a tree with dependency-based rules (post-order traversal)
+    def self.process(node : Node) : Node
+      # Recursive processing for children
+      node.children = node.children.map { |c| process(c) }
+
+      # Apply rules based on this node's children's deprels
+      # Find children that trigger structural changes
+      # Note: We iterate a copy or index because children array might change
+
+      # We look for specific patterns in children
+      if node.children.any? { |c| c.deprel == "ba" }
+        process_ba(node)
+      elsif node.children.any? { |c| c.deprel == "pass" }
+        process_bei(node)
+      elsif node.children.any? { |c| c.deprel == "loc" || c.deprel == "lobj" || c.deprel == "plmod" }
+        process_localizer(node)
+      else
+        node
+      end
+    end
+
     # ===== Xử lý cụ thể cho từng deprel =====
 
     # Xử lý 把 construction: S + 把 + O + V → S + V + O
     def self.process_ba(node : Node) : Node
-      # Tìm child có deprel = "ba"
+      # Node is the VP containing BA and the rest
+      # Children: [BA, IP/VP(object+verb)] or [BA, Object, Verb]
+
       ba_child = node.children.find { |c| c.deprel == "ba" }
       return node unless ba_child
 
-      # Xóa 把 (không dịch)
+      # 1. Clear "把" translation
       ba_child.vietnamese = ""
 
-      # Tìm tân ngữ (thường là child của 把)
-      obj = ba_child.children.find { |c| c.deprel == "dobj" || c.deprel == "pobj" }
-      return node unless obj
+      # 2. Find the Object
+      # Case A: Object is inside BA (unlikely in CTB but possible in dependency view)
+      # Case B: Object is a sibling of BA (standard CTB: VP -> BA + IP/VP)
+      # In the fixture: VP -> BA + IP. Inside IP is NP(Object) + VP(Verb)
 
-      # Đảo: đưa tân ngữ ra sau động từ chính
-      # (Logic cụ thể phụ thuộc vào cấu trúc cây)
+      # Let's try to handle the standard CTB structure where BA is followed by an IP/VP
+      # and that IP/VP contains the object and the verb.
+      # Actually, the 'ba' transform in dependency trees (SD) usually implies:
+      # O is the dependent of 'ba' (or ba is dependent of V, and O is dependent of V with 'ba' relation? No, ba is usually aux/case)
+      # In our RawCon->Node tree, we rely on the structure.
+
+      # Find the clause following BA
+      clause_idx = node.children.index(ba_child).not_nil! + 1
+      clause = node.children[clause_idx]?
+
+      return node unless clause
+
+      # If the clause is an IP (common), it might contain [NP(Obj), VP(Verb)]
+      # We want to transform: BA + [Obj, Verb] -> [Verb, Obj]
+
+      # Check if clause has [NP, VP] or similar structure
+      if clause.children.size >= 2
+        # Assume first child is Object, second is Verb(phrase)
+        # This is heuristics based on "把 O V" -> "VP(BA, IP(O, V))"
+        obj = clause.children[0]
+        verb_part = clause.children[1]
+
+        # Swap them: [Obj, Verb] -> [Verb, Obj]
+        clause.children = [verb_part, obj] + clause.children[2..-1]
+      end
+
       node
     end
 
@@ -110,8 +158,50 @@ module Zh2Vi::Rules
       pass_child.vietnamese = case sentiment
                               when :negative then "bị"
                               when :positive then "được"
-                              else                "được"
+                              else                "bị" # Default to "bị" for neutral/negative contexts usually
                               end
+
+      # Handle aspect markers (AS) if present in the VP (usually at end)
+      # If we find 'Le' (了), we often want to move it before 'Bei' as 'đã'
+      # S + 被 + Agent + V + 了 -> S + đã + bị + Agent + V
+
+      # Look for AS in the *verb phrase* part.
+      # Structure usually: VP -> [Bei, CP(Agent+Verb+AS)]
+      # or flattened.
+
+      # Let's search in the whole node's descendants for AS
+      # This is a bit risky but commonly AS attaches to V.
+
+      # A simple heuristic: check if any child is CP/IP containing AS
+      # Or just traverse.
+
+      # Let's simplify: if we see '了' in the subtree, move it to front of 'Bei' as 'đã'
+      le_node = nil
+      node.traverse_preorder do |n|
+        if n.label == "AS" && (n.token.try(&.text) == "了" || n.token.try(&.pos) == "AS")
+          le_node = n
+          break
+        end
+      end
+
+      if le_node
+        # Change translation to 'đã'
+        le_node.vietnamese = "đã"
+
+        # Remove from original position (by setting to empty or removing logic?)
+        # Better to move it.
+        # Removing from tree is hard with just reference.
+        # Instead, we insert a new "đã" node before 'Bei' and clear the old one.
+        le_node.vietnamese = "" # Clear old execution
+
+        # Insert "đã" before pass_child
+        da_token = Token.new("đã", "AD", nil, 0, "advmod")
+        da_node = Node.leaf("AD", da_token, -1)
+        da_node.vietnamese = "đã"
+
+        pass_idx = node.children.index(pass_child).not_nil!
+        node.children.insert(pass_idx, da_node)
+      end
 
       node
     end

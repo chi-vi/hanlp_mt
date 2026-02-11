@@ -1,0 +1,139 @@
+---
+- tok:
+  - 他
+  - 在
+  - 家
+  - 里
+  - 玩
+  pos:
+  - PN
+  - P
+  - NN
+  - LC
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - LCP
+                  - - - NP
+                      - - - NN
+                          - - 家
+                    - - LC
+                      - - 里
+            - - VP
+              - - - VV
+                  - - 玩
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 4
+    - lobj
+  - - 2
+    - plmod
+  - - 0
+    - root
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 在
+    - F
+    - ở
+  - - 玩
+    - V
+    - chơi
+  drt_dict: []
+  expected: anh ấy chơi ở trong nhà
+- tok:
+  - 最
+  - 快乐
+  pos:
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 最
+            - - VP
+              - - - VA
+                  - - 快乐
+  dep:
+  - - 2
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 最
+    - D
+    - nhất
+  - - 快乐
+    - A
+    - vui vẻ
+  drt_dict: []
+  expected: vui vẻ nhất
+- tok:
+  - 最
+  - 快乐
+  - 地
+  - 玩
+  pos:
+  - AD
+  - VA
+  - DEV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - DVP
+              - - - VP
+                  - - - ADVP
+                      - - - AD
+                          - - 最
+                    - - VP
+                      - - - VA
+                          - - 快乐
+                - - DEV
+                  - - 地
+            - - VP
+              - - - VV
+                  - - 玩
+  dep:
+  - - 2
+    - advmod
+  - - 4
+    - dvpmod
+  - - 2
+    - dvpm
+  - - 0
+    - root
+  utt_dict:
+  - - 最
+    - D
+    - nhất
+  - - 快乐
+    - A
+    - vui vẻ
+  - - 地
+    - F
+    - mà
+  - - 玩
+    - V
+    - chơi
+  drt_dict: []
+  expected: chơi vui vẻ nhất

@@ -1,0 +1,141 @@
+---
+- tok:
+  - 最好
+  pos:
+  - AD
+  ner: []
+  con:
+  - TOP
+  - - - ADVP
+      - - - AD
+          - - 最好
+  dep:
+  - - 0
+    - root
+  utt_dict: []
+  drt_dict: []
+  expected: tốt nhất
+- tok:
+  - 这么
+  - 好
+  pos:
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 这么
+            - - VP
+              - - - VA
+                  - - 好
+  dep:
+  - - 2
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 这么
+    - D
+    - như thế này
+  - - 好
+    - A
+    - tốt
+  drt_dict: []
+  expected: tốt như thế này
+- tok:
+  - 非常
+  - 好
+  pos:
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 非常
+            - - VP
+              - - - VA
+                  - - 好
+  dep:
+  - - 2
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 非常
+    - D
+    - vô cùng
+  - - 好
+    - A
+    - tốt
+  drt_dict: []
+  expected: tốt vô cùng
+- tok:
+  - 好好
+  - 学习
+  pos:
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 好好
+            - - VP
+              - - - VV
+                  - - 学习
+  dep:
+  - - 2
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 好好
+    - D
+    - cho tốt
+  - - 学习
+    - V
+    - học tập
+  drt_dict: []
+  expected: học tập cho tốt
+- tok:
+  - 十分
+  - 好
+  pos:
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 十分
+            - - VP
+              - - - VA
+                  - - 好
+  dep:
+  - - 2
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 十分
+    - D
+    - mười phần
+  - - 好
+    - A
+    - tốt
+  drt_dict: []
+  expected: tốt mười phần

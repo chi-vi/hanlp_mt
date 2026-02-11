@@ -1,0 +1,104 @@
+---
+- tok:
+  - 我
+  - 在
+  - 家
+  - 里
+  - 吃饭
+  pos:
+  - PN
+  - P
+  - NN
+  - LC
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - LCP
+                  - - - NP
+                      - - - NN
+                          - - 家
+                    - - LC
+                      - - 里
+            - - VP
+              - - - VV
+                  - - 吃饭
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 4
+    - lobj
+  - - 2
+    - plmod
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 在
+    - F
+    - ở
+  drt_dict: []
+  expected: tôi ăn cơm ở trong nhà
+- tok:
+  - 我
+  - 比
+  - 你
+  - 大
+  pos:
+  - PN
+  - P
+  - PN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - PN
+                      - - 你
+            - - VP
+              - - - VA
+                  - - 大
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 比
+    - F
+    - so với
+  - - 你
+    - PN
+    - bạn
+  - - 大
+    - A
+    - lớn
+  drt_dict: []
+  expected: tôi lớn hơn bạn

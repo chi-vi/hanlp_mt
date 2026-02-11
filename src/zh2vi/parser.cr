@@ -1,9 +1,29 @@
 require "./node"
+require "json"
+require "yaml"
+require "./data/raw_con"
 
 module Zh2Vi
   # Parser converts HanLP MTL output into a Node tree
   class Parser
-    # Parse constituency tree from bracket notation
+    # Parse constituency tree from RawCon struct
+    def parse_tree(con : RawCon) : Node
+      label = con.cpos
+
+      case body = con.body
+      when String
+        # Leaf node
+        Node.new(label: label, token: Token.new(body, label))
+      when Array(RawCon)
+        # Branch node
+        children = body.map { |c| parse_tree(c) }
+        Node.new(label: label, children: children)
+      else
+        raise "Invalid RawCon body type"
+      end
+    end
+
+    # Parse constituency tree from bracket notation (Legacy)
     # Input: "(IP (NP (PN 我)) (VP (VV 爱) (NP (PN 你))))"
     def parse_con(bracket : String) : Node
       bracket = bracket.strip
@@ -15,7 +35,7 @@ module Zh2Vi
       node
     end
 
-    # Parse and integrate all HanLP outputs
+    # Parse using bracket string (Backward compatibility)
     def parse(
       con : String,
       cws : Array(String),
@@ -23,9 +43,29 @@ module Zh2Vi
       ner : Array(NerSpan) = [] of NerSpan,
       dep : Array(DepRel) = [] of DepRel,
     ) : Node
-      # Parse the constituency tree
       tree = parse_con(con)
+      process_tree(tree, cws, pos, ner, dep)
+    end
 
+    # Parse using RawCon
+    def parse(
+      con : RawCon,
+      cws : Array(String),
+      pos : Array(String),
+      ner : Array(NerSpan) = [] of NerSpan,
+      dep : Array(DepRel) = [] of DepRel,
+    ) : Node
+      tree = parse_tree(con)
+      process_tree(tree, cws, pos, ner, dep)
+    end
+
+    private def process_tree(
+      tree : Node,
+      cws : Array(String),
+      pos : Array(String),
+      ner : Array(NerSpan),
+      dep : Array(DepRel),
+    ) : Node
       # Build token info from cws, pos, dep
       token_info = build_tokens(cws, pos, ner, dep)
 

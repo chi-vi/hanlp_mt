@@ -1,0 +1,245 @@
+---
+- tok:
+  - 我
+  - 的
+  - 书
+  pos:
+  - PN
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - PN
+                  - - 我
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 的
+    - F
+    - của
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: sách của tôi
+- tok:
+  - 老师
+  - 的
+  - 书
+  pos:
+  - NN
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - NN
+                  - - 老师
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 老师
+    - N
+    - giáo viên
+  - - 的
+    - F
+    - của
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: sách của giáo viên
+- tok:
+  - 木头
+  - 的
+  - 桌子
+  pos:
+  - NN
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - NN
+                  - - 木头
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 桌子
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 木头
+    - N
+    - gỗ
+  - - 的
+    - F
+    - của
+  - - 桌子
+    - N
+    - bàn
+  drt_dict: []
+  expected: bàn gỗ
+- tok:
+  - 历史
+  - 的
+  - 价值
+  pos:
+  - NN
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - NN
+                  - - 历史
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 价值
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 历史
+    - N
+    - lịch sử
+  - - 的
+    - F
+    - của
+  - - 价值
+    - N
+    - giá trị
+  drt_dict: []
+  expected: giá trị lịch sử
+- tok:
+  - 中国
+  - 的
+  - 首都
+  pos:
+  - NR
+  - DEG
+  - NN
+  ner:
+  - - 中国
+    - GPE
+    - 0
+    - 1
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - NR
+                  - - 中国
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 首都
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 中国
+    - NR
+    - Trung Quốc
+  - - 的
+    - F
+    - của
+  - - 首都
+    - N
+    - thủ đô
+  drt_dict: []
+  expected: thủ đô Trung Quốc
+- tok:
+  - 小明
+  - 的
+  - 车
+  pos:
+  - NR
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - NR
+                  - - 小明
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 车
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 小明
+    - NR
+    - Tiểu Minh
+  - - 的
+    - F
+    - của
+  - - 车
+    - N
+    - xe
+  drt_dict: []
+  expected: xe của Tiểu Minh

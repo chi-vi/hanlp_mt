@@ -1,0 +1,280 @@
+---
+- tok:
+  - 很
+  - 严肃
+  - 地
+  - 批评
+  pos:
+  - AD
+  - VA
+  - DEV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - DVP
+              - - - VP
+                  - - - ADVP
+                      - - - AD
+                          - - 很
+                    - - VP
+                      - - - VA
+                          - - 严肃
+                - - DEV
+                  - - 地
+            - - VP
+              - - - VV
+                  - - 批评
+  dep:
+  - - 2
+    - advmod
+  - - 4
+    - dvpmod
+  - - 2
+    - dvpm
+  - - 0
+    - root
+  utt_dict:
+  - - 很
+    - D
+    - rất
+  - - 严肃
+    - A
+    - nghiêm túc
+  - - 地
+    - F
+    - mà
+  - - 批评
+    - V
+    - phê bình
+  drt_dict: []
+  expected: phê bình rất nghiêm túc
+- tok:
+  - 跑
+  - 得
+  - 快
+  pos:
+  - VV
+  - DER
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 跑
+            - - DER
+              - - 得
+            - - VP
+              - - - VA
+                  - - 快
+  dep:
+  - - 3
+    - dep
+  - - 3
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 跑
+    - V
+    - chạy
+  - - 得
+    - F
+    - được
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: chạy nhanh
+- tok:
+  - 跑
+  - 地
+  - 快
+  pos:
+  - VV
+  - DER
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 跑
+            - - DER
+              - - 地
+            - - VP
+              - - - VA
+                  - - 快
+  dep:
+  - - 3
+    - dep
+  - - 3
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 跑
+    - V
+    - chạy
+  - - 地
+    - F
+    - mà
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: chạy nhanh
+- tok:
+  - 吃饭
+  - 吃
+  - 得
+  - 快
+  pos:
+  - VV
+  - VV
+  - DER
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VP
+              - - - VV
+                  - - 吃饭
+            - - VP
+              - - - VV
+                  - - 吃
+                - - DER
+                  - - 得
+                - - VP
+                  - - - VA
+                      - - 快
+  dep:
+  - - 0
+    - root
+  - - 4
+    - dep
+  - - 4
+    - dep
+  - - 1
+    - dep
+  utt_dict:
+  - - 吃
+    - V
+    - ăn
+  - - 得
+    - F
+    - được
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: ăn cơm nhanh
+- tok:
+  - 吃饭
+  - 吃
+  - 地
+  - 快
+  pos:
+  - VV
+  - VV
+  - DER
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VP
+              - - - VV
+                  - - 吃饭
+            - - VP
+              - - - VV
+                  - - 吃
+                - - DER
+                  - - 地
+                - - VP
+                  - - - VA
+                      - - 快
+  dep:
+  - - 0
+    - root
+  - - 4
+    - dep
+  - - 4
+    - dep
+  - - 1
+    - dep
+  utt_dict:
+  - - 吃
+    - V
+    - ăn
+  - - 地
+    - F
+    - mà
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: ăn cơm nhanh
+- tok:
+  - 说
+  - 汉语
+  - 得
+  - 快
+  pos:
+  - VV
+  - NN
+  - VV
+  - VA
+  ner:
+  - - 汉语
+    - LANGUAGE
+    - 1
+    - 2
+  con:
+  - TOP
+  - - - IP
+      - - - IP
+          - - - VP
+              - - - VV
+                  - - 说
+                - - NP
+                  - - - NN
+                      - - 汉语
+        - - VP
+          - - - VV
+              - - 得
+            - - VP
+              - - - VA
+                  - - 快
+  dep:
+  - - 4
+    - dep
+  - - 1
+    - dobj
+  - - 4
+    - mmod
+  - - 0
+    - root
+  utt_dict:
+  - - 说
+    - V
+    - nói
+  - - 汉语
+    - N
+    - tiếng Trung
+  - - 得
+    - V
+    - được
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: nói tiếng Trung nhanh

@@ -1,0 +1,440 @@
+---
+- tok:
+  - 木头
+  - 桌子
+  pos:
+  - NN
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - NN
+          - - 木头
+        - - NN
+          - - 桌子
+  dep:
+  - - 2
+    - nn
+  - - 0
+    - root
+  utt_dict:
+  - - 木头
+    - N
+    - gỗ
+  - - 桌子
+    - N
+    - bàn
+  drt_dict: []
+  expected: bàn gỗ
+- tok:
+  - 红
+  - 苹果
+  pos:
+  - JJ
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - ADJP
+          - - - JJ
+              - - 红
+        - - NP
+          - - - NN
+              - - 苹果
+  dep:
+  - - 2
+    - amod
+  - - 0
+    - root
+  utt_dict:
+  - - 红
+    - A
+    - đỏ
+  - - 苹果
+    - N
+    - táo
+  drt_dict: []
+  expected: táo đỏ
+- tok:
+  - 睡觉
+  - 的
+  - 孩子
+  pos:
+  - VV
+  - DEC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - CP
+          - - - CP
+              - - - IP
+                  - - - VP
+                      - - - VV
+                          - - 睡觉
+                - - DEC
+                  - - 的
+        - - NP
+          - - - NN
+              - - 孩子
+  dep:
+  - - 3
+    - rcmod
+  - - 1
+    - cpm
+  - - 0
+    - root
+  utt_dict:
+  - - 睡觉
+    - V
+    - ngủ
+  - - 的
+    - F
+    - mà
+  - - 孩子
+    - N
+    - đứa bé
+  drt_dict: []
+  expected: đứa bé ngủ
+- tok:
+  - 吃饭
+  - 的
+  - 人
+  pos:
+  - VV
+  - DEC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - CP
+          - - - CP
+              - - - IP
+                  - - - VP
+                      - - - VV
+                          - - 吃饭
+                - - DEC
+                  - - 的
+        - - NP
+          - - - NN
+              - - 人
+  dep:
+  - - 3
+    - rcmod
+  - - 1
+    - cpm
+  - - 0
+    - root
+  utt_dict:
+  - - 吃饭
+    - V
+    - ăn cơm
+  - - 的
+    - F
+    - ""
+  - - 人
+    - N
+    - người
+  drt_dict: []
+  expected: người ăn cơm
+- tok:
+  - 我
+  - 买
+  - 的
+  - 书
+  pos:
+  - PN
+  - VV
+  - AS
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VV
+              - - 买
+            - - AS
+              - - 的
+            - - NP
+              - - - NN
+                  - - 书
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - asp
+  - - 2
+    - dobj
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 买
+    - V
+    - mua
+  - - 的
+    - F
+    - mà
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: sách tôi mua
+- tok:
+  - 这
+  - 本
+  - 书
+  pos:
+  - DT
+  - M
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DP
+          - - - DT
+              - - 这
+            - - CLP
+              - - - M
+                  - - 本
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 3
+    - det
+  - - 1
+    - clf
+  - - 0
+    - root
+  utt_dict:
+  - - 这
+    - PN
+    - này
+  - - 本
+    - M
+    - quyển
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: quyển sách này
+- tok:
+  - 那
+  - 三
+  - 本
+  - 大
+  - 书
+  pos:
+  - DT
+  - CD
+  - M
+  - JJ
+  - NN
+  ner:
+  - - 三
+    - CARDINAL
+    - 1
+    - 2
+  con:
+  - TOP
+  - - - NP
+      - - - DP
+          - - - DT
+              - - 那
+            - - QP
+              - - - CD
+                  - - 三
+                - - CLP
+                  - - - M
+                      - - 本
+        - - ADJP
+          - - - JJ
+              - - 大
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 5
+    - det
+  - - 3
+    - nummod
+  - - 5
+    - clf
+  - - 5
+    - amod
+  - - 0
+    - root
+  utt_dict:
+  - - 那
+    - PN
+    - đó
+  - - 三
+    - M
+    - "3"
+  - - 本
+    - M
+    - quyển
+  - - 大
+    - A
+    - to
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: 3 quyển sách to đó
+- tok:
+  - 这
+  - 本
+  - 我
+  - 买
+  - 的
+  - 书
+  pos:
+  - DT
+  - M
+  - PN
+  - VV
+  - DEC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - DP
+          - - - DT
+              - - 这
+            - - CLP
+              - - - M
+                  - - 本
+        - - CP
+          - - - CP
+              - - - IP
+                  - - - NP
+                      - - - PN
+                          - - 我
+                    - - VP
+                      - - - VV
+                          - - 买
+                - - DEC
+                  - - 的
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 6
+    - det
+  - - 6
+    - clf
+  - - 4
+    - nsubj
+  - - 6
+    - rcmod
+  - - 4
+    - cpm
+  - - 0
+    - root
+  utt_dict:
+  - - 这
+    - PN
+    - này
+  - - 本
+    - M
+    - quyển
+  - - 我
+    - PN
+    - tôi
+  - - 买
+    - V
+    - mua
+  - - 的
+    - F
+    - ""
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: quyển sách tôi mua này
+- tok:
+  - 我
+  - 朋友
+  - 的
+  - 爸爸
+  - 的
+  - 车
+  pos:
+  - PN
+  - NN
+  - DEG
+  - NN
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - DNP
+                  - - - NP
+                      - - - NP
+                          - - - PN
+                              - - 我
+                        - - NP
+                          - - - NN
+                              - - 朋友
+                    - - DEG
+                      - - 的
+                - - NP
+                  - - - NN
+                      - - 爸爸
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 车
+  dep:
+  - - 2
+    - dep
+  - - 4
+    - assmod
+  - - 2
+    - assm
+  - - 6
+    - assmod
+  - - 4
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 朋友
+    - N
+    - bạn
+  - - 的
+    - F
+    - của
+  - - 爸爸
+    - N
+    - bố
+  - - 的
+    - F
+    - của
+  - - 车
+    - N
+    - xe
+  drt_dict: []
+  expected: xe của bố của bạn tôi

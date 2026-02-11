@@ -1,0 +1,1561 @@
+---
+- tok:
+  - 你
+  - 的
+  - 出现
+  - 让
+  - 这
+  - 句
+  - 话
+  - 得到
+  - 了
+  - 最
+  - 有力
+  - 的
+  - 印证
+  - 。
+  pos:
+  - PN
+  - DEG
+  - NN
+  - VV
+  - DT
+  - M
+  - NN
+  - VV
+  - AS
+  - AD
+  - VA
+  - DEC
+  - NN
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - DNP
+              - - - NP
+                  - - - PN
+                      - - 你
+                - - DEG
+                  - - 的
+            - - NP
+              - - - NN
+                  - - 出现
+        - - VP
+          - - - VV
+              - - 让
+            - - NP
+              - - - DP
+                  - - - DT
+                      - - 这
+                    - - CLP
+                      - - - M
+                          - - 句
+                - - NP
+                  - - - NN
+                      - - 话
+            - - IP
+              - - - VP
+                  - - - VV
+                      - - 得到
+                    - - AS
+                      - - 了
+                    - - NP
+                      - - - CP
+                          - - - CP
+                              - - - IP
+                                  - - - VP
+                                      - - - ADVP
+                                          - - - AD
+                                              - - 最
+                                        - - VP
+                                          - - - VA
+                                              - - 有力
+                                - - DEC
+                                  - - 的
+                        - - NP
+                          - - - NN
+                              - - 印证
+        - - PU
+          - - 。
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 4
+    - nsubj
+  - - 0
+    - root
+  - - 7
+    - det
+  - - 5
+    - clf
+  - - 4
+    - dobj
+  - - 4
+    - dep
+  - - 8
+    - asp
+  - - 11
+    - advmod
+  - - 13
+    - rcmod
+  - - 11
+    - cpm
+  - - 8
+    - dobj
+  - - 4
+    - punct
+  utt_dict:
+  - - 你
+    - PN
+    - bạn
+  - - 的
+    - F
+    - của
+  - - 出现
+    - N
+    - xuất hiện
+  - - 让
+    - V
+    - khiến
+  - - 这
+    - PN
+    - này
+  - - 句
+    - M
+    - câu
+  - - 话
+    - N
+    - nói
+  - - 得到
+    - V
+    - đạt được
+  - - 了
+    - F
+    - rồi
+  - - 最
+    - D
+    - nhất
+  - - 有力
+    - A
+    - mạnh mẽ
+  - - 的
+    - F
+    - của
+  - - 印证
+    - N
+    - chứng minh
+  - - 。
+    - X
+    - .
+  drt_dict: []
+  expected: xuất hiện của bạn khiến câu nói này đã đạt được chứng minh mạnh mẽ nhất
+    .
+- tok:
+  - 整个
+  - 世界
+  - 都
+  - 只
+  - 是
+  - 一
+  - 本
+  - 书
+  - …
+  - …
+  - 那
+  - 自己
+  - 所
+  - 经历
+  - 的
+  - 一切
+  - ，
+  - 到底
+  - 是
+  - 真实
+  - 还是
+  - 虚幻
+  - ？
+  pos:
+  - DT
+  - NN
+  - AD
+  - AD
+  - VC
+  - CD
+  - M
+  - NN
+  - PU
+  - PU
+  - PN
+  - PN
+  - MSP
+  - VV
+  - DEC
+  - PN
+  - PU
+  - AD
+  - VC
+  - VA
+  - AD
+  - VA
+  - PU
+  ner:
+  - - 一
+    - CARDINAL
+    - 5
+    - 6
+  con:
+  - TOP
+  - - - IP
+      - - - IP
+          - - - NP
+              - - - DP
+                  - - - DT
+                      - - 整个
+                - - NP
+                  - - - NN
+                      - - 世界
+            - - VP
+              - - - ADVP
+                  - - - AD
+                      - - 都
+                - - ADVP
+                  - - - AD
+                      - - 只
+                - - VP
+                  - - - VC
+                      - - 是
+                    - - NP
+                      - - - QP
+                          - - - CD
+                              - - 一
+                            - - CLP
+                              - - - M
+                                  - - 本
+                        - - NP
+                          - - - NN
+                              - - 书
+        - - PU
+          - - …
+        - - IP
+          - - - PU
+              - - …
+            - - IP
+              - - - DP
+                  - - - PN
+                      - - 那
+                - - NP
+                  - - - CP
+                      - - - CP
+                          - - - IP
+                              - - - NP
+                                  - - - PN
+                                      - - 自己
+                                - - VP
+                                  - - - MSP
+                                      - - 所
+                                    - - VP
+                                      - - - VV
+                                          - - 经历
+                            - - DEC
+                              - - 的
+                    - - NP
+                      - - - PN
+                          - - 一切
+                - - PU
+                  - - ，
+                - - VP
+                  - - - ADVP
+                      - - - AD
+                          - - 到底
+                    - - VP
+                      - - - VC
+                          - - 是
+                        - - VP
+                          - - - VP
+                              - - - VA
+                                  - - 真实
+                            - - ADVP
+                              - - - AD
+                                  - - 还是
+                            - - VP
+                              - - - VA
+                                  - - 虚幻
+        - - PU
+          - - ？
+  dep:
+  - - 2
+    - det
+  - - 5
+    - nsubj
+  - - 5
+    - advmod
+  - - 5
+    - advmod
+  - - 0
+    - root
+  - - 7
+    - nummod
+  - - 8
+    - clf
+  - - 5
+    - attr
+  - - 5
+    - punct
+  - - 5
+    - punct
+  - - 20
+    - advmod
+  - - 14
+    - nsubj
+  - - 14
+    - prtmod
+  - - 16
+    - rcmod
+  - - 14
+    - cpm
+  - - 20
+    - nsubj
+  - - 20
+    - punct
+  - - 20
+    - advmod
+  - - 20
+    - cop
+  - - 5
+    - conj
+  - - 22
+    - advmod
+  - - 20
+    - dep
+  - - 5
+    - punct
+  utt_dict:
+  - - 整个
+    - PN
+    - cả
+  - - 世界
+    - N
+    - thế giới
+  - - 都
+    - D
+    - đều
+  - - 只
+    - D
+    - chỉ
+  - - 是
+    - V
+    - là
+  - - 一
+    - M
+    - một
+  - - 本
+    - M
+    - cuốn
+  - - 书
+    - N
+    - sách
+  - - 那
+    - PN
+    - vậy thì
+  - - 自己
+    - PN
+    - bản thân
+  - - 所
+    - F
+    - ""
+  - - 经历
+    - V
+    - trải qua
+  - - 的
+    - F
+    - ""
+  - - 一切
+    - PN
+    - mọi thứ
+  - - ，
+    - X
+    - ','
+  - - 到底
+    - D
+    - rốt cuộc
+  - - 是
+    - V
+    - là
+  - - 真实
+    - A
+    - thực
+  - - 还是
+    - D
+    - hay
+  - - 虚幻
+    - A
+    - ảo
+  - - ？
+    - X
+    - '?'
+  drt_dict: []
+  expected: cả thế giới đều chỉ là một cuốn sách ... vậy thì mọi thứ bản thân trải
+    qua , rốt cuộc là thực hay ảo ?
+- tok:
+  - 不
+  - 应该
+  - 放弃
+  - 自己
+  - 的
+  - 梦想
+  - 。
+  pos:
+  - AD
+  - VV
+  - VV
+  - PN
+  - DEG
+  - NN
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 不
+            - - VP
+              - - - VV
+                  - - 应该
+                - - VP
+                  - - - VV
+                      - - 放弃
+                    - - NP
+                      - - - DNP
+                          - - - NP
+                              - - - PN
+                                  - - 自己
+                            - - DEG
+                              - - 的
+                        - - NP
+                          - - - NN
+                              - - 梦想
+        - - PU
+          - - 。
+  dep:
+  - - 3
+    - neg
+  - - 3
+    - mmod
+  - - 0
+    - root
+  - - 6
+    - assmod
+  - - 4
+    - assm
+  - - 3
+    - dobj
+  - - 3
+    - punct
+  utt_dict:
+  - - 不
+    - D
+    - không
+  - - 应该
+    - V
+    - nên
+  - - 放弃
+    - V
+    - từ bỏ
+  - - 自己
+    - PN
+    - chính mình
+  - - 的
+    - F
+    - của
+  - - 梦想
+    - N
+    - ước mơ
+  - - 。
+    - X
+    - .
+  drt_dict: []
+  expected: không nên từ bỏ ước mơ của chính mình .
+- tok:
+  - 这
+  - 只是
+  - 你
+  - 自己
+  - 的
+  - 想法
+  - 。
+  pos:
+  - PN
+  - AD
+  - PN
+  - PN
+  - DEG
+  - NN
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 这
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 只是
+            - - NP
+              - - - DNP
+                  - - - NP
+                      - - - PN
+                          - - 你
+                        - - PN
+                          - - 自己
+                    - - DEG
+                      - - 的
+                - - NP
+                  - - - NN
+                      - - 想法
+        - - PU
+          - - 。
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 4
+    - dep
+  - - 6
+    - assmod
+  - - 4
+    - assm
+  - - 2
+    - dobj
+  - - 2
+    - punct
+  utt_dict:
+  - - 这
+    - PN
+    - đây
+  - - 你
+    - PN
+    - bạn
+  - - 自己
+    - PN
+    - bản thân
+  - - 的
+    - F
+    - ""
+  - - 想法
+    - N
+    - suy nghĩ
+  - - 。
+    - X
+    - .
+  drt_dict: []
+  expected: đây chỉ là suy nghĩ của bản thân bạn .
+- tok:
+  - 凡
+  - 事
+  - 都
+  - 要
+  - 自己
+  - 去
+  - 做
+  - 。
+  pos:
+  - DT
+  - NN
+  - AD
+  - VV
+  - PN
+  - VV
+  - VV
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - DP
+              - - - DT
+                  - - 凡
+            - - NP
+              - - - NN
+                  - - 事
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 都
+            - - VP
+              - - - VV
+                  - - 要
+                - - VP
+                  - - - NP
+                      - - - PN
+                          - - 自己
+                    - - VP
+                      - - - VV
+                          - - 去
+                        - - VP
+                          - - - VV
+                              - - 做
+        - - PU
+          - - 。
+  dep:
+  - - 2
+    - det
+  - - 7
+    - nsubj
+  - - 7
+    - advmod
+  - - 7
+    - mmod
+  - - 7
+    - dep
+  - - 7
+    - mmod
+  - - 0
+    - root
+  - - 7
+    - punct
+  utt_dict:
+  - - 都
+    - D
+    - đều
+  - - 要
+    - V
+    - cần
+  - - 自己
+    - PN
+    - tự mình
+  - - 去
+    - V
+    - ""
+  - - 做
+    - V
+    - làm
+  - - 。
+    - X
+    - .
+  drt_dict: []
+  expected: phàm là mọi việc đều cần tự mình làm .
+- tok:
+  - 源清素
+  - 正
+  - 想
+  - 着
+  - ，
+  - 换好
+  - 衣服
+  - 的
+  - 神林
+  - 御子
+  - ，
+  - 已经
+  - 从
+  - 旅馆
+  - 的
+  - 木门
+  - 走
+  - 出来
+  - 。
+  pos:
+  - NR
+  - AD
+  - VV
+  - AS
+  - PU
+  - VV
+  - NN
+  - DEC
+  - NN
+  - NN
+  - PU
+  - AD
+  - P
+  - NN
+  - DEG
+  - NN
+  - VV
+  - VV
+  - PU
+  ner:
+  - - 源清素
+    - PERSON
+    - 0
+    - 1
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NR
+              - - 源清素
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 正
+            - - VP
+              - - - VV
+                  - - 想
+                - - AS
+                  - - 着
+                - - PU
+                  - - ，
+                - - IP
+                  - - - NP
+                      - - - CP
+                          - - - CP
+                              - - - IP
+                                  - - - VP
+                                      - - - VV
+                                          - - 换好
+                                        - - NP
+                                          - - - NN
+                                              - - 衣服
+                                - - DEC
+                                  - - 的
+                        - - NP
+                          - - - NN
+                              - - 神林
+                            - - NN
+                              - - 御子
+                    - - PU
+                      - - ，
+                    - - VP
+                      - - - ADVP
+                          - - - AD
+                              - - 已经
+                        - - PP
+                          - - - P
+                              - - 从
+                            - - NP
+                              - - - DNP
+                                  - - - NP
+                                      - - - NN
+                                          - - 旅馆
+                                    - - DEG
+                                      - - 的
+                                - - NP
+                                  - - - NN
+                                      - - 木门
+                        - - VP
+                          - - - VRD
+                              - - - VV
+                                  - - 走
+                                - - VV
+                                  - - 出来
+        - - PU
+          - - 。
+  dep:
+  - - 3
+    - nsubj
+  - - 3
+    - advmod
+  - - 0
+    - root
+  - - 3
+    - asp
+  - - 3
+    - punct
+  - - 10
+    - rcmod
+  - - 6
+    - dobj
+  - - 6
+    - cpm
+  - - 10
+    - nn
+  - - 17
+    - nsubj
+  - - 17
+    - punct
+  - - 17
+    - advmod
+  - - 17
+    - prep
+  - - 16
+    - assmod
+  - - 14
+    - assm
+  - - 13
+    - pobj
+  - - 3
+    - conj
+  - - 17
+    - rcomp
+  - - 17
+    - punct
+  utt_dict:
+  - - 源清素
+    - NR
+    - Nguyên Thanh Tố
+  - - 正
+    - D
+    - đang
+  - - ，
+    - X
+    - ','
+  - - 换好
+    - V
+    - thay xong
+  - - 衣服
+    - N
+    - quần áo
+  - - 的
+    - F
+    - ""
+  - - ，
+    - X
+    - ','
+  - - 已经
+    - D
+    - đã
+  - - 从
+    - F
+    - từ
+  - - 旅馆
+    - N
+    - quán trọ
+  - - 的
+    - F
+    - ""
+  - - 木门
+    - N
+    - cửa gỗ
+  - - 。
+    - X
+    - .
+  drt_dict: []
+  expected: Nguyên Thanh Tố đang suy nghĩ , Thần Lâm Ngự Tử thay xong quần áo , đã
+    bước ra từ cửa gỗ quán trọ .
+- tok:
+  - 两
+  - 人
+  - 到
+  - 了
+  - 小区
+  - 外
+  - 的
+  - 路边摊
+  - ，
+  - 不
+  - 吃
+  - 扁
+  - 肉
+  - 了
+  - ，
+  - 整
+  - 了
+  - 点
+  - 烤串
+  - ，
+  - 各自
+  - 要
+  - 了
+  - 一
+  - 瓶
+  - 啤酒
+  - 。
+  pos:
+  - CD
+  - NN
+  - VV
+  - AS
+  - NN
+  - LC
+  - DEG
+  - NN
+  - PU
+  - AD
+  - VV
+  - JJ
+  - NN
+  - SP
+  - PU
+  - VV
+  - AS
+  - CD
+  - NN
+  - PU
+  - PN
+  - VV
+  - AS
+  - CD
+  - M
+  - NN
+  - PU
+  ner:
+  - - 两
+    - CARDINAL
+    - 0
+    - 1
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - QP
+              - - - CD
+                  - - 两
+            - - NP
+              - - - NN
+                  - - 人
+        - - VP
+          - - - VP
+              - - - VP
+                  - - - VV
+                      - - 到
+                    - - AS
+                      - - 了
+                    - - NP
+                      - - - DNP
+                          - - - LCP
+                              - - - NP
+                                  - - - NN
+                                      - - 小区
+                                - - LC
+                                  - - 外
+                            - - DEG
+                              - - 的
+                        - - NP
+                          - - - NN
+                              - - 路边摊
+                - - PU
+                  - - ，
+                - - VP
+                  - - - ADVP
+                      - - - AD
+                          - - 不
+                    - - VP
+                      - - - VV
+                          - - 吃
+                        - - NP
+                          - - - ADJP
+                              - - - JJ
+                                  - - 扁
+                            - - NP
+                              - - - NN
+                                  - - 肉
+            - - SP
+              - - 了
+            - - PU
+              - - ，
+            - - VP
+              - - - VV
+                  - - 整
+                - - AS
+                  - - 了
+                - - NP
+                  - - - QP
+                      - - - CLP
+                          - - - CD
+                              - - 点
+                    - - NP
+                      - - - NN
+                          - - 烤串
+            - - PU
+              - - ，
+            - - VP
+              - - - NP
+                  - - - PN
+                      - - 各自
+                - - VP
+                  - - - VV
+                      - - 要
+                    - - AS
+                      - - 了
+                    - - NP
+                      - - - QP
+                          - - - CD
+                              - - 一
+                            - - CLP
+                              - - - M
+                                  - - 瓶
+                        - - NP
+                          - - - NN
+                              - - 啤酒
+        - - PU
+          - - 。
+  dep:
+  - - 2
+    - nummod
+  - - 3
+    - nsubj
+  - - 0
+    - root
+  - - 3
+    - asp
+  - - 6
+    - lobj
+  - - 8
+    - assmod
+  - - 6
+    - assm
+  - - 3
+    - dobj
+  - - 3
+    - punct
+  - - 11
+    - neg
+  - - 3
+    - dep
+  - - 13
+    - amod
+  - - 11
+    - dobj
+  - - 11
+    - dep
+  - - 3
+    - punct
+  - - 3
+    - conj
+  - - 16
+    - asp
+  - - 19
+    - clf
+  - - 16
+    - dobj
+  - - 3
+    - punct
+  - - 22
+    - dep
+  - - 3
+    - conj
+  - - 22
+    - asp
+  - - 25
+    - nummod
+  - - 26
+    - clf
+  - - 22
+    - dobj
+  - - 3
+    - punct
+  utt_dict:
+  - - 到
+    - V
+    - đến
+  - - 了
+    - F
+    - rồi
+  - - 小区
+    - N
+    - tiểu khu
+  - - 外
+    - F
+    - ngoài
+  - - 的
+    - F
+    - ""
+  - - 路边摊
+    - N
+    - quán vỉa hè
+  - - ，
+    - X
+    - ','
+  - - 不
+    - D
+    - không
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - I
+    - rồi
+  - - ，
+    - X
+    - ','
+  - - 整
+    - V
+    - gọi
+  - - 了
+    - F
+    - rồi
+  - - 点
+    - M
+    - chút
+  - - 烤串
+    - N
+    - thịt xiên nướng
+  - - ，
+    - X
+    - ','
+  - - 各自
+    - PN
+    - mỗi người
+  - - 要
+    - V
+    - gọi
+  - - 了
+    - F
+    - rồi
+  - - 一
+    - M
+    - một
+  - - 瓶
+    - M
+    - chai
+  - - 啤酒
+    - N
+    - bia
+  - - 。
+    - X
+    - .
+  drt_dict: []
+  expected: hai người đã đến quán vỉa hè ngoài tiểu khu , không ăn hoành thánh rồi
+    , đã gọi chút thịt xiên nướng , mỗi người đã gọi một chai bia .
+- tok:
+  - 三十五
+  - 天
+  - 前
+  - ，
+  - 清洁
+  - 协会
+  - 十二
+  - 骑士
+  - 之一
+  - 的
+  - ‘
+  - 收藏家
+  - ’
+  - 突袭
+  - 东南亚
+  - 降临
+  - 会
+  - 曼谷
+  - 总会
+  - ，
+  - 当场
+  - 毙杀
+  - 三十五
+  - 名
+  - 降
+  - 灵
+  - 师
+  - ，
+  - 包括
+  - 七
+  - 名
+  - 异常
+  - 附体
+  - 的
+  - 大
+  - 降
+  - 灵
+  - 师
+  - ，
+  - 头颅
+  - 全
+  - 无
+  - …
+  - …
+  pos:
+  - CD
+  - M
+  - LC
+  - PU
+  - NN
+  - NN
+  - CD
+  - NN
+  - NN
+  - DEG
+  - PU
+  - NN
+  - PU
+  - VV
+  - NR
+  - NN
+  - NN
+  - NR
+  - NN
+  - PU
+  - AD
+  - VV
+  - CD
+  - M
+  - VV
+  - JJ
+  - NN
+  - PU
+  - VV
+  - CD
+  - M
+  - AD
+  - VV
+  - DEC
+  - AD
+  - VV
+  - JJ
+  - NN
+  - PU
+  - NN
+  - AD
+  - VE
+  - PU
+  - PU
+  ner:
+  - - 三十五天前
+    - DATE
+    - 0
+    - 3
+  - - 清洁协会
+    - ORG
+    - 4
+    - 6
+  - - 十二
+    - CARDINAL
+    - 6
+    - 7
+  - - 之一
+    - CARDINAL
+    - 8
+    - 9
+  - - 东南亚
+    - LOC
+    - 14
+    - 15
+  - - 曼谷总会
+    - ORG
+    - 17
+    - 19
+  - - 三十五
+    - CARDINAL
+    - 22
+    - 23
+  - - 七
+    - CARDINAL
+    - 29
+    - 30
+  con:
+  - TOP
+  - - - IP
+      - - - IP
+          - - - LCP
+              - - - QP
+                  - - - CD
+                      - - 三十五
+                    - - CLP
+                      - - - M
+                          - - 天
+                - - LC
+                  - - 前
+            - - PU
+              - - ，
+            - - NP
+              - - - DNP
+                  - - - NP
+                      - - - NP
+                          - - - NP
+                              - - - NN
+                                  - - 清洁
+                                - - NN
+                                  - - 协会
+                            - - QP
+                              - - - CD
+                                  - - 十二
+                            - - NP
+                              - - - NN
+                                  - - 骑士
+                        - - NP
+                          - - - NN
+                              - - 之一
+                    - - DEG
+                      - - 的
+                - - PU
+                  - - ‘
+                - - NP
+                  - - - NN
+                      - - 收藏家
+            - - PU
+              - - ’
+            - - VP
+              - - - VP
+                  - - - VV
+                      - - 突袭
+                    - - NP
+                      - - - NP
+                          - - - NP
+                              - - - NR
+                                  - - 东南亚
+                            - - NN
+                              - - 降临
+                            - - NP
+                              - - - NN
+                                  - - 会
+                        - - NP
+                          - - - NR
+                              - - 曼谷
+                            - - NN
+                              - - 总会
+                - - PU
+                  - - ，
+                - - VP
+                  - - - ADVP
+                      - - - AD
+                          - - 当场
+                    - - VP
+                      - - - VV
+                          - - 毙杀
+                        - - NP
+                          - - - QP
+                              - - - CD
+                                  - - 三十五
+                                - - CLP
+                                  - - - M
+                                      - - 名
+                            - - ADJP
+                              - - - VV
+                                  - - 降
+                                - - ADJP
+                                  - - - JJ
+                                      - - 灵
+                            - - NP
+                              - - - NN
+                                  - - 师
+        - - PU
+          - - ，
+        - - IP
+          - - - VP
+              - - - VV
+                  - - 包括
+                - - NP
+                  - - - QP
+                      - - - CD
+                          - - 七
+                        - - CLP
+                          - - - M
+                              - - 名
+                    - - CP
+                      - - - CP
+                          - - - IP
+                              - - - VP
+                                  - - - ADVP
+                                      - - - AD
+                                          - - 异常
+                                    - - VP
+                                      - - - VV
+                                          - - 附体
+                            - - DEC
+                              - - 的
+                    - - ADVP
+                      - - - AD
+                          - - 大
+                    - - VV
+                      - - 降
+                    - - ADJP
+                      - - - JJ
+                          - - 灵
+                    - - NP
+                      - - - NN
+                          - - 师
+        - - PU
+          - - ，
+        - - IP
+          - - - NP
+              - - - NN
+                  - - 头颅
+            - - VP
+              - - - ADVP
+                  - - - AD
+                      - - 全
+                - - VP
+                  - - - VE
+                      - - 无
+        - - PU
+          - - …
+        - - PU
+          - - …
+  dep:
+  - - 2
+    - nummod
+  - - 3
+    - lobj
+  - - 14
+    - loc
+  - - 14
+    - punct
+  - - 6
+    - nn
+  - - 8
+    - nn
+  - - 8
+    - nummod
+  - - 9
+    - nn
+  - - 12
+    - assmod
+  - - 9
+    - assm
+  - - 12
+    - punct
+  - - 14
+    - nsubj
+  - - 14
+    - punct
+  - - 0
+    - root
+  - - 17
+    - nn
+  - - 17
+    - nn
+  - - 18
+    - nn
+  - - 19
+    - nn
+  - - 14
+    - dobj
+  - - 14
+    - punct
+  - - 22
+    - advmod
+  - - 14
+    - conj
+  - - 24
+    - nummod
+  - - 27
+    - clf
+  - - 27
+    - amod
+  - - 27
+    - amod
+  - - 22
+    - dobj
+  - - 14
+    - punct
+  - - 14
+    - conj
+  - - 31
+    - nummod
+  - - 38
+    - clf
+  - - 33
+    - advmod
+  - - 38
+    - rcmod
+  - - 33
+    - cpm
+  - - 36
+    - advmod
+  - - 38
+    - rcmod
+  - - 36
+    - dobj
+  - - 29
+    - dobj
+  - - 14
+    - punct
+  - - 42
+    - nsubj
+  - - 42
+    - advmod
+  - - 14
+    - conj
+  - - 14
+    - punct
+  - - 14
+    - punct
+  utt_dict:
+  - - 三十五
+    - M
+    - ba mươi lăm
+  - - 天
+    - M
+    - ngày
+  - - 前
+    - F
+    - trước
+  - - ，
+    - X
+    - ','
+  - - 清洁
+    - N
+    - làm sạch
+  - - 协会
+    - N
+    - hiệp hội
+  - - 十二
+    - M
+    - mười hai
+  - - 骑士
+    - N
+    - kỵ sĩ
+  - - 的
+    - F
+    - ""
+  - - ‘
+    - X
+    - ‘
+  - - 收藏家
+    - N
+    - Nhà Sưu Tập
+  - - ’
+    - X
+    - ’
+  - - 突袭
+    - V
+    - đột kích
+  - - 东南亚
+    - NR
+    - Đông Nam Á
+  - - 曼谷
+    - NR
+    - Bangkok
+  - - 总会
+    - N
+    - tổng hội
+  - - ，
+    - X
+    - ','
+  - - 当场
+    - D
+    - tại chỗ
+  - - 毙杀
+    - V
+    - giết chết
+  - - 三十五
+    - M
+    - ba mươi lăm
+  - - 名
+    - M
+    - người
+  - - ，
+    - X
+    - ','
+  - - 包括
+    - V
+    - bao gồm
+  - - 七
+    - M
+    - bảy
+  - - 名
+    - M
+    - người
+  - - 异常
+    - D
+    - dị thường
+  - - 附体
+    - V
+    - nhập xác
+  - - 的
+    - F
+    - ""
+  - - 大
+    - D
+    - đại
+  - - ，
+    - X
+    - ','
+  - - 头颅
+    - N
+    - đầu lâu
+  drt_dict: []
+  expected: ba mươi lăm ngày trước , một trong mười hai kỵ sĩ hiệp hội làm sạch ‘
+    Nhà Sưu Tập ’ đột kích tổng hội Bangkok Giáng Lâm Hội Đông Nam Á , tại chỗ giết
+    chết ba mươi lăm người hàng linh sư , bao gồm hàng linh sư đại nhập xác dị thường
+    bảy người , đầu lâu không còn gì ...

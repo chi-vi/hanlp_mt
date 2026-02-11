@@ -3,6 +3,7 @@ require "./parser"
 require "./drt"
 require "./dict/*"
 require "./rules/*"
+require "./data/raw_con"
 
 module Zh2Vi
   # Translator is the main engine for Chinese to Vietnamese translation
@@ -43,7 +44,7 @@ module Zh2Vi
       Translator.new(pos_dict, dep_dict, hanviet)
     end
 
-    # Full translation pipeline
+    # Full translation pipeline (String input)
     def translate(
       con : String,
       cws : Array(String),
@@ -53,9 +54,28 @@ module Zh2Vi
     ) : Node
       # 1. Parse into tree structure
       tree = @parser.parse(con, cws, pos, ner, dep)
+      run_pipeline(tree, cws, dep)
+    end
+
+    # Full translation pipeline (RawCon input)
+    def translate(
+      con : RawCon,
+      cws : Array(String),
+      pos : Array(String),
+      ner : Array(NerSpan) = [] of NerSpan,
+      dep : Array(DepRel) = [] of DepRel,
+    ) : Node
+      # 1. Parse into tree structure
+      tree = @parser.parse(con, cws, pos, ner, dep)
+      run_pipeline(tree, cws, dep)
+    end
+
+    private def run_pipeline(tree : Node, cws : Array(String), dep : Array(DepRel)) : Node
+      # 1.5. Apply structural dependency rules (Ba, Bei, Localizers)
+      tree = Rules::DeprelRules.process(tree)
 
       # 2. Apply reordering rules
-      tree = Rules::Reorder.process(tree)
+      tree = Rules::Reorder.process(tree, @pos_dict)
 
       # 3. Translate leaf nodes using dictionaries
       translate_tree(tree, cws, dep)
@@ -218,7 +238,18 @@ module Zh2Vi
 
     # Get Vietnamese output as string
     def output_text(tree : Node) : String
-      collect_vietnamese(tree).join
+      # Collect and filter empty strings
+      text = collect_vietnamese(tree).reject(&.empty?).join(" ").strip
+      clean_output(text)
+    end
+
+    # Clean up output text (deduplication, etc.)
+    private def clean_output(text : String) : String
+      # Remove duplicate time markers
+      text = text.gsub(/(đã)\s+\1/, "\\1")
+      text = text.gsub(/(sẽ)\s+\1/, "\\1")
+      text = text.gsub(/(đang)\s+\1/, "\\1")
+      text
     end
 
     # Collect Vietnamese translations in order

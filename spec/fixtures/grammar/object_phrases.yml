@@ -1,0 +1,290 @@
+---
+- tok:
+  - 吃饭
+  pos:
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - FRAG
+      - - - VV
+          - - 吃饭
+  dep:
+  - - 0
+    - root
+  utt_dict: []
+  drt_dict: []
+  expected: ăn cơm
+- tok:
+  - 他
+  - 睡觉
+  pos:
+  - PN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VV
+              - - 睡觉
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 睡觉
+    - V
+    - ngủ
+  drt_dict: []
+  expected: anh ấy ngủ
+- tok:
+  - 给
+  - 他也
+  - 一
+  - 本
+  - 书
+  pos:
+  - P
+  - AD
+  - CD
+  - M
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - PP
+              - - - P
+                  - - 给
+                - - NP
+                  - - - AD
+                      - - 他也
+            - - NP
+              - - - QP
+                  - - - CD
+                      - - 一
+                    - - CLP
+                      - - - M
+                          - - 本
+                - - NP
+                  - - - NN
+                      - - 书
+  dep:
+  - - 0
+    - root
+  - - 1
+    - pobj
+  - - 4
+    - nummod
+  - - 5
+    - clf
+  - - 1
+    - pobj
+  utt_dict:
+  - - 给
+    - F
+    - cho
+  - - 一
+    - M
+    - "1"
+  - - 本
+    - M
+    - quyển
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: cho anh ấy cũng 1 quyển sách
+- tok:
+  - 教
+  - 我
+  - 汉语
+  pos:
+  - VV
+  - PN
+  - NN
+  ner:
+  - - 汉语
+    - LANGUAGE
+    - 2
+    - 3
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 教
+            - - NP
+              - - - PN
+                  - - 我
+            - - NP
+              - - - NN
+                  - - 汉语
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dobj
+  - - 1
+    - range
+  utt_dict:
+  - - 教
+    - V
+    - dạy
+  - - 我
+    - PN
+    - tôi
+  - - 汉语
+    - N
+    - tiếng Trung
+  drt_dict: []
+  expected: dạy tôi tiếng Trung
+- tok:
+  - 这
+  - 本
+  - 书
+  - 我
+  - 看过
+  pos:
+  - DT
+  - M
+  - NN
+  - PN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - DP
+              - - - DT
+                  - - 这
+                - - CLP
+                  - - - M
+                      - - 本
+            - - NP
+              - - - NN
+                  - - 书
+        - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VV
+              - - 看过
+  dep:
+  - - 3
+    - det
+  - - 1
+    - clf
+  - - 5
+    - nsubj
+  - - 5
+    - nsubj
+  - - 0
+    - root
+  utt_dict:
+  - - 这
+    - PN
+    - này
+  - - 本
+    - M
+    - quyển
+  - - 书
+    - N
+    - sách
+  - - 我
+    - PN
+    - tôi
+  drt_dict: []
+  expected: quyển sách này tôi đã từng đọc
+- tok:
+  - 让
+  - 他
+  - 高兴
+  pos:
+  - VV
+  - PN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 让
+            - - NP
+              - - - PN
+                  - - 他
+            - - IP
+              - - - VP
+                  - - - VA
+                      - - 高兴
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dobj
+  - - 1
+    - dep
+  utt_dict:
+  - - 让
+    - V
+    - khiến
+  - - 他
+    - PN
+    - anh ấy
+  - - 高兴
+    - A
+    - vui
+  drt_dict: []
+  expected: khiến anh ấy vui
+- tok:
+  - 觉得
+  - 他
+  - 严格
+  pos:
+  - VV
+  - PN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 觉得
+            - - IP
+              - - - NP
+                  - - - PN
+                      - - 他
+                - - VP
+                  - - - VA
+                      - - 严格
+  dep:
+  - - 0
+    - root
+  - - 3
+    - nsubj
+  - - 1
+    - ccomp
+  utt_dict:
+  - - 觉得
+    - V
+    - cảm thấy
+  - - 他
+    - PN
+    - anh ấy
+  - - 严格
+    - A
+    - nghiêm khắc
+  drt_dict: []
+  expected: cảm thấy anh ấy nghiêm khắc

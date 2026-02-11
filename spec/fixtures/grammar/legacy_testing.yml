@@ -1,0 +1,307 @@
+---
+- tok:
+  - 明天
+  - 晚上
+  - 你
+  - 跟
+  - 我
+  - 一起
+  - 去
+  - 看
+  - 电影
+  - 吗
+  pos:
+  - NT
+  - NT
+  - PN
+  - P
+  - PN
+  - AD
+  - VV
+  - VV
+  - NN
+  - SP
+  ner:
+  - - 明天晚上
+    - TIME
+    - 0
+    - 2
+  con:
+  - TOP
+  - - - CP
+      - - - IP
+          - - - NP
+              - - - NT
+                  - - 明天
+                - - NT
+                  - - 晚上
+            - - NP
+              - - - PN
+                  - - 你
+            - - VP
+              - - - PP
+                  - - - P
+                      - - 跟
+                    - - NP
+                      - - - PN
+                          - - 我
+                - - ADVP
+                  - - - AD
+                      - - 一起
+                - - VP
+                  - - - VV
+                      - - 去
+                    - - VP
+                      - - - VV
+                          - - 看
+                        - - NP
+                          - - - NN
+                              - - 电影
+        - - SP
+          - - 吗
+  dep:
+  - - 2
+    - nn
+  - - 8
+    - tmod
+  - - 8
+    - nsubj
+  - - 8
+    - prep
+  - - 4
+    - pobj
+  - - 8
+    - advmod
+  - - 8
+    - mmod
+  - - 0
+    - root
+  - - 8
+    - dobj
+  - - 8
+    - dep
+  utt_dict:
+  - - 明天
+    - N
+    - ngày mai
+  - - 晚上
+    - N
+    - buổi tối
+  - - 你
+    - PN
+    - ngươi
+  - - 跟
+    - F
+    - cùng
+  - - 我
+    - PN
+    - ta
+  - - 一起
+    - D
+    - cùng nhau
+  - - 去
+    - V
+    - đi
+  - - 看
+    - V
+    - xem
+  - - 电影
+    - N
+    - điện ảnh
+  - - 吗
+    - I
+    - à
+  drt_dict: []
+  expected: buổi tối ngày mai ngươi cùng ta cùng nhau đi xem điện ảnh à
+- tok:
+  - 光金
+  - 在
+  - 河内
+  - 大学
+  - 学习
+  - 汉语
+  pos:
+  - NR
+  - P
+  - NR
+  - NN
+  - VV
+  - NN
+  ner:
+  - - 光金
+    - PERSON
+    - 0
+    - 1
+  - - 河内大学
+    - ORG
+    - 2
+    - 4
+  - - 汉语
+    - LANGUAGE
+    - 5
+    - 6
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NR
+              - - 光金
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - NP
+                  - - - NR
+                      - - 河内
+                    - - NN
+                      - - 大学
+            - - VP
+              - - - VV
+                  - - 学习
+                - - NP
+                  - - - NN
+                      - - 汉语
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 4
+    - nn
+  - - 2
+    - pobj
+  - - 0
+    - root
+  - - 5
+    - dobj
+  utt_dict:
+  - - 光金
+    - NR
+    - Quang Kim
+  - - 在
+    - F
+    - tại
+  - - 河内
+    - NR
+    - Hà Nội
+  - - 大学
+    - N
+    - đại học
+  - - 学习
+    - V
+    - học
+  - - 汉语
+    - N
+    - tiếng Trung
+  drt_dict: []
+  expected: Quang Kim học tiếng Trung ở đại học Hà Nội
+- tok:
+  - 联欢会
+  - 从
+  - 七点半
+  - 开始
+  pos:
+  - NN
+  - P
+  - NT
+  - VV
+  ner:
+  - - 七点半
+    - TIME
+    - 2
+    - 3
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 联欢会
+        - - VP
+          - - - PP
+              - - - P
+                  - - 从
+                - - NP
+                  - - - NT
+                      - - 七点半
+            - - VP
+              - - - VV
+                  - - 开始
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 联欢会
+    - N
+    - hội liên hoan
+  - - 从
+    - F
+    - từ
+  - - 七点半
+    - N
+    - bảy giờ rưỡi
+  - - 开始
+    - V
+    - bắt đầu
+  drt_dict: []
+  expected: hội liên hoan bắt đầu từ bảy giờ rưỡi
+- tok:
+  - 我
+  - 昨天
+  - 去
+  - 图书馆
+  pos:
+  - PN
+  - NT
+  - VV
+  - NN
+  ner:
+  - - 昨天
+    - DATE
+    - 1
+    - 2
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - NP
+              - - - NT
+                  - - 昨天
+            - - VP
+              - - - VV
+                  - - 去
+                - - NP
+                  - - - NN
+                      - - 图书馆
+  dep:
+  - - 3
+    - nsubj
+  - - 3
+    - tmod
+  - - 0
+    - root
+  - - 3
+    - dobj
+  utt_dict:
+  - - 我
+    - PN
+    - ta
+  - - 昨天
+    - N
+    - hôm qua
+  - - 去
+    - V
+    - đi
+  - - 图书馆
+    - N
+    - thư viện
+  drt_dict: []
+  expected: ta đi thư viện hôm qua

@@ -1,0 +1,1554 @@
+---
+- tok:
+  - 我们
+  - 在
+  - 公园
+  - 跑步
+  pos:
+  - PN
+  - P
+  - NN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我们
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - NP
+                  - - - NN
+                      - - 公园
+            - - VP
+              - - - VV
+                  - - 跑步
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 我们
+    - PN
+    - chúng ta
+  - - 在
+    - F
+    - tại
+  - - 公园
+    - N
+    - công viên
+  - - 跑步
+    - V
+    - chạy bộ
+  drt_dict: []
+  expected: chúng ta chạy bộ ở công viên
+- tok:
+  - 营业员
+  - 很
+  - 热情
+  pos:
+  - NN
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 营业员
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 很
+            - - VP
+              - - - VA
+                  - - 热情
+  dep:
+  - - 3
+    - nsubj
+  - - 3
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 营业员
+    - N
+    - nhân viên bán hàng
+  - - 很
+    - D
+    - rất
+  - - 热情
+    - A
+    - nhiệt tình
+  drt_dict: []
+  expected: nhân viên bán hàng rất nhiệt tình
+- tok:
+  - 大家
+  - 都
+  - 热烈
+  - 鼓掌
+  pos:
+  - PN
+  - AD
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 大家
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 都
+            - - ADVP
+              - - - AD
+                  - - 热烈
+            - - VP
+              - - - VV
+                  - - 鼓掌
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - advmod
+  - - 4
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 大家
+    - PN
+    - mọi người
+  - - 都
+    - D
+    - đều
+  - - 热烈
+    - D
+    - nhiệt liệt
+  - - 鼓掌
+    - V
+    - vỗ tay
+  drt_dict: []
+  expected: mọi người đều nhiệt liệt vỗ tay
+- tok:
+  - 长
+  - 时间
+  pos:
+  - JJ
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - ADJP
+          - - - JJ
+              - - 长
+        - - NP
+          - - - NN
+              - - 时间
+  dep:
+  - - 2
+    - amod
+  - - 0
+    - root
+  utt_dict:
+  - - 长
+    - A
+    - dài
+  - - 时间
+    - N
+    - thời gian
+  drt_dict: []
+  expected: thời gian dài
+- tok:
+  - 有
+  - 时间
+  pos:
+  - VE
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VE
+              - - 有
+            - - NP
+              - - - NN
+                  - - 时间
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dobj
+  utt_dict:
+  - - 有
+    - V
+    - có
+  - - 时间
+    - N
+    - thời gian
+  drt_dict: []
+  expected: có thời gian
+- tok:
+  - 一
+  - 周
+  - 前
+  pos:
+  - CD
+  - M
+  - LC
+  ner:
+  - - 一周
+    - DATE
+    - 0
+    - 2
+  con:
+  - TOP
+  - - - LCP
+      - - - QP
+          - - - CD
+              - - 一
+            - - CLP
+              - - - M
+                  - - 周
+        - - LC
+          - - 前
+  dep:
+  - - 2
+    - nummod
+  - - 3
+    - lobj
+  - - 0
+    - root
+  utt_dict:
+  - - 一
+    - M
+    - một
+  - - 周
+    - M
+    - tuần
+  - - 前
+    - F
+    - trước
+  drt_dict: []
+  expected: một tuần trước
+- tok:
+  - 右
+  - 乌龟
+  pos:
+  - JJ
+  - NN
+  ner:
+  - - 右乌龟
+    - PERSON
+    - 0
+    - 2
+  con:
+  - TOP
+  - - - NP
+      - - - ADJP
+          - - - JJ
+              - - 右
+        - - NP
+          - - - NN
+              - - 乌龟
+  dep:
+  - - 2
+    - nn
+  - - 0
+    - root
+  utt_dict:
+  - - 右
+    - A
+    - phải
+  - - 乌龟
+    - N
+    - rùa đen
+  drt_dict: []
+  expected: rùa đen phải
+- tok:
+  - 兵荒
+  - 中
+  pos:
+  - NN
+  - LC
+  ner: []
+  con:
+  - TOP
+  - - - LCP
+      - - - NP
+          - - - NN
+              - - 兵荒
+        - - LC
+          - - 中
+  dep:
+  - - 2
+    - lobj
+  - - 0
+    - root
+  utt_dict:
+  - - 兵荒
+    - N
+    - thiếu lính
+  - - 中
+    - F
+    - trong
+  drt_dict: []
+  expected: trong thiếu lính
+- tok:
+  - 书
+  - 中
+  - 人
+  pos:
+  - NN
+  - LC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - LCP
+          - - - NP
+              - - - NN
+                  - - 书
+            - - LC
+              - - 中
+        - - NP
+          - - - NN
+              - - 人
+  dep:
+  - - 2
+    - lobj
+  - - 3
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 书
+    - N
+    - sách
+  - - 中
+    - F
+    - trong
+  - - 人
+    - N
+    - người
+  drt_dict: []
+  expected: người trong sách
+- tok:
+  - 他
+  - 给
+  - 她
+  - 买
+  pos:
+  - PN
+  - P
+  - PN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - PP
+              - - - P
+                  - - 给
+                - - NP
+                  - - - PN
+                      - - 她
+            - - VP
+              - - - VV
+                  - - 买
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 他
+    - PN
+    - hắn
+  - - 给
+    - F
+    - cho
+  - - 她
+    - PN
+    - nàng
+  - - 买
+    - V
+    - mua
+  drt_dict: []
+  expected: hắn mua cho nàng
+- tok:
+  - 在
+  - 他
+  - 的
+  - 记忆
+  - 中
+  pos:
+  - P
+  - PN
+  - DEG
+  - NN
+  - LC
+  ner: []
+  con:
+  - TOP
+  - - - PP
+      - - - P
+          - - 在
+        - - LCP
+          - - - NP
+              - - - DNP
+                  - - - NP
+                      - - - PN
+                          - - 他
+                    - - DEG
+                      - - 的
+                - - NP
+                  - - - NN
+                      - - 记忆
+            - - LC
+              - - 中
+  dep:
+  - - 0
+    - root
+  - - 4
+    - assmod
+  - - 2
+    - assm
+  - - 5
+    - lobj
+  - - 1
+    - plmod
+  utt_dict:
+  - - 在
+    - F
+    - tại
+  - - 他
+    - PN
+    - hắn
+  - - 的
+    - F
+    - của
+  - - 记忆
+    - N
+    - ký ức
+  - - 中
+    - F
+    - trong
+  drt_dict: []
+  expected: tại trong ký ức của hắn
+- tok:
+  - 小王
+  - 比
+  - 我
+  - 高
+  pos:
+  - NR
+  - P
+  - PN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NR
+              - - 小王
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - PN
+                      - - 我
+            - - VP
+              - - - VA
+                  - - 高
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 小王
+    - NR
+    - tiểu vương
+  - - 比
+    - F
+    - so với
+  - - 我
+    - PN
+    - ta
+  - - 高
+    - A
+    - cao
+  drt_dict: []
+  expected: tiểu vương cao hơn ta
+- tok:
+  - 苹果
+  - 比
+  - 香蕉
+  - 好吃
+  pos:
+  - NN
+  - P
+  - NN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 苹果
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - NN
+                      - - 香蕉
+            - - VP
+              - - - VA
+                  - - 好吃
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 苹果
+    - N
+    - quả táo
+  - - 比
+    - F
+    - so với
+  - - 香蕉
+    - N
+    - chuối tiêu
+  - - 好吃
+    - A
+    - ngon
+  drt_dict: []
+  expected: quả táo ngon hơn chuối tiêu
+- tok:
+  - 他
+  - 做
+  - 得
+  - 比
+  - 我
+  - 好
+  - 一点儿
+  pos:
+  - PN
+  - VV
+  - DER
+  - P
+  - PN
+  - VA
+  - AD
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VV
+              - - 做
+            - - DER
+              - - 得
+            - - VP
+              - - - PP
+                  - - - P
+                      - - 比
+                    - - NP
+                      - - - PN
+                          - - 我
+                - - VP
+                  - - - VA
+                      - - 好
+                    - - ADVP
+                      - - - AD
+                          - - 一点儿
+  dep:
+  - - 6
+    - nsubj
+  - - 6
+    - dep
+  - - 6
+    - dep
+  - - 6
+    - prep
+  - - 4
+    - pobj
+  - - 0
+    - root
+  - - 6
+    - advmod
+  utt_dict:
+  - - 他
+    - PN
+    - hắn
+  - - 做
+    - V
+    - làm
+  - - 得
+    - F
+    - được
+  - - 比
+    - F
+    - so với
+  - - 我
+    - PN
+    - ta
+  - - 好
+    - A
+    - tốt
+  - - 一点儿
+    - D
+    - một chút
+  drt_dict: []
+  expected: hắn làm tốt hơn ta một chút
+- tok:
+  - 糖果
+  - 比
+  - 巧克力
+  - 甜
+  pos:
+  - NN
+  - P
+  - NN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 糖果
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - NN
+                      - - 巧克力
+            - - VP
+              - - - VA
+                  - - 甜
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 糖果
+    - N
+    - kẹo
+  - - 比
+    - F
+    - so với
+  - - 巧克力
+    - N
+    - sô-cô-la
+  - - 甜
+    - A
+    - ngọt
+  drt_dict: []
+  expected: kẹo ngọt hơn sô-cô-la
+- tok:
+  - 他
+  - 比
+  - 我
+  - 胖
+  pos:
+  - PN
+  - P
+  - PN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - PN
+                      - - 我
+            - - VP
+              - - - VA
+                  - - 胖
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 他
+    - PN
+    - hắn
+  - - 比
+    - F
+    - so với
+  - - 我
+    - PN
+    - ta
+  - - 胖
+    - A
+    - béo
+  drt_dict: []
+  expected: hắn béo hơn ta
+- tok:
+  - 我
+  - 觉得
+  - 你
+  - 汉语
+  - 说
+  - 得
+  - 比
+  - 他
+  - 好
+  - 一些
+  pos:
+  - PN
+  - VV
+  - PN
+  - NN
+  - VV
+  - DER
+  - P
+  - PN
+  - VA
+  - AD
+  ner:
+  - - 汉语
+    - LANGUAGE
+    - 3
+    - 4
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VV
+              - - 觉得
+            - - IP
+              - - - NP
+                  - - - NP
+                      - - - PN
+                          - - 你
+                    - - NP
+                      - - - NN
+                          - - 汉语
+                - - VP
+                  - - - VV
+                      - - 说
+                    - - DER
+                      - - 得
+                    - - VP
+                      - - - PP
+                          - - - P
+                              - - 比
+                            - - NP
+                              - - - PN
+                                  - - 他
+                        - - VP
+                          - - - VA
+                              - - 好
+                            - - ADVP
+                              - - - AD
+                                  - - 一些
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 9
+    - nsubj
+  - - 9
+    - dep
+  - - 9
+    - dep
+  - - 9
+    - dep
+  - - 9
+    - prep
+  - - 7
+    - pobj
+  - - 2
+    - ccomp
+  - - 9
+    - advmod
+  utt_dict:
+  - - 我
+    - PN
+    - ta
+  - - 觉得
+    - V
+    - cảm thấy
+  - - 你
+    - PN
+    - ngươi
+  - - 汉语
+    - N
+    - tiếng Trung
+  - - 说
+    - V
+    - nói
+  - - 得
+    - F
+    - được
+  - - 比
+    - F
+    - so với
+  - - 他
+    - PN
+    - hắn
+  - - 好
+    - A
+    - tốt
+  - - 一些
+    - D
+    - một chút
+  drt_dict: []
+  expected: ta cảm thấy ngươi tiếng Trung nói tốt hơn hắn một chút
+- tok:
+  - 今天
+  - 比
+  - 昨天
+  - 热
+  pos:
+  - NT
+  - P
+  - NT
+  - VA
+  ner:
+  - - 今天
+    - DATE
+    - 0
+    - 1
+  - - 昨天
+    - DATE
+    - 2
+    - 3
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NT
+              - - 今天
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - NT
+                      - - 昨天
+            - - VP
+              - - - VA
+                  - - 热
+  dep:
+  - - 4
+    - tmod
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 今天
+    - N
+    - hôm nay
+  - - 比
+    - F
+    - so với
+  - - 昨天
+    - N
+    - hôm qua
+  - - 热
+    - A
+    - nóng
+  drt_dict: []
+  expected: hôm nay nóng hơn hôm qua
+- tok:
+  - 今天
+  - 比
+  - 昨天
+  - 还
+  - 热
+  pos:
+  - NT
+  - P
+  - NT
+  - AD
+  - VA
+  ner:
+  - - 今天
+    - DATE
+    - 0
+    - 1
+  - - 昨天
+    - DATE
+    - 2
+    - 3
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NT
+              - - 今天
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - NT
+                      - - 昨天
+            - - ADVP
+              - - - AD
+                  - - 还
+            - - VP
+              - - - VA
+                  - - 热
+  dep:
+  - - 5
+    - tmod
+  - - 5
+    - prep
+  - - 2
+    - pobj
+  - - 5
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 今天
+    - N
+    - hôm nay
+  - - 比
+    - F
+    - so với
+  - - 昨天
+    - N
+    - hôm qua
+  - - 还
+    - D
+    - còn
+  - - 热
+    - A
+    - nóng
+  drt_dict: []
+  expected: hôm nay còn nóng hơn hôm qua
+- tok:
+  - 我
+  - 比
+  - 她
+  - 矮
+  - 一点
+  pos:
+  - PN
+  - P
+  - PN
+  - VA
+  - AD
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 比
+                - - NP
+                  - - - PN
+                      - - 她
+            - - VP
+              - - - VA
+                  - - 矮
+                - - ADVP
+                  - - - AD
+                      - - 一点
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  - - 4
+    - advmod
+  utt_dict:
+  - - 我
+    - PN
+    - ta
+  - - 比
+    - F
+    - so với
+  - - 她
+    - PN
+    - nàng
+  - - 矮
+    - A
+    - thấp
+  drt_dict: []
+  expected: ta thấp hơn nàng một điểm
+- tok:
+  - 他
+  - 跑
+  - 得
+  - 比
+  - 我
+  - 快
+  pos:
+  - PN
+  - VV
+  - DER
+  - P
+  - PN
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VV
+              - - 跑
+            - - DER
+              - - 得
+            - - VP
+              - - - PP
+                  - - - P
+                      - - 比
+                    - - NP
+                      - - - PN
+                          - - 我
+                - - VP
+                  - - - VA
+                      - - 快
+  dep:
+  - - 6
+    - nsubj
+  - - 6
+    - dep
+  - - 6
+    - dep
+  - - 6
+    - prep
+  - - 4
+    - pobj
+  - - 0
+    - root
+  utt_dict:
+  - - 他
+    - PN
+    - hắn
+  - - 跑
+    - V
+    - chạy
+  - - 得
+    - F
+    - được
+  - - 比
+    - F
+    - so với
+  - - 我
+    - PN
+    - ta
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: hắn chạy nhanh hơn ta
+- tok:
+  - 他
+  - 写
+  - 汉字
+  - 写
+  - 得
+  - 比
+  - 我
+  - 快
+  pos:
+  - PN
+  - VV
+  - NN
+  - VV
+  - DER
+  - P
+  - PN
+  - VA
+  ner:
+  - - 汉字
+    - LANGUAGE
+    - 2
+    - 3
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VP
+              - - - VV
+                  - - 写
+                - - NP
+                  - - - NN
+                      - - 汉字
+            - - VP
+              - - - VV
+                  - - 写
+                - - DER
+                  - - 得
+                - - VP
+                  - - - PP
+                      - - - P
+                          - - 比
+                        - - NP
+                          - - - PN
+                              - - 我
+                    - - VP
+                      - - - VA
+                          - - 快
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dobj
+  - - 8
+    - dep
+  - - 8
+    - dep
+  - - 8
+    - prep
+  - - 6
+    - pobj
+  - - 2
+    - conj
+  utt_dict:
+  - - 他
+    - PN
+    - hắn
+  - - 写
+    - V
+    - ghi
+  - - 汉字
+    - N
+    - chữ Hán
+  - - 写
+    - V
+    - ghi
+  - - 得
+    - F
+    - được
+  - - 比
+    - F
+    - so với
+  - - 我
+    - PN
+    - ta
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: hắn ghi chữ Hán nhanh hơn ta
+- tok:
+  - 我
+  - 跟
+  - 爸爸
+  - 一样
+  - 高
+  pos:
+  - PN
+  - P
+  - NN
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 跟
+                - - NP
+                  - - - NN
+                      - - 爸爸
+            - - ADVP
+              - - - AD
+                  - - 一样
+            - - VP
+              - - - VA
+                  - - 高
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 2
+    - pobj
+  - - 5
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - ta
+  - - 跟
+    - F
+    - cùng
+  - - 爸爸
+    - N
+    - ba ba
+  - - 一样
+    - D
+    - một dạng
+  - - 高
+    - A
+    - cao
+  drt_dict: []
+  expected: ta cao như ba ba
+- tok:
+  - http://t.cn/ROjEGXy
+  pos:
+  - URL
+  ner: []
+  con:
+  - TOP
+  - - - URL
+      - - http://t.cn/ROjEGXy
+  dep:
+  - - 0
+    - root
+  utt_dict: []
+  drt_dict: []
+  expected: http://t.cn/ROjEGXy
+- tok:
+  - 我
+  - 跟
+  - 你
+  - 是
+  - 同学
+  pos:
+  - PN
+  - P
+  - PN
+  - VC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 跟
+                - - NP
+                  - - - PN
+                      - - 你
+            - - VP
+              - - - VC
+                  - - 是
+                - - NP
+                  - - - NN
+                      - - 同学
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  - - 4
+    - attr
+  utt_dict:
+  - - 我
+    - PN
+    - ta
+  - - 跟
+    - F
+    - cùng
+  - - 你
+    - PN
+    - ngươi
+  - - 是
+    - V
+    - là
+  - - 同学
+    - N
+    - đồng học
+  drt_dict: []
+  expected: ta là đồng học với ngươi
+- tok:
+  - 我
+  - 跟
+  - 你
+  - 说
+  - 一
+  - 声
+  pos:
+  - PN
+  - P
+  - PN
+  - VV
+  - CD
+  - M
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 跟
+                - - NP
+                  - - - PN
+                      - - 你
+            - - VP
+              - - - VV
+                  - - 说
+                - - QP
+                  - - - CD
+                      - - 一
+                    - - CLP
+                      - - - M
+                          - - 声
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  - - 6
+    - nummod
+  - - 4
+    - range
+  utt_dict:
+  - - 我
+    - PN
+    - ta
+  - - 跟
+    - F
+    - cùng
+  - - 你
+    - PN
+    - ngươi
+  - - 说
+    - V
+    - nói
+  - - 一
+    - M
+    - một
+  - - 声
+    - M
+    - tiếng
+  drt_dict: []
+  expected: ta nói với ngươi một tiếng
+- tok:
+  - 几十
+  pos:
+  - CD
+  ner: []
+  con:
+  - TOP
+  - - - QP
+      - - - CD
+          - - 几十
+  dep:
+  - - 0
+    - root
+  utt_dict:
+  - - 几十
+    - M
+    - mấy chục
+  drt_dict: []
+  expected: mấy chục
+- tok:
+  - 十五
+  pos:
+  - CD
+  ner:
+  - - 十五
+    - ORDINAL
+    - 0
+    - 1
+  con:
+  - TOP
+  - - - QP
+      - - - CD
+          - - 十五
+  dep:
+  - - 0
+    - root
+  utt_dict:
+  - - 十五
+    - M
+    - mười lăm
+  drt_dict: []
+  expected: mười lăm
+- tok:
+  - 都
+  - 还
+  - 不
+  - 太
+  - 够格
+  pos:
+  - AD
+  - AD
+  - AD
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 都
+            - - ADVP
+              - - - AD
+                  - - 还
+            - - ADVP
+              - - - AD
+                  - - 不
+            - - ADVP
+              - - - AD
+                  - - 太
+            - - VP
+              - - - VV
+                  - - 够格
+  dep:
+  - - 5
+    - advmod
+  - - 5
+    - advmod
+  - - 5
+    - neg
+  - - 5
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 都
+    - D
+    - đều
+  - - 还
+    - D
+    - còn
+  - - 不
+    - D
+    - không
+  - - 太
+    - D
+    - quá
+  - - 够格
+    - V
+    - đúng quy cách
+  drt_dict: []
+  expected: đều còn không quá đúng quy cách
+- tok:
+  - 好好
+  - 休息
+  pos:
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - ADVP
+              - - - AD
+                  - - 好好
+            - - VP
+              - - - VV
+                  - - 休息
+  dep:
+  - - 2
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 好好
+    - D
+    - tử tế
+  - - 休息
+    - V
+    - nghỉ ngơi
+  drt_dict: []
+  expected: nghỉ ngơi cho tốt

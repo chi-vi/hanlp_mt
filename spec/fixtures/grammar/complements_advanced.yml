@@ -1,0 +1,313 @@
+---
+- tok:
+  - 他
+  - 说
+  - 汉语
+  - 说
+  - 得
+  - 很
+  - 好
+  pos:
+  - PN
+  - VV
+  - NN
+  - VV
+  - DER
+  - AD
+  - VA
+  ner:
+  - - 汉语
+    - LANGUAGE
+    - 2
+    - 3
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VP
+              - - - VV
+                  - - 说
+                - - NP
+                  - - - NN
+                      - - 汉语
+            - - VP
+              - - - VV
+                  - - 说
+                - - DER
+                  - - 得
+                - - VP
+                  - - - ADVP
+                      - - - AD
+                          - - 很
+                    - - VP
+                      - - - VA
+                          - - 好
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dobj
+  - - 7
+    - dep
+  - - 7
+    - dep
+  - - 7
+    - advmod
+  - - 2
+    - conj
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 说
+    - V
+    - nói
+  - - 汉语
+    - N
+    - tiếng Trung
+  - - 说
+    - V
+    - nói
+  - - 得
+    - F
+    - được
+  - - 很
+    - D
+    - rất
+  - - 好
+    - A
+    - giỏi
+  drt_dict: []
+  expected: anh ấy nói tiếng Trung rất giỏi
+- tok:
+  - 他
+  - 汉语
+  - 说
+  - 得
+  - 很
+  - 好
+  pos:
+  - PN
+  - NN
+  - VV
+  - DER
+  - AD
+  - VA
+  ner:
+  - - 汉语
+    - LANGUAGE
+    - 1
+    - 2
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NP
+              - - - PN
+                  - - 他
+            - - NP
+              - - - NN
+                  - - 汉语
+        - - VP
+          - - - VV
+              - - 说
+            - - DER
+              - - 得
+            - - VP
+              - - - ADVP
+                  - - - AD
+                      - - 很
+                - - VP
+                  - - - VA
+                      - - 好
+  dep:
+  - - 6
+    - nsubj
+  - - 6
+    - nsubj
+  - - 6
+    - dep
+  - - 6
+    - dep
+  - - 6
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 汉语
+    - N
+    - tiếng Trung
+  - - 说
+    - V
+    - nói
+  - - 得
+    - F
+    - được
+  - - 很
+    - D
+    - rất
+  - - 好
+    - A
+    - giỏi
+  drt_dict: []
+  expected: anh ấy nói tiếng Trung rất giỏi
+- tok:
+  - 拿出
+  - 一
+  - 本
+  - 书
+  - 来
+  pos:
+  - VV
+  - CD
+  - M
+  - NN
+  - VV
+  ner:
+  - - 一
+    - CARDINAL
+    - 1
+    - 2
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VP
+              - - - VV
+                  - - 拿出
+                - - NP
+                  - - - QP
+                      - - - CD
+                          - - 一
+                        - - CLP
+                          - - - M
+                              - - 本
+                    - - NP
+                      - - - NN
+                          - - 书
+            - - VP
+              - - - VV
+                  - - 来
+  dep:
+  - - 0
+    - root
+  - - 3
+    - nummod
+  - - 4
+    - clf
+  - - 1
+    - dobj
+  - - 1
+    - conj
+  utt_dict:
+  - - 一
+    - M
+    - "1"
+  - - 本
+    - M
+    - quyển
+  - - 书
+    - N
+    - sách
+  - - 来
+    - V
+    - đến
+  drt_dict: []
+  expected: lấy ra 1 quyển sách
+- tok:
+  - 带
+  - 书
+  - 回来
+  pos:
+  - VV
+  - NN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VP
+              - - - VV
+                  - - 带
+                - - NP
+                  - - - NN
+                      - - 书
+            - - VP
+              - - - VV
+                  - - 回来
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dobj
+  - - 1
+    - conj
+  utt_dict:
+  - - 带
+    - V
+    - mang
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: mang sách về
+- tok:
+  - 跑
+  - 回
+  - 家
+  - 去
+  pos:
+  - VV
+  - VV
+  - NN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VP
+              - - - VRD
+                  - - - VV
+                      - - 跑
+                    - - VV
+                      - - 回
+                - - NP
+                  - - - NN
+                      - - 家
+            - - VP
+              - - - VV
+                  - - 去
+  dep:
+  - - 0
+    - root
+  - - 1
+    - rcomp
+  - - 1
+    - dobj
+  - - 1
+    - conj
+  utt_dict:
+  - - 跑
+    - V
+    - chạy
+  - - 回
+    - V
+    - về
+  - - 家
+    - N
+    - nhà
+  - - 去
+    - V
+    - đi
+  drt_dict: []
+  expected: chạy về nhà

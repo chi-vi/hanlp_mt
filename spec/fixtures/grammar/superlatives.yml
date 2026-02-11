@@ -1,0 +1,371 @@
+---
+- tok:
+  - 最
+  - 好
+  - 的
+  - 书
+  pos:
+  - AD
+  - VA
+  - DEC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - CP
+          - - - CP
+              - - - IP
+                  - - - VP
+                      - - - ADVP
+                          - - - AD
+                              - - 最
+                        - - VP
+                          - - - VA
+                              - - 好
+                - - DEC
+                  - - 的
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 2
+    - advmod
+  - - 4
+    - rcmod
+  - - 2
+    - cpm
+  - - 0
+    - root
+  utt_dict:
+  - - 最
+    - D
+    - nhất
+  - - 好
+    - A
+    - tốt
+  - - 的
+    - F
+    - mà
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: sách tốt nhất
+- tok:
+  - 最
+  - 高
+  - 的
+  - 楼
+  pos:
+  - AD
+  - VA
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - ADJP
+              - - - ADVP
+                  - - - AD
+                      - - 最
+                - - ADJP
+                  - - - VA
+                      - - 高
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 楼
+  dep:
+  - - 2
+    - advmod
+  - - 4
+    - assmod
+  - - 2
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 最
+    - D
+    - nhất
+  - - 高
+    - A
+    - cao
+  - - 的
+    - F
+    - mà
+  - - 楼
+    - N
+    - tòa nhà
+  drt_dict: []
+  expected: tòa nhà cao nhất
+- tok:
+  - 顶级
+  - 的
+  - 配置
+  pos:
+  - JJ
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - ADJP
+              - - - JJ
+                  - - 顶级
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 配置
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 顶级
+    - A
+    - hàng đầu
+  - - 的
+    - F
+    - mà
+  - - 配置
+    - N
+    - cấu hình
+  drt_dict: []
+  expected: cấu hình hàng đầu
+- tok:
+  - 高兴
+  - 极了
+  pos:
+  - VA
+  - AD
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VP
+              - - - VA
+                  - - 高兴
+            - - ADVP
+              - - - AD
+                  - - 极了
+  dep:
+  - - 0
+    - root
+  - - 1
+    - advmod
+  utt_dict:
+  - - 高兴
+    - A
+    - vui vẻ
+  - - 极了
+    - D
+    - hết sức
+  drt_dict: []
+  expected: vui vẻ hết sức
+- tok:
+  - 他
+  - 在
+  - 家里
+  - 最
+  - 快乐
+  - 地
+  - 玩
+  - 了
+  pos:
+  - PN
+  - P
+  - NN
+  - AD
+  - VA
+  - DEV
+  - VV
+  - AS
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - NP
+                  - - - NN
+                      - - 家里
+            - - DVP
+              - - - VP
+                  - - - ADVP
+                      - - - AD
+                          - - 最
+                    - - VP
+                      - - - VA
+                          - - 快乐
+                - - DEV
+                  - - 地
+            - - VP
+              - - - VV
+                  - - 玩
+        - - AS
+          - - 了
+  dep:
+  - - 7
+    - nsubj
+  - - 7
+    - prep
+  - - 2
+    - pobj
+  - - 5
+    - advmod
+  - - 7
+    - dvpmod
+  - - 5
+    - dvpm
+  - - 0
+    - root
+  - - 7
+    - dep
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 在
+    - F
+    - ở
+  - - 家里
+    - N
+    - trong nhà
+  - - 最
+    - D
+    - nhất
+  - - 快乐
+    - A
+    - vui vẻ
+  - - 地
+    - F
+    - mà
+  - - 玩
+    - V
+    - chơi
+  - - 了
+    - F
+    - rồi
+  drt_dict: []
+  expected: anh ấy chơi vui vẻ nhất ở trong nhà rồi
+- tok:
+  - 他
+  - 在
+  - 学校
+  - 买
+  - 了
+  - 最
+  - 好
+  - 的
+  - 书
+  pos:
+  - PN
+  - P
+  - NN
+  - VV
+  - AS
+  - AD
+  - VA
+  - DEC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - NP
+                  - - - NN
+                      - - 学校
+            - - VP
+              - - - VV
+                  - - 买
+                - - AS
+                  - - 了
+                - - NP
+                  - - - CP
+                      - - - CP
+                          - - - IP
+                              - - - VP
+                                  - - - ADVP
+                                      - - - AD
+                                          - - 最
+                                    - - VP
+                                      - - - VA
+                                          - - 好
+                            - - DEC
+                              - - 的
+                    - - NP
+                      - - - NN
+                          - - 书
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - prep
+  - - 2
+    - pobj
+  - - 0
+    - root
+  - - 4
+    - asp
+  - - 7
+    - advmod
+  - - 9
+    - rcmod
+  - - 7
+    - cpm
+  - - 4
+    - dobj
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 在
+    - F
+    - ở
+  - - 学校
+    - N
+    - trường
+  - - 买
+    - V
+    - mua
+  - - 了
+    - F
+    - đã
+  - - 最
+    - D
+    - nhất
+  - - 好
+    - A
+    - tốt
+  - - 的
+    - F
+    - mà
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: anh ấy đã mua sách tốt nhất ở trường

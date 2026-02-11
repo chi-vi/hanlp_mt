@@ -1,0 +1,792 @@
+---
+- tok:
+  - 桌子
+  - 和
+  - 椅子
+  pos:
+  - NN
+  - CC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - NN
+          - - 桌子
+        - - CC
+          - - 和
+        - - NN
+          - - 椅子
+  dep:
+  - - 3
+    - conj
+  - - 3
+    - cc
+  - - 0
+    - root
+  utt_dict:
+  - - 桌子
+    - N
+    - bàn
+  - - 和
+    - X
+    - và
+  - - 椅子
+    - N
+    - ghế
+  drt_dict: []
+  expected: bàn và ghế
+- tok:
+  - 聪明
+  - 又
+  - 漂亮
+  - 的
+  - 女孩
+  pos:
+  - VA
+  - CC
+  - VA
+  - DEC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - CP
+          - - - CP
+              - - - IP
+                  - - - VP
+                      - - - VA
+                          - - 聪明
+                        - - CC
+                          - - 又
+                        - - VA
+                          - - 漂亮
+                - - DEC
+                  - - 的
+        - - NP
+          - - - NN
+              - - 女孩
+  dep:
+  - - 5
+    - rcmod
+  - - 1
+    - cc
+  - - 1
+    - dep
+  - - 1
+    - cpm
+  - - 0
+    - root
+  utt_dict:
+  - - 聪明
+    - A
+    - thông minh
+  - - 又
+    - X
+    - vừa
+  - - 漂亮
+    - A
+    - xinh đẹp
+  - - 的
+    - F
+    - mà
+  - - 女孩
+    - N
+    - cô gái
+  drt_dict: []
+  expected: cô gái thông minh vừa xinh đẹp
+- tok:
+  - 讨论
+  - 并
+  - 解决
+  pos:
+  - VV
+  - CC
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 讨论
+            - - CC
+              - - 并
+            - - VV
+              - - 解决
+  dep:
+  - - 0
+    - root
+  - - 1
+    - cc
+  - - 1
+    - conj
+  utt_dict:
+  - - 讨论
+    - V
+    - thảo luận
+  - - 并
+    - X
+    - và
+  - - 解决
+    - V
+    - giải quyết
+  drt_dict: []
+  expected: thảo luận và giải quyết
+- tok:
+  - 不但
+  - 我
+  - 去
+  - 而且
+  - 他
+  - 也
+  - 去
+  pos:
+  - CC
+  - PN
+  - VV
+  - CC
+  - PN
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - CC
+          - - 不但
+        - - IP
+          - - - NP
+              - - - PN
+                  - - 我
+            - - VP
+              - - - VV
+                  - - 去
+        - - ADVP
+          - - - CC
+              - - 而且
+        - - IP
+          - - - NP
+              - - - PN
+                  - - 他
+            - - VP
+              - - - ADVP
+                  - - - AD
+                      - - 也
+                - - VP
+                  - - - VV
+                      - - 去
+  dep:
+  - - 3
+    - cc
+  - - 3
+    - nsubj
+  - - 0
+    - root
+  - - 3
+    - cc
+  - - 7
+    - nsubj
+  - - 7
+    - advmod
+  - - 3
+    - conj
+  utt_dict:
+  - - 不但
+    - X
+    - không những
+  - - 我
+    - PN
+    - tôi
+  - - 去
+    - V
+    - đi
+  - - 而且
+    - X
+    - mà còn
+  - - 他
+    - PN
+    - anh ấy
+  - - 也
+    - D
+    - cũng
+  - - 去
+    - V
+    - đi
+  drt_dict: []
+  expected: không những tôi đi mà còn anh ấy cũng đi
+- tok:
+  - 快速
+  - 并
+  - 准确
+  - 地
+  - 工作
+  pos:
+  - VA
+  - CC
+  - VA
+  - DEV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - DVP
+              - - - VP
+                  - - - VA
+                      - - 快速
+                    - - CC
+                      - - 并
+                    - - VA
+                      - - 准确
+                - - DEV
+                  - - 地
+            - - VP
+              - - - VV
+                  - - 工作
+  dep:
+  - - 5
+    - dvpmod
+  - - 1
+    - cc
+  - - 1
+    - dep
+  - - 1
+    - dvpm
+  - - 0
+    - root
+  utt_dict:
+  - - 快速
+    - A
+    - nhanh chóng
+  - - 并
+    - X
+    - và
+  - - 准确
+    - A
+    - chính xác
+  - - 地
+    - F
+    - mà
+  - - 工作
+    - V
+    - làm việc
+  drt_dict: []
+  expected: làm việc nhanh chóng và chính xác
+- tok:
+  - 因为
+  - 下雨
+  - 所以
+  - 不
+  - 去
+  pos:
+  - P
+  - VV
+  - AD
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - PP
+          - - - P
+              - - 因为
+            - - IP
+              - - - VP
+                  - - - VV
+                      - - 下雨
+        - - ADVP
+          - - - AD
+              - - 所以
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 不
+            - - VP
+              - - - VV
+                  - - 去
+  dep:
+  - - 5
+    - prep
+  - - 1
+    - pccomp
+  - - 5
+    - advmod
+  - - 5
+    - neg
+  - - 0
+    - root
+  utt_dict:
+  - - 因为
+    - F
+    - bởi vì
+  - - 下雨
+    - V
+    - mưa
+  - - 所以
+    - D
+    - cho nên
+  - - 不
+    - D
+    - không
+  - - 去
+    - V
+    - đi
+  drt_dict: []
+  expected: bởi vì mưa cho nên không đi
+- tok:
+  - 虽然
+  - 累
+  - 但是
+  - 很
+  - 开心
+  pos:
+  - CS
+  - VA
+  - AD
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - IP
+              - - - VP
+                  - - - ADVP
+                      - - - CS
+                          - - 虽然
+                    - - VP
+                      - - - VA
+                          - - 累
+            - - ADVP
+              - - - AD
+                  - - 但是
+            - - VP
+              - - - ADVP
+                  - - - AD
+                      - - 很
+                - - VP
+                  - - - VA
+                      - - 开心
+  dep:
+  - - 2
+    - advmod
+  - - 5
+    - dep
+  - - 5
+    - advmod
+  - - 5
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 虽然
+    - X
+    - tuy
+  - - 累
+    - A
+    - mệt
+  - - 但是
+    - D
+    - nhưng
+  - - 很
+    - D
+    - rất
+  - - 开心
+    - A
+    - vui
+  drt_dict: []
+  expected: tuy mệt nhưng rất vui
+- tok:
+  - 只要
+  - 努力
+  - 就
+  - 成功
+  pos:
+  - CS
+  - VV
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - IP
+          - - - VP
+              - - - ADVP
+                  - - - CS
+                      - - 只要
+                - - VP
+                  - - - VV
+                      - - 努力
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 就
+            - - VP
+              - - - VV
+                  - - 成功
+  dep:
+  - - 2
+    - advmod
+  - - 4
+    - dep
+  - - 4
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 只要
+    - X
+    - chỉ cần
+  - - 努力
+    - V
+    - nỗ lực
+  - - 就
+    - D
+    - là
+  - - 成功
+    - V
+    - thành công
+  drt_dict: []
+  expected: chỉ cần nỗ lực là thành công
+- tok:
+  - 只有
+  - 努力
+  - 才
+  - 成功
+  pos:
+  - CS
+  - VV
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - CP
+          - - - ADVP
+              - - - CS
+                  - - 只有
+            - - VP
+              - - - VV
+                  - - 努力
+        - - ADVP
+          - - - AD
+              - - 才
+        - - VP
+          - - - VA
+              - - 成功
+  dep:
+  - - 2
+    - advmod
+  - - 4
+    - dep
+  - - 4
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 只有
+    - X
+    - chỉ có
+  - - 努力
+    - V
+    - nỗ lực
+  - - 才
+    - D
+    - mới
+  - - 成功
+    - A
+    - thành công
+  drt_dict: []
+  expected: chỉ có nỗ lực mới thành công
+- tok:
+  - 如果
+  - 下雨
+  - 就
+  - 不
+  - 去
+  pos:
+  - CS
+  - VV
+  - AD
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - CP
+          - - - ADVP
+              - - - CS
+                  - - 如果
+            - - IP
+              - - - VP
+                  - - - VV
+                      - - 下雨
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 就
+            - - ADVP
+              - - - AD
+                  - - 不
+            - - VP
+              - - - VV
+                  - - 去
+  dep:
+  - - 2
+    - advmod
+  - - 5
+    - pccomp
+  - - 5
+    - advmod
+  - - 5
+    - neg
+  - - 0
+    - root
+  utt_dict:
+  - - 如果
+    - X
+    - nếu
+  - - 下雨
+    - V
+    - mưa
+  - - 就
+    - D
+    - thì
+  - - 不
+    - D
+    - không
+  - - 去
+    - V
+    - đi
+  drt_dict: []
+  expected: nếu mưa thì không đi
+- tok:
+  - 书
+  - 、
+  - 笔
+  - 和
+  - 纸
+  pos:
+  - NN
+  - PU
+  - NN
+  - CC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - NN
+          - - 书
+        - - PU
+          - - 、
+        - - NN
+          - - 笔
+        - - CC
+          - - 和
+        - - NN
+          - - 纸
+  dep:
+  - - 5
+    - conj
+  - - 5
+    - punct
+  - - 5
+    - conj
+  - - 5
+    - cc
+  - - 0
+    - root
+  utt_dict:
+  - - 书
+    - N
+    - sách
+  - - 、
+    - X
+    - ','
+  - - 笔
+    - N
+    - bút
+  - - 和
+    - X
+    - và
+  - - 纸
+    - N
+    - giấy
+  drt_dict: []
+  expected: sách , bút và giấy
+- tok:
+  - 苹果
+  - ，
+  - 香蕉
+  - 、
+  - 橘子
+  - 跟
+  - 梨
+  pos:
+  - NN
+  - PU
+  - NN
+  - PU
+  - NN
+  - CC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - INC
+      - - - NP
+          - - - NP
+              - - - NN
+                  - - 苹果
+            - - PU
+              - - ，
+            - - NN
+              - - 香蕉
+            - - PU
+              - - 、
+            - - NN
+              - - 橘子
+            - - CC
+              - - 跟
+            - - NN
+              - - 梨
+  dep:
+  - - 7
+    - conj
+  - - 7
+    - punct
+  - - 7
+    - conj
+  - - 7
+    - punct
+  - - 7
+    - conj
+  - - 7
+    - cc
+  - - 0
+    - root
+  utt_dict:
+  - - 苹果
+    - N
+    - táo
+  - - ，
+    - X
+    - ','
+  - - 香蕉
+    - N
+    - chuối
+  - - 、
+    - X
+    - ','
+  - - 橘子
+    - N
+    - quýt
+  - - 跟
+    - X
+    - với
+  - - 梨
+    - N
+    - lê
+  drt_dict: []
+  expected: táo , chuối , quýt với lê
+- tok:
+  - 书
+  - 、
+  - 笔
+  - 等等
+  pos:
+  - NN
+  - PU
+  - NN
+  - ETC
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - NN
+          - - 书
+        - - PU
+          - - 、
+        - - NN
+          - - 笔
+        - - ETC
+          - - 等等
+  dep:
+  - - 3
+    - conj
+  - - 3
+    - punct
+  - - 0
+    - root
+  - - 3
+    - etc
+  utt_dict:
+  - - 书
+    - N
+    - sách
+  - - 、
+    - X
+    - ','
+  - - 笔
+    - N
+    - bút
+  - - 等等
+    - F
+    - vân vân
+  drt_dict: []
+  expected: sách , bút vân vân
+- tok:
+  - 书
+  - 、
+  - 笔
+  - 等
+  pos:
+  - NN
+  - PU
+  - NN
+  - ETC
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - NN
+          - - 书
+        - - PU
+          - - 、
+        - - NN
+          - - 笔
+        - - ETC
+          - - 等
+  dep:
+  - - 3
+    - conj
+  - - 3
+    - punct
+  - - 0
+    - root
+  - - 3
+    - etc
+  utt_dict:
+  - - 书
+    - N
+    - sách
+  - - 、
+    - X
+    - ','
+  - - 笔
+    - N
+    - bút
+  - - 等
+    - F
+    - vân vân
+  drt_dict: []
+  expected: sách , bút vân vân

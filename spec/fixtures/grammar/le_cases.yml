@@ -1,0 +1,199 @@
+---
+- tok:
+  - 他
+  - 吃
+  - 了
+  - 饭
+  pos:
+  - PN
+  - VV
+  - AS
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VV
+              - - 吃
+            - - AS
+              - - 了
+            - - NP
+              - - - NN
+                  - - 饭
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - asp
+  - - 2
+    - dobj
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - F
+    - đã
+  - - 饭
+    - N
+    - cơm
+  drt_dict: []
+  expected: anh ấy đã ăn cơm
+- tok:
+  - 他
+  - 吃
+  - 了
+  pos:
+  - PN
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VV
+              - - 吃
+        - - SP
+          - - 了
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dep
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: anh ấy ăn rồi
+- tok:
+  - 他
+  - 已经
+  - 吃
+  - 了
+  - 饭
+  pos:
+  - PN
+  - AD
+  - VV
+  - AS
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 已经
+            - - VP
+              - - - VV
+                  - - 吃
+                - - AS
+                  - - 了
+                - - NP
+                  - - - NN
+                      - - 饭
+  dep:
+  - - 3
+    - nsubj
+  - - 3
+    - advmod
+  - - 0
+    - root
+  - - 3
+    - asp
+  - - 3
+    - dobj
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 已经
+    - D
+    - đã
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - F
+    - đã
+  - - 饭
+    - N
+    - cơm
+  drt_dict: []
+  expected: anh ấy đã ăn cơm
+- tok:
+  - 他
+  - 已经
+  - 吃
+  - 了
+  pos:
+  - PN
+  - AD
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 已经
+            - - VP
+              - - - VV
+                  - - 吃
+        - - SP
+          - - 了
+  dep:
+  - - 3
+    - nsubj
+  - - 3
+    - advmod
+  - - 0
+    - root
+  - - 3
+    - dep
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 已经
+    - D
+    - đã
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: anh ấy đã ăn rồi

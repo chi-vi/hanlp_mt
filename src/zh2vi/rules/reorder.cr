@@ -5,11 +5,11 @@ module Zh2Vi::Rules
   # to Vietnamese word order
   module Reorder
     # Process a tree with all reordering rules (post-order traversal)
-    def self.process(node : Node) : Node
+    def self.process(node : Node, dict : Dict::PosDict? = nil) : Node
       result = node.dup
 
       # Post-order: process children first, then this node
-      result.children = result.children.map { |c| process(c) }
+      result.children = result.children.map { |c| process(c, dict) }
 
       # Skip atomic nodes (NER entities)
       return result if result.is_atomic?
@@ -25,7 +25,7 @@ module Zh2Vi::Rules
       when "CP"
         reorder_cp(result)
       when "VP"
-        process_vp(result)
+        process_vp(result, dict)
       when "QP"
         reorder_qp(result)
       else
@@ -49,15 +49,31 @@ module Zh2Vi::Rules
         return node
       end
 
-      # Check for adjective + noun pattern
-      # JJ + NN -> NN + JJ
+      # Check for modifier + head patterns
       if node.children.size == 2
         left, right = node.children[0], node.children[1]
         left_pos = left.token.try(&.pos) || left.label
         right_pos = right.token.try(&.pos) || right.label
 
-        if left_pos == "JJ" && (right_pos == "NN" || right_pos == "NP")
+        # 1. Adjective + Noun -> Noun + Adjective
+        # JJ/VA + NN/NP -> swap
+        if (left_pos == "JJ" || left_pos == "VA") && (right_pos == "NN" || right_pos == "NP")
           node.children = [right, left]
+          return node
+        end
+
+        # 2. Noun + Noun -> Noun + Noun (swap head)
+        # NN/NR + NN/NP -> swap
+        if (left_pos == "NN" || left_pos == "NR") && (right_pos == "NN" || right_pos == "NP")
+          node.children = [right, left]
+          return node
+        end
+
+        # 3. DNP + NP -> NP + DNP
+        # Possessive/Attribute phrase -> move to back
+        if left_pos == "DNP" && (right_pos == "NP" || right_pos == "NN")
+          node.children = [right, left]
+          return node
         end
       end
 
@@ -80,7 +96,10 @@ module Zh2Vi::Rules
       # Set Vietnamese for DEG
       deg.vietnamese = "của"
 
-      # Reorder: we'll mark it, actual reordering happens at parent NP level
+      # Reorder: DEG + Possessor
+      # Chinese: Possessor + DEG (我 + 的)
+      # Vietnamese: DEG + Possessor (của + tôi)
+      node.children = [deg] + possessor
       node
     end
 
@@ -120,9 +139,12 @@ module Zh2Vi::Rules
     end
 
     # VP processing: handle aspect markers, PP movement
-    def self.process_vp(node : Node) : Node
+    def self.process_vp(node : Node, dict : Dict::PosDict? = nil) : Node
       # Handle aspect markers (了, 着, 过) - move to front as adverbs
-      process_aspect_markers(node)
+      process_aspect_markers(node, dict)
+
+      # Handle QP modifier reordering (QP + VP -> VP + QP)
+      reorder_modifier_qp(node)
 
       # Handle PP movement (PP before V -> V before PP)
       move_pp_to_end(node)
@@ -130,41 +152,68 @@ module Zh2Vi::Rules
       node
     end
 
-    # Move aspect markers (AS) to front of VP as adverbs
-    # V + 了 -> đã + V
-    private def self.process_aspect_markers(node : Node) : Node
+    # Move aspect markers (AS) to front of VP as adverbs OR keep at end based on translation
+    # V + 了 -> đã + V (if translated as 'đã')
+    # V + 了 -> V + rồi (if translated as 'rồi')
+    private def self.process_aspect_markers(node : Node, dict : Dict::PosDict? = nil) : Node
       as_idx = node.children.index { |c| c.token.try(&.pos) == "AS" }
       return node unless as_idx
 
       as_node = node.children[as_idx]
       as_text = as_node.token.try(&.text)
+      return node unless as_text
 
-      # Determine Vietnamese equivalent
-      vn_adv = case as_text
-               when "了" then "đã"
-               when "着" then "đang"
-               when "过" then "đã từng"
-               else          nil
-               end
+      # 1. Check dictionary first if available
+      vn_adv = nil
+      placement = :front # :front (before V) or :back (after V/Obj)
+
+      if dict
+        # Try lookup
+        if vn_adv = dict.lookup(as_text, "AS")
+          # Heuristic: 'rồi' -> back, 'đã'/'đang' -> front
+          if vn_adv == "rồi"
+            placement = :back
+          else
+            placement = :front
+          end
+
+          # We can set the translation here to ensure consistency
+          as_node.vietnamese = vn_adv
+        end
+      end
+
+      # 2. Fallback to hardcoded rules if no dict match or no dict provided
+      unless vn_adv
+        vn_adv = case as_text
+                 when "了" then "đã"
+                 when "着" then "đang"
+                 when "过" then "đã từng"
+                 else          nil
+                 end
+        placement = :front
+        as_node.vietnamese = vn_adv if vn_adv
+      end
 
       return node unless vn_adv
-
-      # Create adverb node and move to front
-      as_node.vietnamese = vn_adv
 
       # Remove AS from current position
       others = node.children.map_with_index { |c, i| i != as_idx ? c : nil }.compact
 
-      # Find verb position and insert before it
-      verb_idx = others.index { |c|
-        pos = c.token.try(&.pos) || c.label
-        pos.starts_with?("V")
-      }
+      if placement == :front
+        # Find verb position and insert before it
+        verb_idx = others.index { |c|
+          pos = c.token.try(&.pos) || c.label
+          pos.starts_with?("V")
+        }
 
-      if verb_idx
-        node.children = others[0...verb_idx] + [as_node] + others[verb_idx..]
+        if verb_idx
+          node.children = others[0...verb_idx] + [as_node] + others[verb_idx..]
+        else
+          node.children = [as_node] + others
+        end
       else
-        node.children = [as_node] + others
+        # Placement :back - move to end
+        node.children = others + [as_node]
       end
 
       node
@@ -212,6 +261,23 @@ module Zh2Vi::Rules
       dt = node.children[0]
       rest = node.children[1..]
       node.children = rest + [dt]
+      node
+    end
+
+    # QP modifier reordering: QP + VP -> VP + QP
+    # Five feet tall -> Tall five feet
+    # 五尺 (QP) + 高 (VP/VA) -> 高 (VP/VA) + 五尺 (QP)
+    def self.reorder_modifier_qp(node : Node) : Node
+      return node if node.children.size != 2
+
+      left, right = node.children[0], node.children[1]
+
+      # Check for QP + VP pattern
+      if left.label == "QP" && right.label == "VP"
+        node.children = [right, left]
+        return node
+      end
+
       node
     end
   end

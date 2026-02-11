@@ -1,0 +1,239 @@
+---
+- tok:
+  - 吃完
+  - 饭
+  pos:
+  - VV
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 吃完
+            - - NP
+              - - - NN
+                  - - 饭
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dobj
+  utt_dict:
+  - - 饭
+    - N
+    - cơm
+  drt_dict: []
+  expected: ăn xong cơm
+- tok:
+  - 听懂
+  - 了
+  pos:
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 听懂
+        - - SP
+          - - 了
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dep
+  utt_dict:
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: nghe hiểu rồi
+- tok:
+  - 看见
+  - 他
+  pos:
+  - VV
+  - PN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 看见
+            - - NP
+              - - - PN
+                  - - 他
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dobj
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  drt_dict: []
+  expected: nhìn thấy anh ấy
+- tok:
+  - 买到
+  - 票
+  pos:
+  - VV
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 买到
+            - - NP
+              - - - NN
+                  - - 票
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dobj
+  utt_dict:
+  - - 票
+    - N
+    - vé
+  drt_dict: []
+  expected: mua được vé
+- tok:
+  - 说错
+  - 了
+  pos:
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 说错
+        - - SP
+          - - 了
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dep
+  utt_dict:
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: nói sai rồi
+- tok:
+  - 准备
+  - 好
+  pos:
+  - VV
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VRD
+              - - - VV
+                  - - 准备
+                - - VA
+                  - - 好
+  dep:
+  - - 0
+    - root
+  - - 1
+    - rcomp
+  utt_dict:
+  - - 准备
+    - V
+    - chuẩn bị
+  - - 好
+    - A
+    - xong
+  drt_dict: []
+  expected: chuẩn bị xong
+- tok:
+  - 看懂
+  - 这
+  - 本
+  - 书
+  pos:
+  - VV
+  - DT
+  - M
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 看懂
+            - - NP
+              - - - DP
+                  - - - DT
+                      - - 这
+                    - - CLP
+                      - - - M
+                          - - 本
+                - - NP
+                  - - - NN
+                      - - 书
+  dep:
+  - - 0
+    - root
+  - - 4
+    - det
+  - - 2
+    - clf
+  - - 1
+    - dobj
+  utt_dict:
+  - - 这
+    - PN
+    - này
+  - - 本
+    - M
+    - quyển
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: đọc hiểu quyển sách này
+- tok:
+  - 听见
+  - 声音
+  pos:
+  - VV
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 听见
+            - - NP
+              - - - NN
+                  - - 声音
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dobj
+  utt_dict:
+  - - 声音
+    - N
+    - tiếng
+  drt_dict: []
+  expected: nghe thấy tiếng

@@ -1,0 +1,515 @@
+---
+- tok:
+  - 我
+  - 在
+  - 家
+  - 里
+  - 吃饭
+  pos:
+  - PN
+  - P
+  - NN
+  - LC
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - LCP
+                  - - - NP
+                      - - - NN
+                          - - 家
+                    - - LC
+                      - - 里
+            - - VP
+              - - - VV
+                  - - 吃饭
+  dep:
+  - - 5
+    - nsubj
+  - - 5
+    - prep
+  - - 4
+    - lobj
+  - - 2
+    - plmod
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 在
+    - F
+    - ở
+  - - 吃饭
+    - V
+    - ăn cơm
+  drt_dict: []
+  expected: tôi ăn cơm ở trong nhà
+- tok:
+  - 我
+  - 的
+  - 书
+  pos:
+  - PN
+  - DEG
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - DNP
+          - - - NP
+              - - - PN
+                  - - 我
+            - - DEG
+              - - 的
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 0
+    - root
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 的
+    - F
+    - của
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: sách của tôi
+- tok:
+  - 昨天
+  - 我
+  - 买
+  - 书
+  pos:
+  - NT
+  - PN
+  - VV
+  - NN
+  ner:
+  - - 昨天
+    - DATE
+    - 0
+    - 1
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NT
+              - - 昨天
+        - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VV
+              - - 买
+            - - NP
+              - - - NN
+                  - - 书
+  dep:
+  - - 3
+    - tmod
+  - - 3
+    - nsubj
+  - - 0
+    - root
+  - - 3
+    - dobj
+  utt_dict:
+  - - 昨天
+    - N
+    - hôm qua
+  - - 我
+    - PN
+    - tôi
+  - - 买
+    - V
+    - mua
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: tôi hôm qua mua sách
+- tok:
+  - 苹果
+  - 被
+  - 我
+  - 吃
+  - 了
+  pos:
+  - NR
+  - LB
+  - PN
+  - VV
+  - AS
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NR
+              - - 苹果
+        - - VP
+          - - - LB
+              - - 被
+            - - CP
+              - - - IP
+                  - - - NP
+                      - - - PN
+                          - - 我
+                    - - VP
+                      - - - VV
+                          - - 吃
+                        - - AS
+                          - - 了
+  dep:
+  - - 2
+    - nsubjpass
+  - - 0
+    - root
+  - - 4
+    - nsubj
+  - - 2
+    - dep
+  - - 4
+    - asp
+  utt_dict:
+  - - 苹果
+    - NR
+    - táo
+  - - 被
+    - F
+    - bị
+  - - 我
+    - PN
+    - tôi
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - F
+    - rồi
+  drt_dict: []
+  expected: táo đã bị tôi ăn
+- tok:
+  - 我
+  - 把
+  - 苹果
+  - 吃
+  - 了
+  pos:
+  - PN
+  - BA
+  - NR
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - BA
+              - - 把
+            - - IP
+              - - - NP
+                  - - - NR
+                      - - 苹果
+                - - VP
+                  - - - VV
+                      - - 吃
+        - - SP
+          - - 了
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - ba
+  - - 4
+    - nsubj
+  - - 0
+    - root
+  - - 4
+    - dep
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 把
+    - F
+    - đem
+  - - 苹果
+    - NR
+    - táo
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: tôi ăn táo rồi
+- tok:
+  - 我
+  - 在
+  - 家
+  - 里
+  - 把
+  - 苹果
+  - 吃
+  - 了
+  pos:
+  - PN
+  - P
+  - NN
+  - LC
+  - BA
+  - NN
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - PP
+              - - - P
+                  - - 在
+                - - LCP
+                  - - - NP
+                      - - - NN
+                          - - 家
+                    - - LC
+                      - - 里
+            - - VP
+              - - - BA
+                  - - 把
+                - - IP
+                  - - - NP
+                      - - - NN
+                          - - 苹果
+                    - - VP
+                      - - - VV
+                          - - 吃
+        - - SP
+          - - 了
+  dep:
+  - - 7
+    - nsubj
+  - - 7
+    - prep
+  - - 4
+    - lobj
+  - - 2
+    - plmod
+  - - 7
+    - ba
+  - - 7
+    - nsubj
+  - - 0
+    - root
+  - - 7
+    - dep
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 在
+    - F
+    - ở
+  - - 把
+    - F
+    - đem
+  - - 苹果
+    - N
+    - táo
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: tôi ăn táo ở trong nhà rồi
+- tok:
+  - 我
+  - 买
+  - 书
+  - 、
+  - 笔
+  - 和
+  - 纸
+  pos:
+  - PN
+  - VV
+  - NN
+  - PU
+  - NN
+  - CC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VV
+              - - 买
+            - - NP
+              - - - NN
+                  - - 书
+                - - PU
+                  - - 、
+                - - NN
+                  - - 笔
+                - - CC
+                  - - 和
+                - - NN
+                  - - 纸
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 7
+    - conj
+  - - 7
+    - punct
+  - - 7
+    - conj
+  - - 7
+    - cc
+  - - 2
+    - dobj
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 买
+    - V
+    - mua
+  - - 书
+    - N
+    - sách
+  - - 、
+    - X
+    - ','
+  - - 笔
+    - N
+    - bút
+  - - 和
+    - X
+    - và
+  - - 纸
+    - N
+    - giấy
+  drt_dict: []
+  expected: tôi mua sách , bút và giấy
+- tok:
+  - 我
+  - 喜欢
+  - 聪明
+  - 、
+  - 漂亮
+  - 的
+  - 女孩
+  pos:
+  - PN
+  - VV
+  - VA
+  - PU
+  - VA
+  - DEC
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VV
+              - - 喜欢
+            - - NP
+              - - - CP
+                  - - - CP
+                      - - - IP
+                          - - - VP
+                              - - - VP
+                                  - - - VA
+                                      - - 聪明
+                                - - PU
+                                  - - 、
+                                - - VP
+                                  - - - VA
+                                      - - 漂亮
+                        - - DEC
+                          - - 的
+                - - NP
+                  - - - NN
+                      - - 女孩
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 7
+    - rcmod
+  - - 3
+    - punct
+  - - 3
+    - dep
+  - - 3
+    - cpm
+  - - 2
+    - dobj
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 喜欢
+    - V
+    - thích
+  - - 聪明
+    - A
+    - thông minh
+  - - 、
+    - X
+    - ','
+  - - 漂亮
+    - A
+    - xinh đẹp
+  - - 的
+    - F
+    - mà
+  - - 女孩
+    - N
+    - cô gái
+  drt_dict: []
+  expected: tôi thích cô gái thông minh , xinh đẹp

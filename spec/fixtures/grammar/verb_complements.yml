@@ -1,0 +1,347 @@
+---
+- tok:
+  - 睡
+  - 了
+  - 八
+  - 个
+  - 小时
+  pos:
+  - VV
+  - AS
+  - CD
+  - M
+  - NN
+  ner:
+  - - 八个小时
+    - TIME
+    - 2
+    - 5
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 睡
+            - - AS
+              - - 了
+            - - NP
+              - - - QP
+                  - - - CD
+                      - - 八
+                    - - CLP
+                      - - - M
+                          - - 个
+                - - NP
+                  - - - NN
+                      - - 小时
+  dep:
+  - - 0
+    - root
+  - - 1
+    - asp
+  - - 4
+    - nummod
+  - - 5
+    - clf
+  - - 1
+    - dobj
+  utt_dict:
+  - - 睡
+    - V
+    - ngủ
+  - - 了
+    - F
+    - rồi
+  - - 八
+    - M
+    - "8"
+  - - 个
+    - M
+    - cái
+  - - 小时
+    - N
+    - tiếng
+  drt_dict: []
+  expected: đã ngủ 8 tiếng
+- tok:
+  - 去
+  - 过
+  - 三
+  - 次
+  pos:
+  - VV
+  - AS
+  - CD
+  - M
+  ner:
+  - - 三
+    - CARDINAL
+    - 2
+    - 3
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 去
+            - - AS
+              - - 过
+            - - QP
+              - - - CD
+                  - - 三
+                - - CLP
+                  - - - M
+                      - - 次
+  dep:
+  - - 0
+    - root
+  - - 1
+    - asp
+  - - 4
+    - nummod
+  - - 1
+    - dep
+  utt_dict:
+  - - 去
+    - V
+    - đi
+  - - 过
+    - F
+    - qua
+  - - 三
+    - M
+    - "3"
+  - - 次
+    - M
+    - lần
+  drt_dict: []
+  expected: đã từng đi 3 lần
+- tok:
+  - 打碎
+  - 了
+  pos:
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 打碎
+        - - SP
+          - - 了
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dep
+  utt_dict:
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: đánh vỡ rồi
+- tok:
+  - 跑
+  - 得
+  - 很
+  - 快
+  pos:
+  - VV
+  - DER
+  - AD
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 跑
+            - - DER
+              - - 得
+            - - VP
+              - - - ADVP
+                  - - - AD
+                      - - 很
+                - - VP
+                  - - - VA
+                      - - 快
+  dep:
+  - - 4
+    - dep
+  - - 4
+    - dep
+  - - 4
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 跑
+    - V
+    - chạy
+  - - 得
+    - F
+    - được
+  - - 很
+    - D
+    - rất
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: chạy rất nhanh
+- tok:
+  - 跑
+  - 进来
+  pos:
+  - VV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - VP
+      - - - VRD
+          - - - VV
+              - - 跑
+            - - VV
+              - - 进来
+  dep:
+  - - 0
+    - root
+  - - 1
+    - rcomp
+  utt_dict:
+  - - 跑
+    - V
+    - chạy
+  drt_dict: []
+  expected: chạy vào
+- tok:
+  - 听
+  - 得
+  - 懂
+  pos:
+  - VV
+  - DER
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VPT
+              - - - VV
+                  - - 听
+                - - DER
+                  - - 得
+                - - VV
+                  - - 懂
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dep
+  - - 1
+    - dep
+  utt_dict:
+  - - 听
+    - V
+    - nghe
+  - - 得
+    - F
+    - được
+  - - 懂
+    - V
+    - hiểu
+  drt_dict: []
+  expected: nghe hiểu
+- tok:
+  - 听
+  - 不
+  - 懂
+  pos:
+  - VV
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VPT
+              - - - VV
+                  - - 听
+                - - AD
+                  - - 不
+                - - VV
+                  - - 懂
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dep
+  - - 1
+    - dep
+  utt_dict:
+  - - 听
+    - V
+    - nghe
+  - - 不
+    - D
+    - không
+  - - 懂
+    - V
+    - hiểu
+  drt_dict: []
+  expected: nghe không hiểu
+- tok:
+  - 高兴
+  - 得
+  - 跳
+  - 起来
+  pos:
+  - VA
+  - DER
+  - VV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VA
+              - - 高兴
+            - - DER
+              - - 得
+            - - VP
+              - - - VRD
+                  - - - VV
+                      - - 跳
+                    - - VV
+                      - - 起来
+  dep:
+  - - 3
+    - dep
+  - - 3
+    - dep
+  - - 0
+    - root
+  - - 3
+    - rcomp
+  utt_dict:
+  - - 高兴
+    - A
+    - vui
+  - - 得
+    - F
+    - đến mức
+  - - 跳
+    - V
+    - nhảy
+  - - 起来
+    - V
+    - lên
+  drt_dict: []
+  expected: vui đến mức nhảy lên

@@ -1,0 +1,238 @@
+---
+- tok:
+  - 我
+  - 喜欢
+  - “
+  - 苹果
+  - ”
+  pos:
+  - PN
+  - VV
+  - PU
+  - NN
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VV
+              - - 喜欢
+            - - NP
+              - - - PU
+                  - - “
+                - - NN
+                  - - 苹果
+                - - PU
+                  - - ”
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 4
+    - punct
+  - - 2
+    - dobj
+  - - 4
+    - punct
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 喜欢
+    - V
+    - thích
+  - - “
+    - X
+    - '"'
+  - - 苹果
+    - N
+    - táo
+  - - ”
+    - X
+    - '"'
+  drt_dict: []
+  expected: tôi thích " táo "
+- tok:
+  - 我们
+  - 要
+  - “
+  - 学习
+  - ”
+  pos:
+  - PN
+  - VV
+  - PU
+  - VV
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我们
+        - - VP
+          - - - VV
+              - - 要
+            - - VP
+              - - - PU
+                  - - “
+                - - VV
+                  - - 学习
+                - - PU
+                  - - ”
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - mmod
+  - - 4
+    - punct
+  - - 0
+    - root
+  - - 4
+    - punct
+  utt_dict:
+  - - 我们
+    - PN
+    - chúng tôi
+  - - 要
+    - V
+    - cần
+  - - “
+    - X
+    - '"'
+  - - 学习
+    - V
+    - học tập
+  - - ”
+    - X
+    - '"'
+  drt_dict: []
+  expected: chúng tôi cần " học tập "
+- tok:
+  - 他
+  - 是
+  - （
+  - 我
+  - 的
+  - ）
+  - 朋友
+  pos:
+  - PN
+  - VC
+  - PU
+  - PN
+  - DEG
+  - PU
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VC
+              - - 是
+            - - NP
+              - - - DNP
+                  - - - PU
+                      - - （
+                    - - NP
+                      - - - PN
+                          - - 我
+                    - - DEG
+                      - - 的
+                    - - PU
+                      - - ）
+                - - NP
+                  - - - NN
+                      - - 朋友
+  dep:
+  - - 2
+    - top
+  - - 0
+    - root
+  - - 4
+    - punct
+  - - 7
+    - assmod
+  - - 4
+    - assm
+  - - 4
+    - punct
+  - - 2
+    - attr
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 是
+    - V
+    - là
+  - - （
+    - X
+    - (
+  - - ）
+    - X
+    - )
+  - - 朋友
+    - N
+    - bạn
+  drt_dict: []
+  expected: anh ấy là bạn ( của tôi )
+- tok:
+  - “
+  - 好
+  - ”
+  - 书
+  pos:
+  - PU
+  - JJ
+  - PU
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - NP
+      - - - ADJP
+          - - - PU
+              - - “
+            - - JJ
+              - - 好
+            - - PU
+              - - ”
+        - - NP
+          - - - NN
+              - - 书
+  dep:
+  - - 2
+    - punct
+  - - 4
+    - amod
+  - - 2
+    - punct
+  - - 0
+    - root
+  utt_dict:
+  - - “
+    - X
+    - '"'
+  - - 好
+    - A
+    - tốt
+  - - ”
+    - X
+    - '"'
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: sách " tốt "

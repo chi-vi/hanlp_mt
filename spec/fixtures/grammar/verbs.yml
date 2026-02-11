@@ -1,0 +1,234 @@
+---
+- tok:
+  - 我
+  - 把
+  - 苹果
+  - 吃
+  - 了
+  pos:
+  - PN
+  - BA
+  - NR
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - BA
+              - - 把
+            - - IP
+              - - - NP
+                  - - - NR
+                      - - 苹果
+                - - VP
+                  - - - VV
+                      - - 吃
+        - - SP
+          - - 了
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - ba
+  - - 4
+    - nsubj
+  - - 0
+    - root
+  - - 4
+    - dep
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 把
+    - F
+    - đem
+  - - 苹果
+    - NR
+    - táo
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: tôi ăn táo rồi
+- tok:
+  - 苹果
+  - 被
+  - 我
+  - 吃
+  - 了
+  pos:
+  - NR
+  - LB
+  - PN
+  - VV
+  - AS
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NR
+              - - 苹果
+        - - VP
+          - - - LB
+              - - 被
+            - - CP
+              - - - IP
+                  - - - NP
+                      - - - PN
+                          - - 我
+                    - - VP
+                      - - - VV
+                          - - 吃
+                        - - AS
+                          - - 了
+  dep:
+  - - 2
+    - nsubjpass
+  - - 0
+    - root
+  - - 4
+    - nsubj
+  - - 2
+    - dep
+  - - 4
+    - asp
+  utt_dict:
+  - - 苹果
+    - NR
+    - táo
+  - - 被
+    - F
+    - bị
+  - - 我
+    - PN
+    - tôi
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - F
+    - rồi
+  drt_dict: []
+  expected: táo đã bị tôi ăn
+- tok:
+  - 如果
+  - 你
+  - 去
+  - 我
+  - 就
+  - 去
+  pos:
+  - CS
+  - PN
+  - VV
+  - PN
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - CP
+          - - - ADVP
+              - - - CS
+                  - - 如果
+            - - IP
+              - - - NP
+                  - - - PN
+                      - - 你
+                - - VP
+                  - - - VV
+                      - - 去
+        - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 就
+            - - VP
+              - - - VV
+                  - - 去
+  dep:
+  - - 3
+    - advmod
+  - - 3
+    - nsubj
+  - - 6
+    - pccomp
+  - - 6
+    - nsubj
+  - - 6
+    - advmod
+  - - 0
+    - root
+  utt_dict:
+  - - 如果
+    - X
+    - nếu
+  - - 你
+    - PN
+    - bạn
+  - - 去
+    - V
+    - đi
+  - - 我
+    - PN
+    - tôi
+  - - 就
+    - D
+    - thì
+  - - 去
+    - V
+    - đi
+  drt_dict: []
+  expected: nếu bạn đi tôi thì đi
+- tok:
+  - 看
+  - 不
+  - 见
+  pos:
+  - VV
+  - AD
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VPT
+              - - - VV
+                  - - 看
+                - - AD
+                  - - 不
+                - - VV
+                  - - 见
+  dep:
+  - - 0
+    - root
+  - - 1
+    - dep
+  - - 1
+    - dep
+  utt_dict:
+  - - 看
+    - V
+    - nhìn
+  - - 不
+    - D
+    - không
+  - - 见
+    - V
+    - thấy
+  drt_dict: []
+  expected: nhìn không thấy

@@ -1,0 +1,211 @@
+---
+- tok:
+  - 吃饭
+  pos:
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - FRAG
+      - - - VV
+          - - 吃饭
+  dep:
+  - - 0
+    - root
+  utt_dict:
+  - - 吃饭
+    - V
+    - ăn cơm
+  drt_dict: []
+  expected: ăn cơm
+- tok:
+  - 吃
+  - 了
+  - 个
+  - 饭
+  pos:
+  - VV
+  - AS
+  - M
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 吃
+            - - AS
+              - - 了
+            - - NP
+              - - - QP
+                  - - - CLP
+                      - - - M
+                          - - 个
+                - - NP
+                  - - - NN
+                      - - 饭
+  dep:
+  - - 0
+    - root
+  - - 1
+    - asp
+  - - 1
+    - asp
+  - - 1
+    - dobj
+  utt_dict:
+  - - 吃
+    - V
+    - ăn
+  - - 了
+    - F
+    - rồi
+  - - 个
+    - M
+    - ""
+  - - 饭
+    - N
+    - cơm
+  drt_dict: []
+  expected: đã ăn cơm
+- tok:
+  - 睡
+  - 了
+  - 一
+  - 觉
+  pos:
+  - VV
+  - AS
+  - CD
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 睡
+            - - AS
+              - - 了
+            - - NP
+              - - - QP
+                  - - - CD
+                      - - 一
+                - - NP
+                  - - - NN
+                      - - 觉
+  dep:
+  - - 0
+    - root
+  - - 1
+    - asp
+  - - 4
+    - nummod
+  - - 1
+    - dobj
+  utt_dict:
+  - - 睡
+    - V
+    - ngủ
+  - - 了
+    - F
+    - rồi
+  - - 一
+    - M
+    - một
+  - - 觉
+    - N
+    - giấc
+  drt_dict: []
+  expected: đã ngủ một giấc
+- tok:
+  - 见
+  - 过
+  - 面
+  pos:
+  - VV
+  - AS
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 见
+            - - AS
+              - - 过
+            - - NP
+              - - - NN
+                  - - 面
+  dep:
+  - - 0
+    - root
+  - - 1
+    - asp
+  - - 1
+    - dobj
+  utt_dict:
+  - - 见
+    - V
+    - gặp
+  - - 过
+    - F
+    - qua
+  - - 面
+    - N
+    - mặt
+  drt_dict: []
+  expected: đã từng gặp mặt
+- tok:
+  - 帮
+  - 了
+  - 个
+  - 忙
+  pos:
+  - VV
+  - AS
+  - M
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 帮
+            - - AS
+              - - 了
+            - - NP
+              - - - QP
+                  - - - CLP
+                      - - - M
+                          - - 个
+                - - NP
+                  - - - NN
+                      - - 忙
+  dep:
+  - - 0
+    - root
+  - - 1
+    - asp
+  - - 4
+    - clf
+  - - 1
+    - dobj
+  utt_dict:
+  - - 帮
+    - V
+    - giúp
+  - - 了
+    - F
+    - rồi
+  - - 个
+    - M
+    - ""
+  - - 忙
+    - N
+    - việc
+  drt_dict: []
+  expected: đã giúp việc

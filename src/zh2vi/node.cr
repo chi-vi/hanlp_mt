@@ -173,6 +173,15 @@ module Zh2Vi
       end
     end
 
+    # Get dependency relation of this node
+    def deprel : String
+      if leaf?
+        @token.try(&.dep_rel) || "root"
+      else
+        head_child.try(&.deprel) || "root"
+      end
+    end
+
     # Deep copy the node
     def dup : Node
       Node.new(

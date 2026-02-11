@@ -1,0 +1,128 @@
+---
+- tok:
+  - 跑
+  - 的
+  - 快
+  pos:
+  - VV
+  - DER
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 跑
+            - - DER
+              - - 的
+            - - VP
+              - - - VA
+                  - - 快
+  dep:
+  - - 3
+    - dep
+  - - 3
+    - dep
+  - - 0
+    - root
+  utt_dict:
+  - - 跑
+    - V
+    - chạy
+  - - 的
+    - F
+    - của
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: chạy nhanh
+- tok:
+  - 吃饭
+  - 吃
+  - 的
+  - 快
+  pos:
+  - VV
+  - VV
+  - DER
+  - VA
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VP
+              - - - VV
+                  - - 吃饭
+            - - VP
+              - - - VV
+                  - - 吃
+                - - DER
+                  - - 的
+                - - VP
+                  - - - VA
+                      - - 快
+  dep:
+  - - 0
+    - root
+  - - 4
+    - dep
+  - - 4
+    - dep
+  - - 1
+    - dep
+  utt_dict:
+  - - 吃
+    - V
+    - ăn
+  - - 的
+    - F
+    - của
+  - - 快
+    - A
+    - nhanh
+  drt_dict: []
+  expected: ăn cơm nhanh
+- tok:
+  - 高兴
+  - 的
+  - 说
+  pos:
+  - VA
+  - DEV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - DVP
+              - - - VP
+                  - - - VA
+                      - - 高兴
+                - - DEV
+                  - - 的
+            - - VP
+              - - - VV
+                  - - 说
+  dep:
+  - - 3
+    - dvpmod
+  - - 1
+    - dvpm
+  - - 0
+    - root
+  utt_dict:
+  - - 高兴
+    - A
+    - vui vẻ
+  - - 的
+    - F
+    - của
+  - - 说
+    - V
+    - nói
+  drt_dict: []
+  expected: nói vui vẻ

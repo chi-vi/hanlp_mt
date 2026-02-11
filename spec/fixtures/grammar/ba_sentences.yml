@@ -1,0 +1,250 @@
+---
+- tok:
+  - 我
+  - 把
+  - 书
+  - 看完
+  - 了
+  pos:
+  - PN
+  - BA
+  - NN
+  - VV
+  - SP
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - BA
+              - - 把
+            - - IP
+              - - - NP
+                  - - - NN
+                      - - 书
+                - - VP
+                  - - - VV
+                      - - 看完
+        - - SP
+          - - 了
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - ba
+  - - 4
+    - nsubj
+  - - 0
+    - root
+  - - 4
+    - dep
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 把
+    - F
+    - đem
+  - - 书
+    - N
+    - sách
+  - - 了
+    - I
+    - rồi
+  drt_dict: []
+  expected: tôi đọc sách xong rồi
+- tok:
+  - 请
+  - 把
+  - 门
+  - 打开
+  pos:
+  - VV
+  - BA
+  - NN
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - VV
+              - - 请
+            - - VP
+              - - - BA
+                  - - 把
+                - - IP
+                  - - - NP
+                      - - - NN
+                          - - 门
+                    - - VP
+                      - - - VV
+                          - - 打开
+  dep:
+  - - 4
+    - mmod
+  - - 4
+    - ba
+  - - 4
+    - nsubj
+  - - 0
+    - root
+  utt_dict:
+  - - 请
+    - V
+    - xin
+  - - 把
+    - F
+    - đem
+  - - 门
+    - N
+    - cửa
+  - - 打开
+    - V
+    - mở
+  drt_dict: []
+  expected: xin mở cửa
+- tok:
+  - 他
+  - 把
+  - 钱
+  - 丢
+  - 了
+  pos:
+  - PN
+  - BA
+  - NN
+  - VV
+  - AS
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - BA
+              - - 把
+            - - IP
+              - - - NP
+                  - - - NN
+                      - - 钱
+                - - VP
+                  - - - VV
+                      - - 丢
+                    - - AS
+                      - - 了
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - ba
+  - - 4
+    - nsubj
+  - - 0
+    - root
+  - - 4
+    - asp
+  utt_dict:
+  - - 他
+    - PN
+    - anh ấy
+  - - 把
+    - F
+    - đem
+  - - 钱
+    - N
+    - tiền
+  - - 丢
+    - V
+    - mất
+  - - 了
+    - F
+    - rồi
+  drt_dict: []
+  expected: anh ấy mất tiền rồi
+- tok:
+  - 我
+  - 把
+  - 书
+  - 放
+  - 在
+  - 桌子
+  - 上
+  pos:
+  - PN
+  - BA
+  - NN
+  - VV
+  - P
+  - NN
+  - LC
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - BA
+              - - 把
+            - - IP
+              - - - NP
+                  - - - NN
+                      - - 书
+                - - VP
+                  - - - VV
+                      - - 放
+                    - - PP
+                      - - - P
+                          - - 在
+                        - - LCP
+                          - - - NP
+                              - - - NN
+                                  - - 桌子
+                            - - LC
+                              - - 上
+  dep:
+  - - 4
+    - nsubj
+  - - 4
+    - ba
+  - - 4
+    - nsubj
+  - - 0
+    - root
+  - - 4
+    - prep
+  - - 7
+    - lobj
+  - - 5
+    - plmod
+  utt_dict:
+  - - 我
+    - PN
+    - tôi
+  - - 把
+    - F
+    - đem
+  - - 书
+    - N
+    - sách
+  - - 放
+    - V
+    - để
+  - - 在
+    - F
+    - ở
+  - - 桌子
+    - N
+    - bàn
+  - - 上
+    - F
+    - trên
+  drt_dict: []
+  expected: tôi để sách ở trên bàn

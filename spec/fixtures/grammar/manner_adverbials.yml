@@ -1,0 +1,124 @@
+---
+- tok:
+  - 高兴
+  - 地
+  - 说
+  pos:
+  - VA
+  - DEV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - DVP
+              - - - VP
+                  - - - VA
+                      - - 高兴
+                - - DEV
+                  - - 地
+            - - VP
+              - - - VV
+                  - - 说
+  dep:
+  - - 3
+    - dvpmod
+  - - 1
+    - dvpm
+  - - 0
+    - root
+  utt_dict:
+  - - 高兴
+    - A
+    - vui vẻ
+  - - 地
+    - F
+    - mà
+  - - 说
+    - V
+    - nói
+  drt_dict: []
+  expected: nói vui vẻ
+- tok:
+  - 努力
+  - 地
+  - 学习
+  pos:
+  - VA
+  - DEV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - DVP
+              - - - VP
+                  - - - VA
+                      - - 努力
+                - - DEV
+                  - - 地
+            - - VP
+              - - - VV
+                  - - 学习
+  dep:
+  - - 3
+    - dvpmod
+  - - 1
+    - dvpm
+  - - 0
+    - root
+  utt_dict:
+  - - 努力
+    - A
+    - nỗ lực
+  - - 地
+    - F
+    - mà
+  - - 学习
+    - V
+    - học tập
+  drt_dict: []
+  expected: học tập nỗ lực
+- tok:
+  - 快速
+  - 地
+  - 跑
+  pos:
+  - VA
+  - DEV
+  - VV
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - VP
+          - - - DVP
+              - - - ADVP
+                  - - - VA
+                      - - 快速
+                - - DEV
+                  - - 地
+            - - VP
+              - - - VV
+                  - - 跑
+  dep:
+  - - 3
+    - dvpmod
+  - - 1
+    - dvpm
+  - - 0
+    - root
+  utt_dict:
+  - - 快速
+    - A
+    - nhanh chóng
+  - - 地
+    - F
+    - mà
+  - - 跑
+    - V
+    - chạy
+  drt_dict: []
+  expected: chạy nhanh chóng

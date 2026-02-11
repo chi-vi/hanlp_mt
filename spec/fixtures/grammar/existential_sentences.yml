@@ -1,0 +1,360 @@
+---
+- tok:
+  - 桌子
+  - 上
+  - 放
+  - 着
+  - 一
+  - 本
+  - 书
+  pos:
+  - NN
+  - LC
+  - VV
+  - AS
+  - CD
+  - M
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - LCP
+          - - - NP
+              - - - NN
+                  - - 桌子
+            - - LC
+              - - 上
+        - - VP
+          - - - VV
+              - - 放
+            - - AS
+              - - 着
+            - - NP
+              - - - QP
+                  - - - CD
+                      - - 一
+                    - - CLP
+                      - - - M
+                          - - 本
+                - - NP
+                  - - - NN
+                      - - 书
+  dep:
+  - - 2
+    - lobj
+  - - 3
+    - loc
+  - - 0
+    - root
+  - - 3
+    - asp
+  - - 6
+    - nummod
+  - - 7
+    - clf
+  - - 3
+    - dobj
+  utt_dict:
+  - - 桌子
+    - N
+    - bàn
+  - - 上
+    - F
+    - trên
+  - - 放
+    - V
+    - đặt
+  - - 着
+    - F
+    - đang
+  - - 一
+    - M
+    - một
+  - - 本
+    - M
+    - quyển
+  - - 书
+    - N
+    - sách
+  drt_dict: []
+  expected: trên bàn đang đặt một quyển sách
+- tok:
+  - 前面
+  - 来
+  - 了
+  - 一
+  - 个
+  - 人
+  pos:
+  - NN
+  - VV
+  - AS
+  - CD
+  - M
+  - NN
+  ner:
+  - - 一
+    - CARDINAL
+    - 3
+    - 4
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 前面
+        - - VP
+          - - - VV
+              - - 来
+            - - AS
+              - - 了
+            - - NP
+              - - - QP
+                  - - - CD
+                      - - 一
+                    - - CLP
+                      - - - M
+                          - - 个
+                - - NP
+                  - - - NN
+                      - - 人
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - asp
+  - - 5
+    - nummod
+  - - 6
+    - clf
+  - - 2
+    - dobj
+  utt_dict:
+  - - 前面
+    - N
+    - phía trước
+  - - 来
+    - V
+    - đến
+  - - 了
+    - F
+    - rồi
+  - - 一
+    - M
+    - một
+  - - 个
+    - M
+    - cái
+  - - 人
+    - N
+    - người
+  drt_dict: []
+  expected: phía trước đã đến một cái người
+- tok:
+  - 墙上
+  - 挂
+  - 着
+  - 一
+  - 幅
+  - 画
+  pos:
+  - NN
+  - VV
+  - AS
+  - CD
+  - M
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 墙上
+        - - VP
+          - - - VV
+              - - 挂
+            - - AS
+              - - 着
+            - - NP
+              - - - QP
+                  - - - CD
+                      - - 一
+                    - - CLP
+                      - - - M
+                          - - 幅
+                - - NP
+                  - - - NN
+                      - - 画
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - asp
+  - - 5
+    - nummod
+  - - 6
+    - clf
+  - - 2
+    - dobj
+  utt_dict:
+  - - 挂
+    - V
+    - treo
+  - - 着
+    - F
+    - đang
+  - - 一
+    - M
+    - một
+  - - 幅
+    - M
+    - bức
+  - - 画
+    - N
+    - tranh
+  drt_dict: []
+  expected: trên tường đang treo một bức tranh
+- tok:
+  - 书包
+  - 里
+  - 是
+  - 一
+  - 本
+  - 词典
+  pos:
+  - NN
+  - LC
+  - VC
+  - CD
+  - M
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - LCP
+          - - - NP
+              - - - NN
+                  - - 书包
+            - - LC
+              - - 里
+        - - VP
+          - - - VC
+              - - 是
+            - - NP
+              - - - QP
+                  - - - CD
+                      - - 一
+                    - - CLP
+                      - - - M
+                          - - 本
+                - - NP
+                  - - - NN
+                      - - 词典
+  dep:
+  - - 2
+    - lobj
+  - - 3
+    - loc
+  - - 0
+    - root
+  - - 5
+    - nummod
+  - - 6
+    - clf
+  - - 3
+    - attr
+  utt_dict:
+  - - 书包
+    - N
+    - cặp sách
+  - - 里
+    - F
+    - trong
+  - - 是
+    - V
+    - là
+  - - 一
+    - M
+    - một
+  - - 本
+    - M
+    - quyển
+  - - 词典
+    - N
+    - từ điển
+  drt_dict: []
+  expected: trong cặp sách là một quyển từ điển
+- tok:
+  - 床
+  - 上
+  - 躺
+  - 着
+  - 一个
+  - 病人
+  pos:
+  - NN
+  - LC
+  - VV
+  - AS
+  - CD
+  - NN
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - LCP
+          - - - NP
+              - - - NN
+                  - - 床
+            - - LC
+              - - 上
+        - - VP
+          - - - VV
+              - - 躺
+            - - AS
+              - - 着
+            - - NP
+              - - - QP
+                  - - - CD
+                      - - 一个
+                - - NP
+                  - - - NN
+                      - - 病人
+  dep:
+  - - 2
+    - lobj
+  - - 3
+    - loc
+  - - 0
+    - root
+  - - 3
+    - asp
+  - - 6
+    - nummod
+  - - 3
+    - dobj
+  utt_dict:
+  - - 床
+    - N
+    - giường
+  - - 上
+    - F
+    - trên
+  - - 躺
+    - V
+    - nằm
+  - - 着
+    - F
+    - đang
+  - - 病人
+    - N
+    - bệnh nhân
+  drt_dict: []
+  expected: trên giường đang nằm một người bệnh nhân
