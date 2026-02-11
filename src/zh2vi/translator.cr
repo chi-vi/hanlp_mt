@@ -85,7 +85,16 @@ module Zh2Vi
       # 1.8. Apply optative verb rules (Modal verbs)
       tree = Rules::Optative.process(tree)
 
-      # 2. Apply reordering rules
+      # 1.9. Apply special verb rules (A-not-A, copula emphasis)
+      tree = Rules::VerbSpecial.process(tree)
+
+      # 1.95. Apply comparison rules (比, 没有, equative)
+      tree = Rules::Compare.process(tree)
+
+      # 2. Apply adverb reordering (最, 非常, 这么, etc.)
+      tree = Rules::Adverb.process(tree)
+
+      # 3. Apply reordering rules
       tree = Rules::Reorder.process(tree, @pos_dict)
 
       # 3. Translate leaf nodes using dictionaries
