@@ -1,0 +1,38 @@
+# Person suffixes (人物后缀)
+# Words ending with these characters are likely person names or titles
+# One suffix per line
+
+# Family relation suffixes
+父
+母
+爸
+妈
+爷
+奶
+公
+婆
+哥
+姐
+弟
+妹
+叔
+伯
+舅
+姨
+姑
+
+# Title suffixes
+师
+生
+长
+员
+者
+家
+人
+士
+君
+帝
+王
+后
+妃
+友

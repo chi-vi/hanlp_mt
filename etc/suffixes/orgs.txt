@@ -1,0 +1,23 @@
+# Organization suffixes (组织后缀)
+# Words ending with these characters are likely organizations
+# One suffix per line
+
+# Institution suffixes
+局
+部
+处
+科
+组
+会
+社
+团
+党
+军
+队
+院
+校
+所
+厅
+署
+委
+办

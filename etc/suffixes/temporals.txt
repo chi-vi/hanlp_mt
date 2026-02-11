@@ -1,0 +1,37 @@
+# Temporal suffixes (时间后缀)
+# Words ending with these characters are likely time expressions
+# One suffix per line
+
+# Time unit suffixes
+天
+日
+周
+月
+年
+时
+分
+秒
+
+# Period suffixes
+晨
+午
+晚
+夜
+旦
+
+# Season/era suffixes
+春
+夏
+秋
+冬
+代
+世
+纪
+
+# Before/after suffixes
+前
+后
+初
+末
+间
+来

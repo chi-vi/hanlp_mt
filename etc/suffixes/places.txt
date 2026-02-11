@@ -1,0 +1,41 @@
+# Place suffixes (地点后缀)
+# Words ending with these characters are likely places
+# One suffix per line
+
+# Location suffixes
+家
+乡
+村
+镇
+市
+县
+省
+国
+洲
+岛
+山
+河
+湖
+海
+江
+城
+区
+里
+院
+馆
+所
+厂
+站
+港
+场
+园
+寺
+庙
+宫
+殿
+堂
+楼
+屋
+室
+店
+行
