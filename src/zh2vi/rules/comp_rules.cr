@@ -19,6 +19,8 @@ module Zh2Vi::Rules
     private def self.process_vp(node : Node) : Node
       process_aspect(node)
       process_complement(node)
+      process_de_as_verb(node)
+      process_verb_repetition(node)
       node
     end
 
@@ -121,6 +123,76 @@ module Zh2Vi::Rules
           n.vietnamese = ""
         end
       end
+    end
+
+    # Handle cases where '得' is tagged as VV but functions as a particle
+    # e.g., "说汉语得快" (Speak Chinese [de] fast)
+    private def self.process_de_as_verb(node : Node) : Nil
+      node.children.each_with_index do |child, i|
+        # Check if child is '得' tagged as VV
+        if is_de_verb?(child)
+          # Check context: followed by VA/ADJP/mow?
+          # Actually, if it's "得" in a VP, it's almost always a particle if it doesn't mean "get/obtain".
+          # If followed by an adjective or adverb, it's a particle.
+
+          next_sibling = node.children[i + 1]?
+          if next_sibling && is_adjectival?(next_sibling)
+            child.vietnamese = ""
+          end
+        end
+      end
+    end
+
+    private def self.is_de_verb?(node : Node) : Bool
+      # Check if node is VV with text "得"
+      return false unless node.label.starts_with?("V")
+      # Check leaves
+      node.leaves.any? { |leaf| leaf.token.try(&.text) == "得" }
+    end
+
+    private def self.is_adjectival?(node : Node) : Bool
+      return true if node.label.starts_with?("VP") # Often VP -> VA
+      return true if node.label == "ADJP" || node.label == "VA" || node.label == "JJ"
+      # Check leaf pos
+      node.leaves.first?.try { |l| l.token.try(&.pos) == "VA" || l.token.try(&.pos) == "JJ" } || false
+    end
+
+    # Handle verb repetition pattern: VO + V + Complement -> VO + Complement
+    # e.g., 吃饭(VO) 吃(V) 得(Part) 快(Adj) -> 吃饭 快
+    private def self.process_verb_repetition(node : Node) : Nil
+      # Look for sibling VPs
+      # VP -> [VP1, VP2]
+
+      children = node.children
+      (0...children.size - 1).each do |i|
+        vp1 = children[i]
+        vp2 = children[i + 1]
+
+        next unless vp1.label.starts_with?("VP") && vp2.label.starts_with?("VP")
+
+        # Check if VP2 starts with a verb that is redundant
+        # Simplest check: VP1 text starts with VP2's verb text
+        v2_node = find_main_verb(vp2)
+        next unless v2_node
+        v2_text = v2_node.token.try(&.text)
+        next unless v2_text
+
+        # Check if VP1 contains this text at the beginning
+        # VP1 might be "吃饭", v2_text is "吃"
+        vp1_text = vp1.leaves.map { |l| l.token.try(&.text) || "" }.join
+
+        if vp1_text.starts_with?(v2_text)
+          # Identify this as repetition.
+          # Remove v2_node (the repeated verb) from VP2
+          # We can silence it
+          v2_node.vietnamese = ""
+        end
+      end
+    end
+
+    private def self.find_main_verb(vp_node : Node) : Node?
+      # Find the first child that is a verb (VV)
+      vp_node.children.find { |c| c.label.starts_with?("V") || c.token.try(&.pos).try(&.starts_with?("V")) }
     end
   end
 end
