@@ -16,7 +16,8 @@ module Zh2Vi::Rules
 
       # Apply reordering rules based on label
       case result.label
-      when "NP"
+      when "NP", "IP"
+        # Treat IP like NP because HanLP sometimes labels NPs as IPs (e.g. "This book I bought")
         reorder_np(result)
       when "DNP"
         reorder_dnp(result)
@@ -39,65 +40,123 @@ module Zh2Vi::Rules
     # Examples:
     # - 漂亮的книга -> sách đẹp
     # - DT + M + N -> N + M + DT (demonstratives to end)
+    # Examples:
+    # - 漂亮的книга -> sách đẹp
+    # - DT + M + N -> N + M + DT (demonstratives to end)
     def self.reorder_np(node : Node) : Node
       return node if node.children.size < 2
 
-      # Find demonstrative (DT/DP) at the beginning
-      first = node.children.first
-      if first.label == "DP" || first.token.try(&.pos) == "DT"
-        # If DP, check if we can split it (DT + CLP)
-        if first.label == "DP" && first.children.size >= 2
-          # Find DT and CLP inside DP
-          dt = first.children.find { |c| c.token.try(&.pos) == "DT" || c.label == "DT" }
-          clp = first.children.find { |c| c.label == "CLP" || c.label == "M" || c.token.try(&.pos) == "M" }
+      # Special handling for IP that is actually a relative clause (Subject + Verb + De + Object)
+      if node.label == "IP"
+        if restructured = restructure_relative_ip(node)
+          return restructured
+        end
 
-          if dt && clp
-            # Structure: DP(DT, CLP) + NP -> CLP + NP + DT
-            rest = node.children[1..]
-            node.children = [clp] + rest + [dt]
+        # If IP is a standard sentence [Subject, Predicate, (Particle)], preserve order/don't treat as NP.
+        # e.g. [NP, VP, AS] -> Keep as is.
+        # Check if first child is NP/PN and we have a VP
+        if node.children.size >= 2
+          first = node.children.first
+          has_vp = node.children.any? { |c| c.label == "VP" }
+
+          if (first.label == "NP" || first.label == "PN") && has_vp
             return node
           end
         end
-
-        # Fallback: Move entire unit to end
-        rest = node.children[1..]
-        node.children = rest + [first]
-        return node
       end
 
-      # Check for modifier + head patterns
-      if node.children.size == 2
-        left, right = node.children[0], node.children[1]
-        left_pos = left.token.try(&.pos) || left.label
-        right_pos = right.token.try(&.pos) || right.label
+      # Assume right-headedness for Chinese NP
+      head = node.children.last
+      modifiers = node.children[0...-1]
 
-        # 1. Adjective + Noun -> Noun + Adjective
-        # JJ/VA + NN/NP -> swap
-        # 1. Adjective + Noun -> Noun + Adjective
-        # JJ/VA/ADJP + NN/NP -> swap
-        if (left_pos == "JJ" || left_pos == "VA" || left_pos == "ADJP") && (right_pos == "NN" || right_pos == "NP")
-          node.children = [right, left]
-          return node
-        end
+      pre_modifiers = [] of Node
+      post_modifiers = [] of Node
+      tail_modifiers = [] of Node # For DT/Demonstratives at the very end
 
-        # 2. Noun + Noun -> Noun + Noun (swap head)
-        # NN/NR + NN/NP -> swap
-        if (left_pos == "NN" || left_pos == "NR" || left_pos == "NP") && (right_pos == "NN" || right_pos == "NP")
-          node.children = [right, left]
-          return node
-        end
+      modifiers.each do |mod|
+        pos = mod.token.try(&.pos) || mod.label
 
-        # 3. DNP + NP -> NP + DNP
-        # Possessive/Attribute phrase -> move to back
-        # 3. DNP/CP + NP -> NP + DNP/CP
-        # Possessive/Attribute/Relative phrase -> move to back
-        if (left_pos == "DNP" || left_pos == "CP") && (right_pos == "NP" || right_pos == "NN")
-          node.children = [right, left]
-          return node
+        if pos == "DP"
+          # Unpack DP: DT goes to tail, others (QP/CLP) stay in pre
+          # DP -> [DT, QP, CLP]
+          dt_nodes = [] of Node
+          other_nodes = [] of Node
+
+          mod.children.each do |c|
+            c_pos = c.token.try(&.pos) || c.label
+            if c_pos == "DT"
+              dt_nodes << c
+            else
+              other_nodes << c
+            end
+          end
+
+          tail_modifiers.concat(dt_nodes)
+          pre_modifiers.concat(other_nodes)
+        elsif pos == "DT"
+          tail_modifiers << mod
+        elsif {"ADJP", "CP", "DNP", "JJ", "VA", "PP"}.includes?(pos)
+          post_modifiers << mod
+        elsif {"QP", "CLP", "M"}.includes?(pos)
+          pre_modifiers << mod
+        elsif pos == "NN" || pos == "NR" || pos == "NP" || pos == "PN"
+          # Noun modifier (N + N) -> N + N (friends dad)
+          # Vietnamese: dad of friend (bố (của) bạn)
+          # So Noun modifier should be POST head.
+          # BUT if head is VP (IP structure), NP/PN is Subject -> PRE head.
+          if head.label == "VP"
+            pre_modifiers << mod
+          else
+            post_modifiers << mod
+          end
+        else
+          # Default: keep before head
+          pre_modifiers << mod
         end
       end
 
+      # Construct new order: Pre + Head + Post + Tail
+      node.children = pre_modifiers + [head] + post_modifiers + tail_modifiers
       node
+    end
+
+    # Detect and restructure IP that is actually a relative clause
+    # IP -> [NP(Subj), VP(VV, AS(De), NP(Obj))]
+    # Target: Obj + Subj + VV (Sách tôi mua)
+    private def self.restructure_relative_ip(node : Node) : Node?
+      # Check structure
+      return nil unless node.children.size == 2
+
+      subj = node.children[0]
+      vp = node.children[1]
+
+      return nil unless (subj.label == "NP" || subj.label == "PN") && vp.label == "VP"
+
+      # Check VP internals
+      # Expect [VV, AS, NP] or similar where AS is "的"
+      vv = vp.children.find { |c| c.label.starts_with?("V") }
+      as_node = vp.children.find { |c| c.token.try(&.pos) == "AS" || c.token.try(&.pos) == "DEC" }
+      obj = vp.children.find { |c| c.label == "NP" }
+
+      return nil unless vv && as_node && obj
+
+      # Check if AS matches "的"
+      as_text = as_node.token.try(&.text)
+      return nil unless as_text == "的"
+
+      # Confirmed pattern. Restructure.
+      # We want [Obj, Subj, VV]
+
+      # We can't easily move Obj out of VP in the tree structure cleanly without duping/reparenting logic which Node doesn't strictly enforce but traverse might expect.
+      # But strictly for traversal output order:
+      # If we set node.children = [obj, subj, vv]
+      # obj and vv are detached from their parents.
+      # Since we are in post-order traversal, obj and vv handles are already processed/translated?
+      # Yes.
+      # So simple re-assignment is fine for output.
+
+      node.children = [obj, subj, vv]
+      return node
     end
 
     # DNP reordering: Possessor + DEG + Noun -> Noun + của + Possessor

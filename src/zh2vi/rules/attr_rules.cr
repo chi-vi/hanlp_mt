@@ -12,9 +12,27 @@ module Zh2Vi::Rules
 
       if node.label == "DNP"
         process_dnp(node)
+      elsif node.label == "CP"
+        process_cp(node)
       end
 
       node
+    end
+
+    private def self.process_cp(node : Node)
+      # CP Structure: [IP, DEC]
+      # Drop DEC ("mà") for cleaner relative clauses unless complex?
+
+      dec_idx = node.children.index { |c| c.label == "DEC" || c.token.try(&.pos) == "DEC" }
+      return unless dec_idx
+
+      dec_node = node.children[dec_idx]
+
+      # For now, always drop 'de' in CP to match expected output "sách tôi mua" (not "sách mà tôi mua")
+      # "người ăn cơm" (not "người mà ăn cơm")
+      dec_node.leaves.each do |leaf|
+        leaf.vietnamese = ""
+      end
     end
 
     private def self.process_dnp(node : Node)
@@ -48,6 +66,23 @@ module Zh2Vi::Rules
       if text && DIRECT_ATTRIBUTE_NOUNS.includes?(text)
         return true
       end
+
+      # 3. Check for Adjectival Modifiers (ADJP, JJ, VA)
+      # "tòa nhà cao nhất", "cấu hình hàng đầu" -> drop "của"
+      if is_adjectival?(modifier)
+        return true
+      end
+
+      false
+    end
+
+    private def self.is_adjectival?(node : Node) : Bool
+      # ADJP is adjective phrase
+      return true if node.label.starts_with?("ADJP")
+
+      # JJ/VA are adjective POS tags
+      pos = node.token.try(&.pos) || node.label
+      return true if pos == "JJ" || pos == "VA"
 
       false
     end

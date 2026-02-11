@@ -1,0 +1,51 @@
+Reordering NP: NP
+Children: NN(NN), NN(NN)
+Head: NN
+Reordering NP: NP
+Children: ADJP, NP
+Head: NP
+Reordering NP: NP
+Children: CP, NP
+Head: NP
+Reordering NP: NP
+Children: CP, NP
+Head: NP
+Reordering NP: NP
+Children: DP, NP
+Head: NP
+Reordering NP: NP
+Children: DP, ADJP, NP
+Head: NP
+Reordering NP: NP
+Children: NP, NP
+Head: NP
+Reordering NP: NP
+Children: DNP, NP
+Head: NP
+Reordering NP: NP
+Children: DNP, NP
+Head: NP
+Reordering NP: Children=[NN(NN), NN(NN)]
+  Head: NN
+Reordering NP: Children=[ADJP, NP]
+  Head: NP
+Reordering NP: Children=[CP, NP]
+  Head: NP
+Reordering NP: Children=[CP, NP]
+  Head: NP
+Reordering IP: Children=[NP, VP]
+  Head: VP
+Reordering NP: Children=[DP, NP]
+  Head: NP
+Reordering NP: Children=[DP, ADJP, NP]
+  Head: NP
+Reordering IP: Children=[NP, VP]
+  Head: VP
+Reordering IP: Children=[DP, CP, NP]
+  Head: NP
+Reordering NP: Children=[NP, NP]
+  Head: NP
+Reordering NP: Children=[DNP, NP]
+  Head: NP
+Reordering NP: Children=[DNP, NP]
+  Head: NP

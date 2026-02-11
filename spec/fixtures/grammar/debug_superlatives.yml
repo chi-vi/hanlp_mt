@@ -52,6 +52,12 @@
   - - 玩
     - V
     - chơi
+  - - 家
+    - N
+    - nhà
+  - - 里
+    - F
+    - trong
   drt_dict: []
   expected: anh ấy chơi ở trong nhà
 - tok:
