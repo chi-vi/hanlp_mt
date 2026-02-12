@@ -112,7 +112,7 @@
     - I
     - à
   drt_dict: []
-  expected: buổi tối ngày mai ngươi cùng ta cùng nhau đi xem điện ảnh à
+  expected: ngày mai buổi tối ngươi cùng ta cùng nhau đi xem điện ảnh à
 - tok:
   - 光金
   - 在
@@ -194,7 +194,7 @@
     - N
     - tiếng Trung
   drt_dict: []
-  expected: Quang Kim học tiếng Trung ở đại học Hà Nội
+  expected: Quang Kim học tiếng Trung tại Hà Nội đại học
 - tok:
   - 联欢会
   - 从
@@ -304,4 +304,4 @@
     - N
     - thư viện
   drt_dict: []
-  expected: ta đi thư viện hôm qua
+  expected: ta hôm qua đi thư viện

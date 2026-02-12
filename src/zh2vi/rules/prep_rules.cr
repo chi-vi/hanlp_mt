@@ -29,37 +29,19 @@ module Zh2Vi::Rules
           if prep_token
             pt = prep_token
             case pt
-            when "在", "比", "给", "跟", "离"
+            when "在", "比", "给", "跟", "往", "向", "自", "从", "对"
               # Swap
               node.children[i] = next_node
               node.children[i + 1] = current
 
-              # Post-processing for specific prepositions *after* swap if needed
-              # e.g. "比" might need "hơn" added?
-              # Actually "比" usually maps to "so với" or just "hơn" depending on context.
-              # If we have [Adj] [PP(Bi)], "bạn lớn hơn tôi"
-              # wait, "我比你大" -> "tôi" [bi ni] [da] -> swap -> "tôi" [da] [bi ni]
-              # "tôi lớn so với k" -> "tôi lớn hơn bạn"
-              # We might need to adjust the translation of 'bi' itself.
-
-              if pt == "比"
+              # Post-processing for specific prepositions *after* swap
+              case pt
+              when "比"
                 set_translation(current, "hơn")
-              elsif pt == "离"
-                # "我家离这儿很近" -> "nhà tôi cách đây rất gần"
-                # "Li" maps to "cách".
-                # Structure: [PP(Li zher)] [VP(very near)] -> [VP] [PP] ?
-                # NO. "A 离 B 很近" -> "A cách B rất gần". Structure is preserved order-wise in Vietnamese for 'cach'.
-                # "Nha toi" [cach day] [rat gan].
-                # So "Li" should NOT be swapped?
-                # Let's check fixture.
-                # Case 6: "我家离这儿很近" -> "tôi nhà cách đây rất gần" ??? No "nhà tôi..."
-                # If standard order is S + PP + V, and 离 behaves like a verb "cách",
-                # then "A [Li B] [hen jin]" -> "A [cach B] [rat gan]".
-                # So for 'Li', we do NOT swap.
-
-                # Revert swap for 'Li'
-                node.children[i] = current
-                node.children[i + 1] = next_node
+              when "对"
+                set_translation(current, "với")
+                # when "向"
+                #   set_translation(current, "về phía") # Context dependent, maybe leave to dictionary or specs
               end
             end
           end

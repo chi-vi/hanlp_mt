@@ -56,7 +56,7 @@
     - V
     - ăn cơm
   drt_dict: []
-  expected: tôi ăn cơm ở trong nhà
+  expected: tôi ăn cơm ở trong Gia
 - tok:
   - 我
   - 的
@@ -150,7 +150,7 @@
     - N
     - sách
   drt_dict: []
-  expected: tôi hôm qua mua sách
+  expected: hôm qua tôi mua sách
 - tok:
   - 苹果
   - 被
@@ -359,7 +359,7 @@
     - I
     - rồi
   drt_dict: []
-  expected: tôi ăn táo ở trong nhà rồi
+  expected: tôi ăn táo ở trong Gia rồi
 - tok:
   - 我
   - 买

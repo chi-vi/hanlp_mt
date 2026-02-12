@@ -49,7 +49,7 @@
     - V
     - chạy bộ
   drt_dict: []
-  expected: chúng ta chạy bộ ở công viên
+  expected: chúng ta chạy bộ tại công viên
 - tok:
   - 营业员
   - 很
@@ -244,7 +244,7 @@
     - F
     - trước
   drt_dict: []
-  expected: một tuần trước
+  expected: trước một tuần
 - tok:
   - 右
   - 乌龟
@@ -347,7 +347,7 @@
     - N
     - người
   drt_dict: []
-  expected: người trong sách
+  expected: trong sách người
 - tok:
   - 他
   - 给
@@ -640,7 +640,7 @@
     - D
     - một chút
   drt_dict: []
-  expected: hắn làm tốt hơn ta một chút
+  expected: hắn làm tốt một chút hơn ta
 - tok:
   - 糖果
   - 比
@@ -858,7 +858,7 @@
     - D
     - một chút
   drt_dict: []
-  expected: ta cảm thấy ngươi tiếng Trung nói tốt hơn hắn một chút
+  expected: ta cảm thấy tiếng Trung ngươi nói tốt một chút hơn hắn
 - tok:
   - 今天
   - 比
@@ -1044,7 +1044,7 @@
     - A
     - thấp
   drt_dict: []
-  expected: ta thấp hơn nàng một điểm
+  expected: ta thấp Nhất点 hơn nàng
 - tok:
   - 他
   - 跑
@@ -1346,7 +1346,7 @@
     - N
     - đồng học
   drt_dict: []
-  expected: ta là đồng học với ngươi
+  expected: ta là đồng học cùng ngươi
 - tok:
   - 我
   - 跟
@@ -1417,7 +1417,7 @@
     - M
     - tiếng
   drt_dict: []
-  expected: ta nói với ngươi một tiếng
+  expected: ta nói một tiếng cùng ngươi
 - tok:
   - 几十
   pos:
