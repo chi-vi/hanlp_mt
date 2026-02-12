@@ -74,6 +74,9 @@
   - - 1
     - dep
   utt_dict:
+  - - 吃饭
+    - V
+    - ăn
   - - 吃
     - V
     - ăn
@@ -84,7 +87,7 @@
     - A
     - nhanh
   drt_dict: []
-  expected: ăn cơm nhanh
+  expected: ăn nhanh
 - tok:
   - 高兴
   - 的

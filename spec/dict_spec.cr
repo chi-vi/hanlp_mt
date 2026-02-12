@@ -18,7 +18,7 @@ describe Zh2Vi::Dict::PosDict do
       # lookup converts POS -> UTT internally
       dict.lookup("上", "LC").should eq("trên") # LC -> F
       dict.lookup("上", "VV").should eq("lên")  # VV -> V
-      dict.lookup("上", "NN").should be_nil     # NN -> N, no entry
+      dict.lookup("上", "NN").should eq("lên")  # NN -> N -> V (fallback)
     end
   end
 

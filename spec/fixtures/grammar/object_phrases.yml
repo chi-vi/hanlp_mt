@@ -12,7 +12,10 @@
   dep:
   - - 0
     - root
-  utt_dict: []
+  utt_dict:
+  - - 吃饭
+    - V
+    - ăn cơm
   drt_dict: []
   expected: ăn cơm
 - tok:

@@ -21,6 +21,9 @@
   - - 1
     - dobj
   utt_dict:
+  - - 吃完
+    - V
+    - ăn xong
   - - 饭
     - N
     - cơm
@@ -47,6 +50,9 @@
   - - 1
     - dep
   utt_dict:
+  - - 听懂
+    - V
+    - nghe hiểu
   - - 了
     - I
     - rồi
@@ -74,6 +80,9 @@
   - - 1
     - dobj
   utt_dict:
+  - - 看见
+    - V
+    - nhìn thấy
   - - 他
     - PN
     - anh ấy
@@ -101,6 +110,9 @@
   - - 1
     - dobj
   utt_dict:
+  - - 买到
+    - V
+    - mua được
   - - 票
     - N
     - vé
@@ -127,6 +139,9 @@
   - - 1
     - dep
   utt_dict:
+  - - 说错
+    - V
+    - nói sai
   - - 了
     - I
     - rồi
@@ -199,6 +214,9 @@
   - - 1
     - dobj
   utt_dict:
+  - - 看懂
+    - V
+    - đọc hiểu
   - - 这
     - PN
     - này
@@ -232,6 +250,9 @@
   - - 1
     - dobj
   utt_dict:
+  - - 听见
+    - V
+    - nghe thấy
   - - 声音
     - N
     - tiếng

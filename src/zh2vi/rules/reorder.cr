@@ -40,34 +40,30 @@ module Zh2Vi::Rules
     # Examples:
     # - 漂亮的книга -> sách đẹp
     # - DT + M + N -> N + M + DT (demonstratives to end)
-    # Examples:
-    # - 漂亮的книга -> sách đẹp
-    # - DT + M + N -> N + M + DT (demonstratives to end)
     def self.reorder_np(node : Node) : Node
       return node if node.children.size < 2
 
-      # Special handling for IP that is actually a relative clause (Subject + Verb + De + Object)
+      # Guard: If IP is a sentence or Topic-Object, don't reorder as NP
       if node.label == "IP"
         if restructured = restructure_relative_ip(node)
           return restructured
         end
+        return node if is_sentence?(node) || is_topic_object?(node)
+      end
 
-        # If IP is a standard sentence [Subject, Predicate, (Particle)], preserve order/don't treat as NP.
-        # e.g. [NP, VP, AS] -> Keep as is.
-        # Check if first child is NP/PN and we have a VP
-        if node.children.size >= 2
-          first = node.children.first
-          has_vp = node.children.any? { |c| c.label == "VP" }
-
-          if (first.label == "NP" || first.label == "PN") && has_vp
-            return node
-          end
-        end
+      # Guard: If NP contains conjunctions (CC) or list punctuation (PU + 、), don't reorder as simple NP
+      if is_list_or_conjunction?(node)
+        return node
       end
 
       # Assume right-headedness for Chinese NP
       head = node.children.last
       modifiers = node.children[0...-1]
+
+      # Exception: if last child is ETC (等/等等), treat as head but don't reorder the rest as modifiers
+      if head.label == "ETC" || head.leaves.first?.try(&.token).try(&.pos) == "ETC"
+        return node
+      end
 
       pre_modifiers = [] of Node
       post_modifiers = [] of Node
@@ -104,7 +100,9 @@ module Zh2Vi::Rules
           # Vietnamese: dad of friend (bố (của) bạn)
           # So Noun modifier should be POST head.
           # BUT if head is VP (IP structure), NP/PN is Subject -> PRE head.
-          if head.label == "VP"
+          # OR if it's a Topic-Object structure: 他 (Subj) 苹果 (Obj) 吃掉了 (Verb)
+          # We check if head is a VP that already has a subject or if it's a specific pattern.
+          if head.label == "VP" || head.label == "IP"
             pre_modifiers << mod
           else
             post_modifiers << mod
@@ -394,6 +392,39 @@ module Zh2Vi::Rules
       end
 
       node
+    end
+
+    private def self.is_sentence?(node : Node) : Bool
+      return false if node.children.size < 2
+      first = node.children.first
+
+      # Starts with CP/ADVP/CS
+      return true if first.label == "CP" || first.label == "ADVP" || first.label == "CS"
+
+      # Subj + VP
+      has_vp = node.children.any? { |c| c.label == "VP" }
+      (first.label == "NP" || first.label == "PN") && has_vp
+    end
+
+    private def self.is_topic_object?(node : Node) : Bool
+      # Pattern: Subj(NP/PN) + Obj(NP/PN) + VP
+      return false if node.children.size < 3
+      c1, c2, c3 = node.children[0], node.children[1], node.children[2]
+      (c1.label == "NP" || c1.label == "PN") &&
+        (c2.label == "NP" || c2.label == "PN") &&
+        (c3.label == "VP")
+    end
+
+    private def self.is_list_or_conjunction?(node : Node) : Bool
+      node.children.any? do |c|
+        label = c.label
+        text = c.leaves.first?.try(&.token).try(&.text)
+        pos = c.leaves.first?.try(&.token).try(&.pos)
+
+        label == "CC" || pos == "CC" ||
+          text == "、" || text == "，" || text == "," ||
+          label == "PU" && (text == "、" || text == "，")
+      end
     end
   end
 end

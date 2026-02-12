@@ -14,11 +14,17 @@ module Zh2Vi::Rules
     extend self
 
     # Adverbs that should be post-posed (head + adverb)
+    # Map to their Vietnamese translation
     POST_ADVERBS = {
-      "最", "最为",
-      "这么", "那么", "如此",
-      "非常", "十分", "好好",
-      "极了",
+      "最"  => "nhất",
+      "最为" => "nhất",
+      "这么" => "như thế này",
+      "那么" => "như thế đó",
+      "如此" => "như thế đó",
+      "非常" => "vô cùng",
+      "十分" => "mười phần",
+      "好好" => "cho tốt",
+      "极了" => "hết sức", # or cực kỳ/lắm
     }
 
     # Adverbs that keep their position (adverb + head)
@@ -44,12 +50,17 @@ module Zh2Vi::Rules
         head = node.children[i + 1]
 
         # Match: ADVP + VP/ADJP (head)
-        if advp.label == "ADVP" && (head.label == "VP" || head.label == "ADJP")
+        if advp.label == "ADVP" && (head.label == "VP" || head.label == "ADJP" || head.label == "VA")
           # Get the adverb text
           adv_leaf = advp.leaves.first?
           adv_text = adv_leaf.try(&.token).try(&.text)
 
-          if adv_text && POST_ADVERBS.includes?(adv_text)
+          if adv_text && POST_ADVERBS.has_key?(adv_text)
+            # Set translation
+            if adv_leaf
+              adv_leaf.vietnamese = POST_ADVERBS[adv_text]
+            end
+
             # Swap: move ADVP after head
             node.children.delete_at(i)
             # Insert after the head (which is now at index i)
@@ -61,10 +72,30 @@ module Zh2Vi::Rules
           end
         end
 
-        # Also handle VP + ADVP where ADVP is already after (e.g. 极了)
-        # These are already in correct position, skip
+        # Also handle already-post-posed structure?
+        # If we see Head + ADVP, we might still want to translate the ADVP if it matches known ones.
+        # But 'process' runs recursively, so simple translation should happen via dictionary if not handled here.
+        # Let's ensure we translate even if order is already correct (e.g. 极了)
+
+        # Check current child at i (might be ADVP that was skipped or post-posed)
+        check_translation(node.children[i])
 
         i += 1
+      end
+
+      # Check last child
+      if node.children.size > 0
+        check_translation(node.children.last)
+      end
+    end
+
+    private def check_translation(node : Node) : Nil
+      if node.label == "ADVP" || (node.leaf? && node.token.try(&.pos) == "AD")
+        leaf = node.leaf? ? node : node.leaves.first?
+        text = leaf.try(&.token).try(&.text)
+        if text && POST_ADVERBS.has_key?(text)
+          leaf.not_nil!.vietnamese = POST_ADVERBS[text]
+        end
       end
     end
   end

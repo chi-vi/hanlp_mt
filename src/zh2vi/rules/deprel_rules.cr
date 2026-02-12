@@ -137,12 +137,31 @@ module Zh2Vi::Rules
       # Check if clause has [NP, VP] or similar structure
       if clause.children.size >= 2
         # Assume first child is Object, second is Verb(phrase)
-        # This is heuristics based on "把 O V" -> "VP(BA, IP(O, V))"
         obj = clause.children[0]
         verb_part = clause.children[1]
 
-        # Swap them: [Obj, Verb] -> [Verb, Obj]
-        clause.children = [verb_part, obj] + clause.children[2..-1]
+        # In Vietnamese: V + O
+        # But if Verb(phrase) has aspect markers or complements, O should often come right after the verb.
+        # e.g., "ăn táo rồi" (Verb + Obj + Particle)
+
+        # Check if verb_part is a phrase with multiple children (e.g., [VV, AS], [VV, PP])
+        if verb_part.phrase? && verb_part.children.size >= 2
+          # Find the verb node index
+          v_idx = verb_part.children.index { |c| c.label.starts_with?("V") || c.token.try(&.pos).try(&.starts_with?("V")) }
+          if v_idx
+            # Insert Obj right after the verb inside the phrase
+            verb_part.children.insert(v_idx + 1, obj)
+            # Remove Obj from Clause
+            clause.children.delete_at(0)
+          else
+            # Fallback: swap them [Obj, Verb] -> [Verb, Obj]
+            clause.children = [verb_part, obj] + clause.children[2..-1]
+          end
+        elsif verb_part.leaf? || verb_part.children.size < 2
+          # If it's a single verb token "看完", we might need to separate it if it has an internal complement
+          # But for now, just swap: [Obj, Verb] -> [Verb, Obj]
+          clause.children = [verb_part, obj] + clause.children[2..-1]
+        end
       end
 
       node
@@ -171,11 +190,6 @@ module Zh2Vi::Rules
       end
       if target_le = le_node
         # Change translation to 'đã'
-        target_le.vietnamese = "đã"
-
-        # Remove from original position (by setting to empty or removing logic?)
-        # Better to move it.
-        # Instead, we insert a new "đã" node before 'Bei' and clear the old one.
         target_le.vietnamese = "" # Clear old execution
 
         # Insert "đã" before pass_child
@@ -201,25 +215,49 @@ module Zh2Vi::Rules
       return node unless loc_child
 
       loc_text = loc_child.token.try(&.text)
+      target_for_vn = loc_child
+
+      # Heuristic: if loc_child is a phrase (LCP), look for its LC child
+      if !loc_text && loc_child.phrase?
+        lc_node = loc_child.children.find { |c| c.token.try(&.pos) == "LC" || c.label == "LC" }
+        if lc_node
+          loc_text = lc_node.token.try(&.text)
+          target_for_vn = lc_node
+        end
+      end
+
       return node unless loc_text && localizer?(loc_text)
 
       # Map phương vị từ
-      loc_child.vietnamese = case loc_text
-                             when "上"           then "trên"
-                             when "下"           then "dưới"
-                             when "里", "内", "中" then "trong"
-                             when "外"           then "ngoài"
-                             when "前"           then "trước"
-                             when "后"           then "sau"
-                             when "左"           then "bên trái"
-                             when "右"           then "bên phải"
-                             when "旁"           then "bên cạnh"
-                             else                    loc_text
-                             end
+      vn_loc = case loc_text
+               when "上"           then "trên"
+               when "下"           then "dưới"
+               when "里", "内", "中" then "trong"
+               when "外"           then "ngoài"
+               when "前"           then "trước"
+               when "后"           then "sau"
+               when "左"           then "bên trái"
+               when "右"           then "bên phải"
+               when "旁"           then "bên cạnh"
+               else                    loc_text
+               end
 
-      # Đưa phương vị từ lên đầu
-      others = node.children.reject { |c| c == loc_child }
-      node.children = [loc_child] + others
+      target_for_vn.vietnamese = vn_loc
+
+      # Đưa phương vị từ lên đầu TRONG LCP (桌子上 -> trên bàn)
+      if target_for_vn != loc_child
+        # Inside LCP: move LC to front
+        others_in_lcp = loc_child.children.reject { |c| c == target_for_vn }
+        loc_child.children = [target_for_vn] + others_in_lcp
+        return node # Reordered inside LCP, don't move LCP itself to front of parent (PP/VP)
+      end
+
+      # If loc_child is a direct leaf of node (e.g. PP -> P, NP, LC)
+      # Move it to front ONLY if parent is not a VP/PP (avoid 'ngồi trên bàn' -> 'trên bàn ngồi')
+      unless node.label == "VP" || node.label == "PP"
+        others = node.children.reject { |c| c == loc_child }
+        node.children = [loc_child] + others
+      end
 
       node
     end

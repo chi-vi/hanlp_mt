@@ -136,6 +136,20 @@ module Zh2Vi
         return result
       end
 
+      # 3.5. Try splitting unknown 2-character compounds (e.g. 看见 -> 看 + 见)
+      if text.size == 2
+        v1 = text[0].to_s
+        v2 = text[1].to_s
+        tr1 = @pos_dict.lookup(v1, pos) || @pos_dict.lookup_any(v1) || @hanviet.convert_char(text[0])
+        tr2 = @pos_dict.lookup(v2, pos) || @pos_dict.lookup_any(v2) || @hanviet.convert_char(text[1])
+
+        if tr1 && tr2
+          # If tr2 is a known resultative particle, join with space
+          # Common resultatives: xong (完), thấy (见), được (到), sai (错), hiểu (懂)
+          return "#{tr1} #{tr2}"
+        end
+      end
+
       # 4. For NER entities, use Hán-Việt
       if token.ner
         return @hanviet.convert_proper(text)
