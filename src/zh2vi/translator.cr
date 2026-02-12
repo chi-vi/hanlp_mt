@@ -7,6 +7,7 @@ require "./rules/prep_rules"
 require "./rules/comp_rules"
 require "./rules/advb_rules"
 require "./rules/attr_rules"
+require "./rules/special_rules"
 require "./data/raw_con"
 
 module Zh2Vi
@@ -90,6 +91,9 @@ module Zh2Vi
 
       # 1.95. Apply comparison rules (比, 没有, equative)
       tree = Rules::Compare.process(tree)
+
+      # 1.96. Apply special rules (Greetings, Shi...de)
+      tree = Rules::SpecialRules.process(tree)
 
       # 2. Apply adverb reordering (最, 非常, 这么, etc.)
       tree = Rules::Adverb.process(tree)

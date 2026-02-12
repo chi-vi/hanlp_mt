@@ -1,0 +1,380 @@
+---
+- tok:
+  - 他
+  - 的
+  - 好
+  - 是
+  - 大家
+  - 公认
+  - 的
+  - 。
+  pos:
+  - PN
+  - DEG
+  - NN
+  - VC
+  - PN
+  - VV
+  - SP
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - DNP
+              - - - NP
+                  - - - PN
+                      - - 他
+                - - DEG
+                  - - 的
+            - - NP
+              - - - NN
+                  - - 好
+        - - VP
+          - - - VC
+              - - 是
+            - - NP
+              - - - CP
+                  - - - CP
+                      - - - IP
+                          - - - NP
+                              - - - PN
+                                  - - 大家
+                            - - VP
+                              - - - VV
+                                  - - 公认
+                        - - SP
+                          - - 的
+        - - PU
+          - - 。
+  dep:
+  - - 3
+    - assmod
+  - - 1
+    - assm
+  - - 4
+    - top
+  - - 0
+    - root
+  - - 6
+    - nsubj
+  - - 4
+    - dep
+  - - 6
+    - dep
+  - - 4
+    - punct
+  utt_dict:
+  - - 他
+    - N
+    - anh ấy
+  - - 的
+    - F
+    - của
+  - - 好
+    - N
+    - cái tốt
+  - - 是
+    - V
+    - là
+  - - 大家
+    - N
+    - mọi người
+  - - 公认
+    - V
+    - công nhận
+  drt_dict: []
+  expected: cái tốt của anh ấy là mọi người công nhận 。
+- tok:
+  - 我
+  - 好
+  - 静
+  - 。
+  pos:
+  - PN
+  - VV
+  - NN
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 我
+        - - VP
+          - - - VP
+              - - - VV
+                  - - 好
+            - - NP
+              - - - NN
+                  - - 静
+        - - PU
+          - - 。
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - dobj
+  - - 2
+    - punct
+  utt_dict:
+  - - 我
+    - N
+    - tôi
+  - - 好
+    - V
+    - thích
+  - - 静
+    - N
+    - sự yên tĩnh
+  drt_dict: []
+  expected: tôi thích sự yên tĩnh 。
+- tok:
+  - 这
+  - 书
+  - 很
+  - 好
+  - 。
+  pos:
+  - DT
+  - NN
+  - AD
+  - VA
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - DP
+              - - - DT
+                  - - 这
+            - - NP
+              - - - NN
+                  - - 书
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 很
+            - - VP
+              - - - VA
+                  - - 好
+        - - PU
+          - - 。
+  dep:
+  - - 2
+    - det
+  - - 4
+    - nsubj
+  - - 4
+    - advmod
+  - - 0
+    - root
+  - - 4
+    - punct
+  utt_dict:
+  - - 这
+    - F
+    - này
+  - - 书
+    - N
+    - quyển sách
+  - - 很
+    - A
+    - rất
+  - - 好
+    - A
+    - tốt
+  drt_dict: []
+  expected: quyển sách này rất tốt 。
+- tok:
+  - 他
+  - 是
+  - 个
+  - 好人
+  - 。
+  pos:
+  - PN
+  - VC
+  - M
+  - NN
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 他
+        - - VP
+          - - - VC
+              - - 是
+            - - NP
+              - - - QP
+                  - - - CLP
+                      - - - M
+                          - - 个
+                - - NP
+                  - - - NN
+                      - - 好人
+        - - PU
+          - - 。
+  dep:
+  - - 2
+    - top
+  - - 0
+    - root
+  - - 4
+    - clf
+  - - 2
+    - attr
+  - - 2
+    - punct
+  utt_dict:
+  - - 他
+    - N
+    - anh ấy
+  - - 是
+    - V
+    - là
+  - - 个
+    - M
+    - một
+  - - 好人
+    - N
+    - người tốt
+  drt_dict: []
+  expected: anh ấy là một người tốt 。
+- tok:
+  - 今天
+  - 好
+  - 冷
+  - 。
+  pos:
+  - NT
+  - AD
+  - VA
+  - PU
+  ner:
+  - - 今天
+    - DATE
+    - 0
+    - 1
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NT
+              - - 今天
+        - - VP
+          - - - ADVP
+              - - - AD
+                  - - 好
+            - - VP
+              - - - VA
+                  - - 冷
+        - - PU
+          - - 。
+  dep:
+  - - 3
+    - tmod
+  - - 3
+    - advmod
+  - - 0
+    - root
+  - - 3
+    - punct
+  utt_dict:
+  - - 今天
+    - N
+    - hôm nay
+  - - 好
+    - A
+    - rất
+  - - 冷
+    - A
+    - lạnh
+  drt_dict: []
+  expected: hôm nay rất lạnh 。
+- tok:
+  - 饭
+  - 做好
+  - 了
+  - 。
+  pos:
+  - NN
+  - VV
+  - AS
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - NN
+              - - 饭
+        - - VP
+          - - - VV
+              - - 做好
+            - - AS
+              - - 了
+        - - PU
+          - - 。
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - asp
+  - - 2
+    - punct
+  utt_dict:
+  - - 饭
+    - N
+    - cơm
+  - - 做好
+    - V
+    - làm xong
+  drt_dict: []
+  expected: cơm đã làm xong 。
+- tok:
+  - 你
+  - 好
+  - 。
+  pos:
+  - PN
+  - VA
+  - PU
+  ner: []
+  con:
+  - TOP
+  - - - IP
+      - - - NP
+          - - - PN
+              - - 你
+        - - VP
+          - - - VA
+              - - 好
+        - - PU
+          - - 。
+  dep:
+  - - 2
+    - nsubj
+  - - 0
+    - root
+  - - 2
+    - punct
+  utt_dict:
+  - - 你
+    - N
+    - bạn
+  - - 好
+    - A
+    - tốt
+  drt_dict: []
+  expected: chào bạn 。
