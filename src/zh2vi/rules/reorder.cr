@@ -102,7 +102,7 @@ module Zh2Vi::Rules
           # BUT if head is VP (IP structure), NP/PN is Subject -> PRE head.
           # OR if it's a Topic-Object structure: 他 (Subj) 苹果 (Obj) 吃掉了 (Verb)
           # We check if head is a VP that already has a subject or if it's a specific pattern.
-          if head.label == "VP" || head.label == "IP"
+          if head.label == "VP" || head.label == "IP" || head.token.try(&.pos) == "SP"
             pre_modifiers << mod
           else
             post_modifiers << mod

@@ -8,6 +8,7 @@ require "./rules/comp_rules"
 require "./rules/advb_rules"
 require "./rules/attr_rules"
 require "./rules/special_rules"
+require "./rules/part_rules"
 require "./data/raw_con"
 
 module Zh2Vi
@@ -94,6 +95,9 @@ module Zh2Vi
 
       # 1.96. Apply special rules (Greetings, Shi...de)
       tree = Rules::SpecialRules.process(tree)
+
+      # 1.97. Apply particle rules
+      tree = Rules::PartRules.process(tree)
 
       # 2. Apply adverb reordering (最, 非常, 这么, etc.)
       tree = Rules::Adverb.process(tree)
