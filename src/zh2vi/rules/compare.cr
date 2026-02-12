@@ -194,7 +194,24 @@ module Zh2Vi::Rules
       before = node.children[0...meiyou_idx]
       after = ip_idx + 1 < node.children.size ? node.children[(ip_idx + 1)..] : [] of Node
 
+      # Clean "这么"/"那么" inside adj_node
+      clean_comparison_adverbs(adj_node)
+
       node.children = before + [meiyou, adj_node, bang_node, b_node] + after
+    end
+
+    private def clean_comparison_adverbs(node : Node) : Nil
+      # Recursively remove ADVP nodes containing "这么"/"那么"
+      node.children.reject! do |child|
+        if child.label == "ADVP"
+          # Check content
+          has_zheme = child.leaves.any? { |l| l.token.try(&.text) == "这么" || l.token.try(&.text) == "那么" }
+          has_zheme
+        else
+          clean_comparison_adverbs(child)
+          false
+        end
+      end
     end
 
     # Equative: VP → [PP(跟/像+B), ADVP(一样), VP(Adj)] → [Adj, như, B]

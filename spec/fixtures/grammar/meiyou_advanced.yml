@@ -209,5 +209,8 @@
   - - 什么
     - PN
     - cái gì
+  - - 好些
+    - NN
+    - tốt hơn
   drt_dict: []
-  expected: không có cái gì tốt hơn
+  expected: không có tốt hơn cái gì

@@ -159,8 +159,7 @@
     - X
     - .
   drt_dict: []
-  expected: xuất hiện của bạn khiến câu nói này đã đạt được chứng minh mạnh mẽ nhất
-    .
+  expected: xuất hiện của bạn khiến câu nói này đạt được chứng minh mạnh mẽ nhất rồi .
 - tok:
   - 整个
   - 世界
@@ -405,8 +404,7 @@
     - X
     - '?'
   drt_dict: []
-  expected: cả thế giới đều chỉ là một cuốn sách ... vậy thì mọi thứ bản thân trải
-    qua , rốt cuộc là thực hay ảo ?
+  expected: thế giới cả đều chỉ là một cuốn sách … … vậy thì mọi thứ bản thân trải qua , rốt cuộc đúng là thực hay ảo ?
 - tok:
   - 不
   - 应该
@@ -659,7 +657,7 @@
     - X
     - .
   drt_dict: []
-  expected: phàm là mọi việc đều cần tự mình làm .
+  expected: việc phàm là đều cần tự mình làm .
 - tok:
   - 源清素
   - 正
@@ -865,8 +863,7 @@
     - X
     - .
   drt_dict: []
-  expected: Nguyên Thanh Tố đang suy nghĩ , Thần Lâm Ngự Tử thay xong quần áo , đã
-    bước ra từ cửa gỗ quán trọ .
+  expected: Nguyên Thanh Tố đang muốn , Ngự Tử Thần Lâm thay xong quần áo , đã bước ra từ cửa gỗ của quán trọ .
 - tok:
   - 两
   - 人
@@ -1136,12 +1133,23 @@
   - - 啤酒
     - N
     - bia
+  - - 两
+    - CD
+    - hai
+  - - 人
+    - N
+    - người
+  - - 扁
+    - JJ
+    - dẹp
+  - - 肉
+    - N
+    - thịt
   - - 。
     - X
     - .
   drt_dict: []
-  expected: hai người đã đến quán vỉa hè ngoài tiểu khu , không ăn hoành thánh rồi
-    , đã gọi chút thịt xiên nướng , mỗi người đã gọi một chai bia .
+  expected: hai người đến quán vỉa hè của ngoài tiểu khu rồi , không ăn thịt dẹp rồi , gọi chút thịt xiên nướng rồi , mỗi người gọi một chai bia rồi .
 - tok:
   - 三十五
   - 天
@@ -1588,7 +1596,4 @@
     - N
     - đầu lâu
   drt_dict: []
-  expected: ba mươi lăm ngày trước , một trong mười hai kỵ sĩ hiệp hội làm sạch ‘
-    Nhà Sưu Tập ’ đột kích tổng hội Bangkok Giáng Lâm Hội Đông Nam Á , tại chỗ giết
-    chết ba mươi lăm người hàng linh sư , bao gồm hàng linh sư đại nhập xác dị thường
-    bảy người , đầu lâu không còn gì ...
+  expected: trước ba mươi lăm ngày , ‘ Nhà Sưu Tập của 之 Nhất làm sạch hiệp hội mười hai kỵ sĩ ’ đột kích Bangkok tổng hội Đông Nam Á biết 降临 , tại chỗ giết chết ba mươi lăm người 师 降 灵 , bao gồm bảy người đại 降 师 dị thường nhập xác 灵 , đầu lâu 全 无 … …

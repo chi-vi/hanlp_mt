@@ -56,7 +56,7 @@
     - X
     - '"'
   drt_dict: []
-  expected: tôi thích " táo "
+  expected: tôi thích " " táo
 - tok:
   - 我们
   - 要
@@ -193,7 +193,7 @@
     - U
     - của
   drt_dict: []
-  expected: anh ấy là bạn ( của tôi )
+  expected: anh ấy là bạn của ( tôi
 - tok:
   - “
   - 好

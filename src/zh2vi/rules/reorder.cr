@@ -367,28 +367,17 @@ module Zh2Vi::Rules
     def self.reorder_dp(node : Node) : Node
       return node if node.children.size < 2
 
-      # Find DT and CLP
-      dt_idx = node.children.index { |c| c.token.try(&.pos) == "DT" || c.label == "DT" }
-      clp_idx = node.children.index { |c| c.label == "CLP" || c.label == "M" || c.token.try(&.pos) == "M" }
+      # Force CLP/M/QP to be before DT (Demonstrative)
+      # [DT, CLP] -> [CLP, DT]
+      # Scan children for DT and CLP
+      dt_node = node.children.find { |c| c.label == "DT" || c.token.try(&.pos) == "DT" }
+      clp_node = node.children.find { |c| c.label == "CLP" || c.label == "M" || c.token.try(&.pos) == "M" || c.label == "QP" }
 
-      if dt_idx && clp_idx
-        dt = node.children[dt_idx]
-        clp = node.children[clp_idx]
-
-        # Swap: CLP + DT
-        # Note: We assume DP only has these two or similar structure
-
-        # Construct new children array, preserving others if any?
-        # Usually DP is just DT+CLP or DT+QP.
-        # Use simple swap if just 2
-        if node.children.size == 2
-          node.children = [clp, dt]
-        else
-          # If more complex, just ensure CLP is before DT?
-          # Or just swap these specific two?
-          # Let's trust simple swap for now based on fixtures
-          return node
-        end
+      if dt_node && clp_node
+        # Ensure CLP is before DT
+        # Reconstruct children: CLP + DT + others
+        others = node.children.reject { |c| c == dt_node || c == clp_node }
+        node.children = [clp_node, dt_node] + others
       end
 
       node
@@ -399,7 +388,7 @@ module Zh2Vi::Rules
       first = node.children.first
 
       # Starts with CP/ADVP/CS
-      return true if first.label == "CP" || first.label == "ADVP" || first.label == "CS"
+      return true if first.label == "CP" || first.label == "ADVP" || first.label == "CS" || first.label == "PP"
 
       # Subj + VP
       has_vp = node.children.any? { |c| c.label == "VP" }

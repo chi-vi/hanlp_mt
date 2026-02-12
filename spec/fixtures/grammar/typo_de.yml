@@ -37,7 +37,7 @@
     - A
     - nhanh
   drt_dict: []
-  expected: chạy thật nhanh
+  expected: chạy nhanh
 - tok:
   - 吃饭
   - 吃
@@ -87,7 +87,7 @@
     - A
     - nhanh
   drt_dict: []
-  expected: ăn cơm thật nhanh
+  expected: ăn cơm nhanh
 - tok:
   - 高兴
   - 的

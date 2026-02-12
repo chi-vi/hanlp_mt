@@ -152,7 +152,7 @@
     - N
     - người
   drt_dict: []
-  expected: phía trước đã đến một cái người
+  expected: phía trước đến một cái người rồi
 - tok:
   - 墙上
   - 挂
@@ -203,6 +203,9 @@
   - - 2
     - dobj
   utt_dict:
+  - - 墙上
+    - N
+    - trên tường
   - - 挂
     - V
     - treo

@@ -737,12 +737,6 @@
   - - 放假
     - V
     - nghỉ
-  - - 下
-    - D
-    - sau
-  - - 周
-    - M
-    - tuần
   drt_dict: []
   expected: tuần sau sẽ nghỉ
 - tok:

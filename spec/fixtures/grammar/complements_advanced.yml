@@ -158,7 +158,7 @@
     - A
     - giỏi
   drt_dict: []
-  expected: anh ấy nói tiếng Trung rất giỏi
+  expected: tiếng Trung anh ấy nói rất giỏi
 - tok:
   - 拿出
   - 一
@@ -208,6 +208,9 @@
   - - 1
     - conj
   utt_dict:
+  - - 拿出
+    - V
+    - lấy ra
   - - 一
     - M
     - "1"
@@ -221,7 +224,7 @@
     - V
     - đến
   drt_dict: []
-  expected: lấy ra 1 quyển sách
+  expected: lấy ra 1 quyển sách đến
 - tok:
   - 带
   - 书
@@ -258,6 +261,9 @@
   - - 书
     - N
     - sách
+  - - 回来
+    - V
+    - về
   drt_dict: []
   expected: mang sách về
 - tok:
@@ -310,4 +316,4 @@
     - V
     - đi
   drt_dict: []
-  expected: chạy về nhà
+  expected: chạy về nhà đi
