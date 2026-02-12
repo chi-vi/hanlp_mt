@@ -166,23 +166,17 @@ module Zh2Vi::Rules
       # S + 被 + Agent + V + 了 -> S + đã + bị + Agent + V
 
       # Let's simplify: if we see '了' in the subtree, move it to front of 'Bei' as 'đã'
-      le_node = nil
-      node.traverse_preorder do |n|
-        if n.label == "AS" && (n.token.try(&.text) == "了" || n.token.try(&.pos) == "AS")
-          le_node = n
-          break
-        end
+      le_node = node.find_node do |n|
+        n.label == "AS" && (n.token.try(&.text) == "了" || n.token.try(&.pos) == "AS")
       end
-
-      if le_node
+      if target_le = le_node
         # Change translation to 'đã'
-        le_node.vietnamese = "đã"
+        target_le.vietnamese = "đã"
 
         # Remove from original position (by setting to empty or removing logic?)
         # Better to move it.
-        # Removing from tree is hard with just reference.
         # Instead, we insert a new "đã" node before 'Bei' and clear the old one.
-        le_node.vietnamese = "" # Clear old execution
+        target_le.vietnamese = "" # Clear old execution
 
         # Insert "đã" before pass_child
         da_token = Token.new("đã", "AD", nil, 0, "advmod")
